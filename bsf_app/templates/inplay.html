@@ -27,52 +27,7 @@
 
 
 
-<div class="match-index-row header-top-spacing match-text-flag-box">
-  
-    
-     <div class="row" style="margin: auto 15px 15px;">
-        <div class="col-xs-12 top-time-dtl in-play-right-box-color">
-          
-          10 June 03:30 PM
-           <!-- 27 APRIL 09:30:00 PM -->
-        </div>
-        <div class="col-md-10 col-lg-10 col-sm-9 col-xs-12 in-play-row-left" style="padding: 0px 0px 0px 0px">
-           <div class="col-lg-1 col-sm-2 col-xs-1 flags-container" style="padding: 18px 0px 18px 0px;">
-           </div>
-           <div class="col-lg-11 col-sm-10 col-xs-8 match-detail-container" style="padding: 15px 0px 0px 15px;">
-              <div class="match-title">
-                 <p class="team-name-font-color">
-                   
-                  England Vs New Zealand
-                 </p>
-                 <div class="match-info">
-                    <p class="match-summary-text">{{ each_match.SeriesName }}</p>
-                    <p>Match Bets : 0</p>
-                    <p>Session Bets : 0</p>
-                 </div>
-              </div>
-           </div>
-        </div>
-        <div>
-           <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3 in-play-row-right in-play-right-box-color">
-              <div class="match-time-dtl">
-                 <p class="match-time-dtl-date">
-                 {{ each_match.eventDate|filter_date:'d' }}
-              </p>
-                 <p class="match-time-dtl-mounth">
-                 {{ each_match.eventDate|filter_date:'month' }}
-              </p>
-                 <p class="match-time-dtl-mounth">
-                    {{ each_match.eventDate|filter_date:'time' }}
-                 </p>
-              </div>
-           </div>
-        </div>
-    </div>
-  
-     <div class="row" style="padding-bottom: 30px;margin: auto auto;"></div>
- 
-    </div>
+<div class="match-index-row header-top-spacing match-text-flag-box" id ="allMatches"></div>
 
  
 
@@ -180,6 +135,64 @@ function myFunction(event) {
 }
 </script>   
 
+<script>
+  var match_ids = []
+var Socket = new WebSocket("ws://148.251.21.118:5570 ");
+Socket.onmessage = function (event) {
+  
+  var data =jQuery.parseJSON(event.data);
+  console.log(data)
+  if (data['responseType'] == 4){
+    match_id = data['data']['MatchId']
+    if (match_ids.indexOf(match_id)!= -1){
 
-<script src="{% static 'js/websocket.js' %}"></script>
+    }
+    else{
+     html = ` <div class="row" style="margin: auto 15px 15px;">
+      <div class="col-xs-12 top-time-dtl in-play-right-box-color">
+        `+data['data']['MatchIdStartTime']+`  
+      </div>
+      <div class="col-md-10 col-lg-10 col-sm-9 col-xs-12 in-play-row-left" style="padding: 0px 0px 0px 0px">
+         <div class="col-lg-1 col-sm-2 col-xs-1 flags-container" style="padding: 18px 0px 18px 0px;">
+         </div>
+         <div class="col-lg-11 col-sm-10 col-xs-8 match-detail-container" style="padding: 15px 0px 0px 15px;">
+            <div class="match-title">
+               <p class="team-name-font-color">
+                `+data['data']['Teams']+`
+               </p>
+               <div class="match-info">
+                  <p class="match-summary-text">`+data['data']['MatchType']+`</p>
+                  <p>Match Bets : 0</p>
+                  <p>Session Bets : 0</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div>
+         <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3 in-play-row-right in-play-right-box-color">
+            <div class="match-time-dtl">
+               <p class="match-time-dtl-date">
+               {{ each_match.eventDate|filter_date:'d' }}
+            </p>
+               <p class="match-time-dtl-mounth">
+               {{ each_match.eventDate|filter_date:'month' }}
+            </p>
+               <p class="match-time-dtl-mounth">
+                  {{ each_match.eventDate|filter_date:'time' }}
+               </p>
+            </div>
+         </div>
+      </div>
+  </div>
+
+   <div class="row" style="padding-bottom: 30px;margin: auto auto;"></div>`
+
+   $('#allMatches').append(html);
+   match_ids.push(match_id)
+    }
+  }
+  
+}
+</script>
+
 {% endblock %}
