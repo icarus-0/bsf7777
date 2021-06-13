@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+   <div class="content-top-padding">
+{% if match_list %}
+<div class="match-index-row header-top-spacing match-text-flag-box">
+
+  {% for each_match in match_list %}
+
+    <a href="{% url 'market_detail' %}?{{each_match|get_encoded_dict}}" data-id="{{ each_match.eventId }}">
+     <div class="row" style="margin: auto 15px 15px;">
+        <div class="col-xs-12 top-time-dtl in-play-right-box-color">
+           {{ each_match.eventDate }}
+           <!-- 27 APRIL 09:30:00 PM -->
+        </div>
+        <div class="col-md-10 col-lg-10 col-sm-9 col-xs-12 in-play-row-left" style="padding: 0px 0px 0px 0px">
+           <div class="col-lg-1 col-sm-2 col-xs-1 flags-container" style="padding: 18px 0px 18px 0px;">
+           </div>
+           <div class="col-lg-11 col-sm-10 col-xs-8 match-detail-container" style="padding: 15px 0px 0px 15px;">
+              <div class="match-title">
+                 <p class="team-name-font-color">
+                  {{ each_match.eventName }}
+                 </p>
+                 <div class="match-info">
+                    <p class="match-summary-text">{{ each_match.SeriesName }}</p>
+                    <p>Match Bets : 0</p>
+                    <p>Session Bets : 0</p>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div>
+           <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3 in-play-row-right in-play-right-box-color">
+              <div class="match-time-dtl">
+                 <p class="match-time-dtl-date">
+                 {{ each_match.eventDate|filter_date:'d' }}
+              </p>
+                 <p class="match-time-dtl-mounth">
+                 {{ each_match.eventDate|filter_date:'month' }}
+              </p>
+                 <p class="match-time-dtl-mounth">
+                    {{ each_match.eventDate|filter_date:'time' }}
+                 </p>
+              </div>
+           </div>
+        </div>
+    </div>
+    </a>
+    {% endfor %}
+     <div class="row" style="padding-bottom: 30px;margin: auto auto;"></div>
+ </div>
+ {% else %}
+
+  <div class="row alert-match-status-box" id="alert-status">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert-match-status-text">
+          <span>Currently No Match Available.</span>
+      </div>
+  </div>
+
+ {% endif %}
+
+
+
+<script type="text/javascript">
+  
+</script>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+
+{% for row in lagai_khai_list %}
+{% if row.4 and row.0 and row.1 and row.2 and row.6 %}
+<tr>
+  <td class="ldg-tbl-td match-value-box-color">
+    {{ row.4 }}
+  </td>
+  <td class="ldg-tbl-td match-value-box-color">
+    {{ row.0 }}
+  </td>
+  <td class="ldg-tbl-td match-value-box-color">
+    {{ row.1 }}
+  </td>
+  <td class="ldg-tbl-td match-value-box-color">
+    {{ row.2 }}
+  </td>
+  <td class="ldg-tbl-td match-value-box-color">
+    {{ row.6 }}
+  </td>
+  <td class="ldg-tbl-td match-value-box-color">
+    {{ row.7 }}
+  </td>
+  <td class="ldg-tbl-td match-value-box-color" style="text-align:center;">
+    {% if not row.7 %}
+    <div class="butn-side-by-side">
+    	<button class="btn btn-primary pill-butn butn-left" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'won')">WON</button>
+    	<!--&nbsp;&nbsp;
+    	<button class="btn btn-primary pill-butn butn-right" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'lose')">LOSE</button>-->
+    </div>
+    {% endif %}
+  </td>
+</tr>
+{% endif %}
+{% endfor %}

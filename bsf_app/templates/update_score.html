@@ -1,0 +1,33 @@
+
+{% load static %}
+{% load custom_tags %}
+
+
+<div class="row content-top-padding">
+   <div class="content_matches_wrapper">
+     <div class=" col-lg-8 col-xs-9 col-md-8 col-sm-7 match-score content_in_play_wrapper match-status-table match-score-box-color">
+        <p class="inplay-show-tbl-td match-status-text match-score-box-color" id="score_table_139839">
+        {% for team_score in score %}
+        {{ team_score.name }} {% if team_score.runs %} {{ team_score.runs }}/{{ team_score.wickets }} ({{ team_score.overs }}) {% endif %}
+        <br>
+        {% endfor %}
+        </p>
+     </div>
+     <div class=" col-lg-3 col-xs-3 col-md-3 col-sm-3 bet_status_box bet-status-text-div">
+        <div class="bet-status-text-p event commentry-box-color" style="font-size: 20px; line-height: 20px; padding: 0px;" 
+        id="event_status">BET<br>{{ market_data.cricket.0.status }}</div>
+        <div class="bet-status-text-p ball_status" id="ball_status" style="font-size: 20px; line-height: 20px; padding: 0px;">
+           {{ball_status}}
+        </div>
+        <!-- <p class=" col-lg-12 event" id="event_table_139839" > </p>
+           <p class=" col-lg-12  event_bet_status" id="bet-status"></p> -->
+        <!--                     <p class=" col-lg-12 event single-no-text" id="event_table_139839" > </p>
+           -->
+        <!-- <p class=" col-lg-12  event_bet_status" id="bet-status"></p> -->
+     </div>
+     <div id="refresh2" class=" col-lg-1 col-xs-2 col-md-1 col-sm-2 refresh-btn  reload-class refresh-btn-color">
+        <!-- <img class="refresh_img" src="/images/reload.png" width="50px"> -->
+        <i class="refresh_img fa fa-refresh" aria-hidden="true"></i>
+     </div>
+  </div>
+</div>

@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BSF7777</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/jquery.noty.packaged.min.js' %}"></script>
+    <script src="{% static 'js/selectize.min.js' %}"></script>
+    <script src="{% static 'js/notification.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-select.min.js' %}">
+    </script>
+    <style type="text/css">
+      body {
+        font-family: "Cardo", "Times New Roman", Times, serif;
+        font-size: 16px;
+        line-height: 1.42857143;
+        color: #333333;
+        background-color: #3a61a2;
+        height: 100%;
+      }
+      .content {
+        position: relative;
+        width: 100%;
+        top: 50%;
+        z-index: 3;
+        transform: translate(0px, 0px);
+        margin-top: -94.5px;
+    }
+    body {
+      height: 100%;
+    }
+    .wrapper {
+      height: 100% !important;
+      height: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .italic {
+      font-style: italic;
+    }
+    .main {
+      float: left;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      position: absolute;
+    }
+    section {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .section-gray {
+      background: #eeeeee;
+    }
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: #000;
+      z-index: 2;
+      opacity: 0.3;
+      filter: alpha(opacity=30);
+    }
+    .heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .heading:after {
+      content: " ";
+      display: block;
+      width: 100px;
+      height: 1px;
+      margin: 20px auto 20px;
+      background: #4fbfa8;
+    }
+    h4.heading {
+      margin-bottom: 20px;
+    }
+    h4.heading:after {
+      margin: 10px auto 20px;
+      background: #4fbfa8;
+    }
+    .img-responsive {
+      margin: 0 auto;
+    }
+    .box {
+      margin-bottom: 30px;
+    }
+    #page1 {
+      text-align: center;
+      background: url("{% static '/images/wel-come-background.jpg' %}") center center no-repeat;
+      background-size: cover;
+      color: #fff;
+    }
+
+    #page1 h1,
+    #page1 h2,
+    #page1 h3 {
+      color: #fff;
+    }
+    #page1 p {
+      font-size: 20px;
+    }
+    #page1 .icon {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      margin-left: -20px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border: solid 2px #fff;
+      border-radius: 20px;
+      z-index: 3;
+    }
+    body.disabled-onepage-scroll .onepage-wrapper section {
+      min-height: 100%;
+      height: auto;
+    }
+    .col-md-offset-2 {
+        margin-left: 16.66666667%;
+    }
+    /*LOGIN PAGE ANIMATED BUTTON CSS*/
+    .btnl {
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      background: none;
+      cursor: pointer;
+      padding: 15px 70px;
+      display: inline-block;
+      margin: 5px 30px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      outline: none;
+      position: relative;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+
+    .btnl:after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+
+
+    .btnl:before,
+    .icon-heart:after,
+    .icon-star:after,
+    .icon-plus:after,
+    .icon-file:before {
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+
+    .btnl-1 {
+      border: 2px solid #fff;
+      color: #fff;
+    }
+
+
+    .btnl-1a:hover,
+    .btnl-1a:active {
+      color: #0e83cd;
+      background: #fff;
+    }
+
+
+    .btnl-1b:after {
+      width: 100%;
+      height: 0;
+      top: 0;
+      left: 0;
+      background: #fff;
+    }
+
+    .btnl-1b:hover,
+    .btnl-1b:active {
+      color: #0e83cd;
+    }
+
+    .btnl-1b:hover:after,
+    .btnl-1b:active:after {
+      height: 100%;
+    }
+
+    .btnl-1c:after {
+      width: 0%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: #fff;
+    }
+
+    .btnl-1c:hover,
+    .btnl-1c:active {
+      color: #0e83cd;
+    }
+
+    .btnl-1c:hover:after,
+    .btnl-1c:active:after {
+      width: 100%;
+    }
+    /*END LOGIN PAGE ANIMATED BUTTON CSS*/
+    h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+h1,
+.h1 {
+  font-size: 48px;
+}
+h2,
+.h2 {
+  font-size: 36px;
+}
+h3,
+.h3 {
+  font-size: 31px;
+}
+h4,
+.h4 {
+  font-size: 24px;
+}
+h5,
+.h5 {
+  font-size: 16px;
+}
+h6,
+.h6 {
+  font-size: 16px;
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+  margin-top: 0;
+  margin-bottom: 22px;
+}
+  </style>
+</head>
+
+ <body>
+
+    <div class="wrapper">
+      <div class="main">
+        <!-- page 1-->
+        <section id="page1">
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="container clearfix">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-12">
+                  <h1 class="main-page-heading heading">BSF7777</h1>
+                  <a href="{% url 'signin' %}">
+                  <button class="btnl btnl-1 btnl-1c">Login</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+       </div>
+    </div>
+</body>
+</html>

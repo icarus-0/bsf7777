@@ -1,0 +1,207 @@
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>BSF7777</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pace.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <script type="text/javascript" src="{% static 'js/pace.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/jquery.noty.packaged.min.js' %}"></script>
+    <script src="{% static 'js/selectize.min.js' %}"></script>
+    <script src="{% static 'js/notification.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-select.min.js' %}">
+    </script>
+     <script type="text/javascript" src="{% static 'js/bootstrap-notify.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.validate.min.js' %}">
+    </script>
+    <script type="text/javascript">
+    function notify(msg,message_type){
+      var type = message_type
+      var position = "bottomRight"
+      noty({
+          theme: 'app-noty',
+          text: msg,
+          type: type,
+          timeout: 7000,
+          layout: position,
+          closeWith: ['button', 'click'],
+          animation: {
+            open: 'animated bounceInDown', // Animate.css class names
+            close: 'animated bounceOutUp', // Animate.css class names
+            easing: 'swing', // unavailable - no need
+            speed: 500 // unavailable - no need
+        }
+      });
+    }
+    </script>
+</head>
+
+<body style="height:100%; background-color: rgb(233, 233, 233);">
+
+    <!-- Just an image -->
+    <nav class="navbar navbar-expand-md navbar-custom fixed-top">
+    <a href="{% url 'rules' %}" class="navbar-brand">
+        <img class="img-circle" src="{% static 'images/heroic_logo.png' %}" alt="">
+    </a>
+    <div class="user_profile_detail">
+        <span class="header-user_span">{{ request.COOKIES.user_name }}</span>
+        <br>
+        <span class="header-user-coins">
+            Coins - <span class="user_coins-span">{{ request.COOKIES.user_coins }}</span>
+        </span>
+    </div>
+    <button type="button" class="navbar-toggle collapsed left-menu" aria-label="Open Menu">
+        <i class="fa fa-bars" style="font-size:35px;color:white"></i>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarCustom">
+        <ul class="navbar-nav ml-auto">
+            {% if current_page == 'rules' %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'rules' %}">
+                    <span>
+                        <svg class="img_home white-svg" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve" width="512px" height="512px"><g><g> <path d="M165,0C74.019,0,0,74.02,0,165.001C0,255.982,74.019,330,165,330s165-74.018,165-164.999C330,74.02,255.981,0,165,0z M165,300c-74.44,0-135-60.56-135-134.999C30,90.562,90.56,30,165,30s135,60.562,135,135.001C300,239.44,239.439,300,165,300z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> <path d="M164.998,70c-11.026,0-19.996,8.976-19.996,20.009c0,11.023,8.97,19.991,19.996,19.991 c11.026,0,19.996-8.968,19.996-19.991C184.994,78.976,176.024,70,164.998,70z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> <path d="M165,140c-8.284,0-15,6.716-15,15v90c0,8.284,6.716,15,15,15c8.284,0,15-6.716,15-15v-90C180,146.716,173.284,140,165,140z " data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g></g> </svg>
+                        <span class="home_lable">RULES</span>
+                    </span>
+                </a>
+            </li>
+            {% elif current_page == 'inplay' %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'inplay' %}">
+
+                   <svg class="img_home white-svg" x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve" width="512px" height="512px"><g><g transform="translate(0 -540.36)"> <g><g> <path d="M79.55,588.46h-15.6v-0.1c-13.2,0-24,10.8-24,24v328h15.6v-327.9c0-4.8,3.6-8.4,8.4-8.4h15.6c4.8,0,8.4,3.6,8.4,8.4 v327.9h15.6v-327.9C103.55,599.26,92.75,588.46,79.55,588.46z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> <path d="M336.05,588.46h-16.8v-0.1c-13.2,0-24,10.8-24,24v328h16.8v-327.9c0-4.8,2.4-8.4,7.2-8.4h16.8c3.6,0,7.2,3.6,7.2,8.4 v327.9h16.8v-327.9C360.05,599.26,349.25,588.46,336.05,588.46z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> <path d="M207.75,588.46h-15.6v-0.1c-13.2,0-24,10.8-24,24v328h15.6v-327.9c0-4.8,3.6-8.4,8.4-8.4h15.6c4.8,0,8.4,3.6,8.4,8.4 v327.9h15.6v-327.9C231.75,599.26,220.95,588.46,207.75,588.46z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> <path d="M64.05,572.76h24v7.2c0,4.8,3.6,8.4,8.4,8.4h79.1c4.8,0,8.4-3.6,8.4-8.4v-7.2h32.4v7.2c0,4.8,3.6,8.4,7.2,8.4h80.3 c4.8,0,8.4-3.6,8.4-8.4v-7.2h24c10.8,0,10.8-16.8,0-16.8h-24v-7.2c0-4.8-3.6-8.4-8.4-8.4h-80.3c-3.6,0-7.2,3.6-7.2,8.4v7.2h-32.4 v-7.2c0-4.8-3.6-8.4-8.4-8.4h-79.1c-1.2,0-1.2,0-1.2,0c-3.6,0-7.2,3.6-7.2,8.4v7.2h-24c0,0,0,0-1.2,0 C52.05,557.16,53.25,572.76,64.05,572.76z M232.05,555.96h63.5v16.8h-63.5V555.96z M103.85,555.96h64.7v16.8h-64.7V555.96z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g></g></g></g> </svg>
+                   IN PLAY
+                 </a>
+            </li>
+            {% elif current_page == 'ledger' %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'ledger' %}">
+                    <svg class="img_home white-svg" x="0px" y="0px" viewBox="0 0 480 480" style="enable-background:new 0 0 480 480;" xml:space="preserve" width="512px" height="512px"><g><g> <g> <path d="M456,208H296c-13.255,0-24,10.745-24,24v224c0,13.255,10.745,24,24,24h160c13.255,0,24-10.745,24-24V232 C480,218.745,469.255,208,456,208z M368,464h-72c-4.418,0-8-3.582-8-8v-56h80V464z M368,384h-80v-64h80V384z M464,456 c0,4.418-3.582,8-8,8h-72v-64h80V456z M464,384h-80v-64h80V384z M464,304H288v-72c0-4.418,3.582-8,8-8h160c4.418,0,8,3.582,8,8 V304z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g><g> <g> <path d="M440,240H312c-4.418,0-8,3.582-8,8v32c0,4.418,3.582,8,8,8h128c4.418,0,8-3.582,8-8v-32C448,243.582,444.418,240,440,240z M432,272H320v-16h112V272z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g><g> <g> <polygon points="336,344 336,328 320,328 320,344 304,344 304,360 320,360 320,376 336,376 336,360 352,360 352,344 " data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></polygon> </g> </g><g> <g> <rect x="400" y="344" width="48" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></rect> </g> </g><g> <g> <polygon points="350.624,421.656 339.312,410.344 328,421.656 316.688,410.344 305.376,421.656 316.688,432.968 305.376,444.28 316.688,455.592 328,444.28 339.312,455.592 350.624,444.28 339.312,432.968 " data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></polygon> </g> </g><g> <g> <rect x="400" y="424" width="48" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></rect> </g> </g><g> <g> <rect x="416" y="444" width="16" height="8" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></rect> </g> </g><g> <g> <rect x="416" y="412" width="16" height="8" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></rect> </g> </g><g> <g> <path d="M320,0H88v0.072c-2.112-0.025-4.148,0.793-5.656,2.272l-80,80C0.863,83.851,0.045,85.887,0.072,88H0v376 c0,8.837,7.163,16,16,16h240v-16h-48v-24h16c4.418,0,8-3.582,8-8v-40c0-4.418-3.582-8-8-8h-16v-24h16c4.418,0,8-3.582,8-8v-40 c0-4.418-3.582-8-8-8h-0.208c20.243-15.048,32.184-38.777,32.208-64c0.086-44.183-35.662-80.069-79.844-80.155 S96.086,195.507,96,239.689c-0.049,25.327,11.897,49.181,32.208,64.311H64c-4.418,0-8,3.582-8,8v32H40c-4.418,0-8,3.582-8,8v40 c0,4.418,3.582,8,8,8h16v24H40c-4.418,0-8,3.582-8,8v32H16V96h64c8.837,0,16-7.163,16-16V16h224v176h16V16 C336,7.163,328.837,0,320,0z M216,400v24H72v-24H216z M112,240c0-35.346,28.654-64,64-64c35.346,0,64,28.654,64,64 c0,35.346-28.654,64-64,64C140.67,303.96,112.04,275.33,112,240z M72,320h144v24H72V320z M48,384v-24h144v24H64H48z M48,440h144 v24H48V440z M80,80H27.312L80,27.312V80z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g><g> <g> <path d="M176,216h24v-16h-16v-8h-16v9.472c-12.473,4.393-19.023,18.066-14.629,30.539c3.38,9.596,12.455,16.009,22.629,15.989 c4.418,0,8,3.582,8,8s-3.582,8-8,8h-24v16h16v8h16v-9.472c12.473-4.393,19.023-18.066,14.629-30.539 c-3.38-9.596-12.455-16.009-22.629-15.989c-4.418,0-8-3.582-8-8S171.582,216,176,216z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g><g> <g> <path d="M448,40h-16c0-4.418-3.582-8-8-8h-8V8c0-4.418-3.582-8-8-8h-32c-4.418,0-8,3.582-8,8v24h-8c-4.418,0-8,3.582-8,8v152h16 V48h48v144h16V56h16v104h16V56C464,47.163,456.837,40,448,40z M400,32h-16V16h16V32z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g><g> <g> <rect x="120" y="64" width="136" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></rect> </g> </g><g> <g> <rect x="32" y="112" width="272" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></rect> </g> </g><g> <g> <rect x="32" y="144" width="96" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></rect> </g> </g><g> <g> <rect x="232" y="144" width="72" height="16" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></rect> </g> </g></g> </svg>
+                  LEDGER
+                </a>
+            </li>
+            {% elif current_page == 'change_password' %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'change_password' %}">
+                    <svg class="img_home white-svg" x="0px" y="0px" viewBox="0 0 486.025 486.025" style="enable-background:new 0 0 486.025 486.025;" xml:space="preserve" width="512px" height="512px"><g><g> <g> <path d="M420.725,85.413c-42.1-42.1-98.1-65.3-157.6-65.3c-60.6,0-117.3,23.9-159.6,67.3c-4.6,4.7-4.5,12.3,0.2,17 c4.7,4.6,12.3,4.5,17-0.2c37.8-38.7,88.3-60,142.4-60c109.7-0.1,198.9,89.1,198.9,198.8s-89.2,198.9-198.9,198.9 s-198.9-89.2-198.9-198.9v-2.5l19.8,19.8c2.3,2.3,5.4,3.5,8.5,3.5s6.1-1.2,8.5-3.5c4.7-4.7,4.7-12.3,0-17l-40.2-40.3 c-4.7-4.7-12.3-4.7-17,0l-40.3,40.3c-4.7,4.7-4.7,12.3,0,17c2.3,2.3,5.4,3.5,8.5,3.5s6.1-1.2,8.5-3.5l19.8-19.8v2.5 c0,59.5,23.2,115.5,65.3,157.6s98.1,65.3,157.6,65.3s115.5-23.2,157.6-65.3s65.2-98.1,65.2-157.6S462.825,127.513,420.725,85.413z " data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> <path d="M263.125,113.413c-39,0-70.7,31.7-70.7,70.7v34.1h-22c-6.6,0-12,5.4-12,12v119.7c0,6.6,5.4,12,12,12h185.5 c6.6,0,12-5.4,12-12v-119.6c0-6.6-5.4-12-12-12h-22v-34.1C333.925,145.213,302.125,113.413,263.125,113.413z M216.425,184.213 c0-25.8,21-46.7,46.7-46.7s46.7,21,46.7,46.7v34.1h-93.4L216.425,184.213L216.425,184.213z M343.925,337.913h-161.5v-95.7h161.5 V337.913z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g></g> </svg>
+                    CHANGE PASSWORD
+                </a>
+            </li>
+            {% elif current_page == "upcoming" %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'upcoming' %}">
+                   <svg class="img_home white-svg" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve"><g><g> <g> <g> <g> <g> <path d="M479.808,326.519c-73.02,0-132.228,59.227-132.228,132.229c0,72.983,59.208,132.174,132.228,132.174 c72.984,0,132.192-59.19,132.192-132.174C612,385.745,552.792,326.519,479.808,326.519z M488.292,556.469v-11.415 c0-4.722-3.808-8.538-8.484-8.538c-4.722,0-8.521,3.826-8.521,8.538v11.415c-47.341-4.07-85.158-41.896-89.229-89.229h11.451 c4.677,0,8.502-3.809,8.502-8.484c0-4.758-3.825-8.521-8.502-8.521h-11.451c4.07-47.351,41.896-85.14,89.229-89.229v11.433 c0,4.704,3.809,8.521,8.521,8.521c4.677,0,8.484-3.826,8.484-8.521v-11.433c47.359,4.089,85.177,41.878,89.229,89.229h-11.451 c-4.703,0-8.502,3.771-8.502,8.521c0,4.686,3.808,8.484,8.502,8.484h11.451C573.478,514.572,535.651,552.389,488.292,556.469z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M529.066,445.966h-30.671c-4.089-5.897-10.881-9.813-18.588-9.813c-0.117,0-0.244,0.036-0.38,0.036l-27.948-39.346 c-4.07-5.726-12.048-7.055-17.792-3.003c-5.726,4.089-7.101,12.084-3.003,17.828l27.967,39.363 c-0.859,2.415-1.41,4.984-1.41,7.725c0,12.464,10.085,22.549,22.566,22.549c7.707,0,14.535-3.88,18.588-9.796h30.671 c7.037,0,12.763-5.688,12.763-12.744C541.829,451.674,536.104,445.966,529.066,445.966z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M127.245,195.593c23.137,0,41.86-18.741,41.86-41.851V62.93c0-23.119-18.723-41.851-41.86-41.851 c-23.119,0-41.833,18.732-41.833,41.851v90.821C85.412,176.852,104.125,195.593,127.245,195.593z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M383.578,195.593c23.138,0,41.86-18.741,41.86-41.851V62.93c0-23.119-18.723-41.851-41.86-41.851 c-23.101,0-41.832,18.732-41.832,41.851v90.821C341.736,176.852,360.478,195.593,383.578,195.593z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M183.957,311.793c0-11.948-9.66-21.626-21.636-21.626h-40.105c-11.948,0-21.653,9.678-21.653,21.626v40.088 c0,11.966,9.705,21.672,21.653,21.672h40.105c11.966,0,21.636-9.706,21.636-21.672V311.793z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M297.127,311.82c0-11.948-9.687-21.617-21.608-21.617h-40.124c-11.948,0-21.618,9.669-21.618,21.617v40.097 c0,11.93,9.669,21.636,21.618,21.636h40.124c11.93,0,21.608-9.706,21.608-21.636V311.82z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M348.548,290.167c-11.967,0-21.654,9.678-21.654,21.626v40.088c0,10.826,8.068,19.365,18.416,20.984 c15.864-24.711,38.332-44.719,64.934-57.653v-3.419c0-11.948-9.669-21.626-21.636-21.626H348.548z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M122.225,398.833c-11.948,0-21.654,9.669-21.654,21.617v40.105c0,11.948,9.706,21.617,21.654,21.617h40.124 c11.948,0,21.608-9.669,21.608-21.617V420.45c0-11.948-9.66-21.617-21.608-21.617H122.225z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M275.473,398.851h-40.087c-11.948,0-21.617,9.688-21.617,21.636v40.069c0,11.948,9.669,21.617,21.617,21.617h40.087 c11.93,0,21.618-9.669,21.618-21.617v-40.069C297.091,408.538,287.403,398.851,275.473,398.851z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M333.939,523.59H130.474c-35.022,0-63.523-28.5-63.523-63.486V247.592h376.958v55.608 c11.551-2.659,23.518-4.215,35.899-4.215c10.619,0,20.984,1.095,31.033,3.094V102.204h-60.293v51.538 c0,36.921-30.021,66.951-66.97,66.951c-36.93,0-66.95-30.029-66.95-66.951v-51.538H194.213v51.538 c0,36.921-30.039,66.951-66.969,66.951c-36.913,0-66.951-30.029-66.951-66.951v-51.538H0v357.891 c0,72.034,58.412,130.474,130.474,130.474h249.885c2.967,0,5.897-0.244,8.81-0.435 C365.163,573.545,345.987,550.525,333.939,523.59z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> </g> </g></g> </svg>
+                   UPCOMING
+                 </a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">
+                    <span>
+                        <svg class="img_home white-svg " viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px"><g><g> <g> <path d="M498.819,223.189l-76.815-76.816V45.01c0-8.284-6.716-15-15-15h-59.999c-8.284,0-15,6.716-15,15v11.365l-43.182-43.182 c-17.665-17.665-46.135-17.498-63.584-0.05L13.193,223.188c-17.59,17.589-17.592,46.043,0,63.634 c12.842,12.842,31.205,16.13,46.816,10.631v199.548c0,8.284,6.716,15,15,15h361.993c8.284,0,15-6.716,15-15V297.45 c15.632,5.514,33.99,2.198,46.816-10.628c8.501-8.5,13.183-19.8,13.183-31.816C512,242.989,507.319,231.689,498.819,223.189z M362.003,60.009h29.999v56.364l-29.999-29.999V60.009z M302.004,482.001h-89.998V360.003h89.998V482.001z M422.002,482.001 h-89.998V345.004c0-8.284-6.716-15-15-15H197.006c-8.284,0-15,6.716-15,15v136.997H90.009V273.779L256.95,108.588L422.002,273.64 V482.001z M477.606,265.61c-5.866,5.865-15.342,5.866-21.209,0c-6.445-6.445-173.293-173.293-188.785-188.785 c-5.834-5.836-15.291-5.861-21.157-0.056C237.565,85.567,62.961,258.34,55.614,265.61c-5.848,5.847-15.361,5.847-21.209,0 c-5.847-5.847-5.847-15.362-0.05-21.159L246.402,34.406c5.866-5.865,15.342-5.866,21.209,0 c13.132,13.132,203.97,203.97,209.996,209.996C483.453,250.249,483.453,259.762,477.606,265.61z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#3a61a2"></path> </g> </g><g> <g> <path d="M257.005,180.007c-33.083,0-59.999,26.915-59.999,59.999s26.915,59.999,59.999,59.999s59.999-26.915,59.999-59.999 C317.004,206.922,290.089,180.007,257.005,180.007z M257.005,270.005c-16.542,0-29.999-13.458-29.999-29.999 s13.458-29.999,29.999-29.999c16.542,0,29.999,13.458,29.999,29.999S273.547,270.005,257.005,270.005z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#3a61a2"></path> </g> </g></g> </svg>
+                        <span class="home_lable">HOME</span>
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'schedule' %}">
+                    <span>
+                        <svg class="img_home white-svg" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve"><g><g> <g> <g> <g> <g> <path d="M479.808,326.519c-73.02,0-132.228,59.227-132.228,132.229c0,72.983,59.208,132.174,132.228,132.174 c72.984,0,132.192-59.19,132.192-132.174C612,385.745,552.792,326.519,479.808,326.519z M488.292,556.469v-11.415 c0-4.722-3.808-8.538-8.484-8.538c-4.722,0-8.521,3.826-8.521,8.538v11.415c-47.341-4.07-85.158-41.896-89.229-89.229h11.451 c4.677,0,8.502-3.809,8.502-8.484c0-4.758-3.825-8.521-8.502-8.521h-11.451c4.07-47.351,41.896-85.14,89.229-89.229v11.433 c0,4.704,3.809,8.521,8.521,8.521c4.677,0,8.484-3.826,8.484-8.521v-11.433c47.359,4.089,85.177,41.878,89.229,89.229h-11.451 c-4.703,0-8.502,3.771-8.502,8.521c0,4.686,3.808,8.484,8.502,8.484h11.451C573.478,514.572,535.651,552.389,488.292,556.469z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M529.066,445.966h-30.671c-4.089-5.897-10.881-9.813-18.588-9.813c-0.117,0-0.244,0.036-0.38,0.036l-27.948-39.346 c-4.07-5.726-12.048-7.055-17.792-3.003c-5.726,4.089-7.101,12.084-3.003,17.828l27.967,39.363 c-0.859,2.415-1.41,4.984-1.41,7.725c0,12.464,10.085,22.549,22.566,22.549c7.707,0,14.535-3.88,18.588-9.796h30.671 c7.037,0,12.763-5.688,12.763-12.744C541.829,451.674,536.104,445.966,529.066,445.966z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M127.245,195.593c23.137,0,41.86-18.741,41.86-41.851V62.93c0-23.119-18.723-41.851-41.86-41.851 c-23.119,0-41.833,18.732-41.833,41.851v90.821C85.412,176.852,104.125,195.593,127.245,195.593z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M383.578,195.593c23.138,0,41.86-18.741,41.86-41.851V62.93c0-23.119-18.723-41.851-41.86-41.851 c-23.101,0-41.832,18.732-41.832,41.851v90.821C341.736,176.852,360.478,195.593,383.578,195.593z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M183.957,311.793c0-11.948-9.66-21.626-21.636-21.626h-40.105c-11.948,0-21.653,9.678-21.653,21.626v40.088 c0,11.966,9.705,21.672,21.653,21.672h40.105c11.966,0,21.636-9.706,21.636-21.672V311.793z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M297.127,311.82c0-11.948-9.687-21.617-21.608-21.617h-40.124c-11.948,0-21.618,9.669-21.618,21.617v40.097 c0,11.93,9.669,21.636,21.618,21.636h40.124c11.93,0,21.608-9.706,21.608-21.636V311.82z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M348.548,290.167c-11.967,0-21.654,9.678-21.654,21.626v40.088c0,10.826,8.068,19.365,18.416,20.984 c15.864-24.711,38.332-44.719,64.934-57.653v-3.419c0-11.948-9.669-21.626-21.636-21.626H348.548z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M122.225,398.833c-11.948,0-21.654,9.669-21.654,21.617v40.105c0,11.948,9.706,21.617,21.654,21.617h40.124 c11.948,0,21.608-9.669,21.608-21.617V420.45c0-11.948-9.66-21.617-21.608-21.617H122.225z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M275.473,398.851h-40.087c-11.948,0-21.617,9.688-21.617,21.636v40.069c0,11.948,9.669,21.617,21.617,21.617h40.087 c11.93,0,21.618-9.669,21.618-21.617v-40.069C297.091,408.538,287.403,398.851,275.473,398.851z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> <g> <g> <g> <path d="M333.939,523.59H130.474c-35.022,0-63.523-28.5-63.523-63.486V247.592h376.958v55.608 c11.551-2.659,23.518-4.215,35.899-4.215c10.619,0,20.984,1.095,31.033,3.094V102.204h-60.293v51.538 c0,36.921-30.021,66.951-66.97,66.951c-36.93,0-66.95-30.029-66.95-66.951v-51.538H194.213v51.538 c0,36.921-30.039,66.951-66.969,66.951c-36.913,0-66.951-30.029-66.951-66.951v-51.538H0v357.891 c0,72.034,58.412,130.474,130.474,130.474h249.885c2.967,0,5.897-0.244,8.81-0.435 C365.163,573.545,345.987,550.525,333.939,523.59z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFFFFF"></path> </g> </g> </g> </g> </g></g> </svg>
+                        <span class="home_lable">SCHEDULE</span>
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">
+                    <span>
+                        <img class="img_home logout-img-home" src="{% static 'images/logout.png' %}">
+                        <span class="home_lable">LOGOUT</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    </nav>
+    <div class="left-menu-slide">
+       <!-- <button class="action action--open menu" ><img src="img/menu.png"></span></button> -->
+       <nav id="ml-menu" class="menu">
+          <nav class="menu__breadcrumbs"><a></a></nav>
+          <button class="action action--close" aria-label="Close Menu"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+          <div class="menu__wrap" style="z-index: 9999 !important;">
+             <ul data-menu="main" class="menu__level menu__level--current">
+                <li class="menu__item"><a class="menu__link " data-submenu="submenu-1" href="{% url 'home' %}">HOME</a>
+                </li>
+                <li class="menu__item"><a class="menu__link " data-submenu="submenu-2" href="{% url 'schedule' %}">SCHEDULE</a>
+                </li>
+                <li class="menu__item"><a class="menu__link " data-submenu="submenu-2" href="{% url 'inplay' %}">IN PLAY</a>
+                </li>
+                <li class="menu__item"><a class="menu__link " data-submenu="submenu-2" href="{% url 'tournament' %}">TOURNAMENT</a>
+                </li>
+                <li class="menu__item"><a class="menu__link " data-submenu="submenu-2" href="{% url 'upcoming' %}">UPCOMING</a>
+                </li>
+                <li class="menu__item"><a class="menu__link  active-page" data-submenu="submenu-3" href="{% url 'rules' %}">
+                RULES</a>
+                </li>
+                <li class="menu__item"><a class="menu__link " data-submenu="submenu-2" href="{% url 'ledger' %}">LEDGER </a>
+                </li>
+                <li class="menu__item"><a class="menu__link " data-submenu="submenu-3" href="{% url 'change_password' %}">PASSWORD</a>
+                </li>
+                <li class="menu__item"><a class="menu__link " data-submenu="submenu-3" href="{% url 'games' %}">GAMES</a></li>
+                <li class="menu__item"><a class="menu__link " data-submenu="submenu-3" href="{% url 'settings' %}">SETTINGS</a></li>
+                <li class="menu__item"><a class="menu__link" data-submenu="submenu-3" href="{% url 'logout' %}" data-method="delete" rel="nofollow">LOGOUT</a>
+                </li>
+             </ul>
+          </div>
+       </nav>
+    </div>
+    <div class="sub-content" style="padding-top:60px;">
+        {% block content %}
+        {% endblock %}
+   </div>
+
+</body>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // get current URL path and assign 'active' class
+        var pathname = window.location.pathname;
+        $('.active').removeClass('active');
+        $('.navbar-nav > li > a[href="' + pathname + '"]').parent().addClass('active');
+        $('.active-page').removeClass('active-page');
+        $('.menu__level > li > a[href="' + pathname + '"]').parent().addClass('active-page');
+        $(".left-menu").click(function(){
+            $(".menu").addClass("menu--open");
+        });
+        $(".action--close").click(function(){
+            $(".menu").removeClass("menu--open");
+        });
+
+         $.ajax(
+            {
+                type:"GET",
+                url: "{% url 'get_user_coins' %}",
+                data:{},
+                success: function( data ) {}
+        });
+
+    });
+</script>
+</html>

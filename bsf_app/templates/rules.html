@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="lang-switch-btn">
+  <div class="lang-btn-container">
+    <div id="hindi">हिंदी</div>
+    <div id="english">English</div>
+  </div>
+</div>
+
+<div class="rules-main-container">
+    <ul class="hindi-note-text">
+      <li><b></b><p style="text-align: center;"><b>🏏 !! Bsf.com मै आपका स्वागत है| !! 🏏<br><br>
+        Note:-  BSF 7777 मै  Teen Patti , Cricket गेम खेलने की आवश्कता हो तो आप अपने एजेंट से संपर्क करे। BSF7777
+        <br><br>
+        </b>
+      </p></li>
+    </ul><br>
+    <ol class="hindi-rules-list">
+      <li>कृपया BSF 7777 के नियम को समझने के लिए यहाँ कुछ मिनट दे, और अपने अनुसार समझ ले |</li>
+      <li>लोग इन करने के बाद पासवर्ड बदल ले |</li>
+      <!-- <li>प्रत्येक गेम के लिए /- coin चार्ज रहेगा| यदि आप मैच या सेशन का एक भी सौदा करते हैं तो ये चार्ज आपसे नहीं लिया जायेगा |</li> -->
+      <li>प्रतेयक गेम के लिए 15 कॉइन्स चार्ज किया जायेगा |</li>
+      <li>यदि आप मैच या सेशन का एक भी सौद्दा नहीं करते है, ऐसे मै आपसे 15 कोइन्स का चार्ज लिया जायेगा |</li>
+      <li>सभी  सौद्दा टॉस के बाद लिया जायेगा |</li>
+      <li>खेल रद्द या टाई होने पर सभी सौद्दा रद्द कर दिया जायेगा और लेनदेन सेशन जो पूरा हो गया है उसपर किया जायेगा |</li>
+        <li>मैच का सौद्दा कम से कम 1000.00  और सेशन अधिकतम 500000.00 है और सेशन का सौद्दा कम से कम 500.00  और अधिकतम 25000.00 है |</li>
+      <li>मैच के दौरान भाव को देख और समझ कर ही सौदा करे। किये गए  किसी सौद्दा को हटाया नहीं जायेगा। सभी सौदा के लिए आप खुद जिम्मेवार है |</li>
+      <li>यहाँ सभी सौद्दा लेज़र से मान्य किये जायेगा |</li>
+      <li> इंटरनेट कनेक्शन प्रॉब्लम की जिमेवारी आपकी रहेगी |</li>
+    </ol>
+    <ul class="hindi-note-text"><li>नोट:- सर्वर या वेबसाइट मै किसी तरह की खराबी आने या बंद हो जाने पर केवल किये गए सौदा ही मान्य होगा।  ऐसी इस्तिथी मै किसी तरह का वाद -विवाद मान्य नहीं होगा |</li></ul>
+
+    <ul class="english-note-text">
+      <li>
+        <b></b><p style="text-align: center;"><b>🏏 !! Welcome to Bsf.com  !! 🏏<br><br>
+        Note: - BSF 7777 in Teen Patti, if you need to play a cricket game, you should contact your agent. BSF7777
+        <br><br>
+        </b>
+      </p></li>
+    </ul><br>
+    <ol class="english-rules-list">
+      <li>Please take a few minutes here to understand the rules of BSF 7777, and understand it accordingly.</li>
+      <li>Change the password after logging in.</li>
+      <!-- <li>For every game /- coins will be charged. If you single deal of match or session then it'll not be charged from you.</li> -->
+      <li>15 coins will be charged for each game</li>
+      <li>If you do not do a single deal for a match or session, you will be charged 15 coins.</li>
+      <li>All sauda will be taken after the toss.</li>
+      <li>If the game is canceled or tie, all the deal will be canceled and the transaction will be done on the session which has been completed.</li>
+      <li>The match deal is at least 1000.00 and the session maximum is 500000.00 and the session deal is at least 500.00 and the maximum is 25000.00.</li>
+      <li>Deal only by looking and understanding the sentiment during the match. Any deal made will not be removed. You are responsible for all the deals yourself.</li>
+      <li> All dealings here will be validated with laser.</li>
+      <li>Internet connection problem will be your responsibility</li>
+    </ol>
+    <ul class="english-note-text"><li>Note: - In the event of any malfunction or shutdown in the server or website, only the transaction done will be valid. Any kind of debate in such a situation will not be valid.</li></ul>
+
+  <div class="row">
+    <div class="main_menu_btn">   
+       <a href="{% url 'home' %}" class="btn btn-danger purp_btn change_password_btn" id="create_bets">MAIN MENU</a>
+    </div>
+  </div>
+</div>
+
+
+<style type="text/css">
+	.purp_btn {
+	    color: #fff !important;
+	    border-radius: 30px !important;
+	    font-family: "open-sans-semibold" !important;
+	    font-size: 12px !important;
+	    letter-spacing: 2px;
+	    padding: 13px 35px;
+	    background-color: #3A61A2 !important;
+	    border: 1px solid #3A61A2 !important;
+	    margin-top: 4%;
+	}
+
+	.main_menu_btn{
+	   text-align:center;
+	   margin:0px auto !important;
+	}
+
+</style>
+<script type="text/javascript">
+	 $(document).ready(function(){
+      $("#english").click(function(){
+          $("#english").css("background-color","#3A61A2");
+          $("#hindi").css("background-color","#bdbdbd");
+          $(".hindi-rules-list, .hindi-note-text").css("display","none");
+          $(".english-rules-list, .english-note-text").css("display","table");
+      });
+      $("#hindi").click(function(){
+          $("#hindi").css("background-color","#3A61A2");
+          $("#english").css("background-color","#bdbdbd");
+          $(".hindi-rules-list, .hindi-note-text").css("display","table");
+          $(".english-rules-list, .english-note-text").css("display","none");
+      });
+  });
+
+</script>
+
+{% endblock %}

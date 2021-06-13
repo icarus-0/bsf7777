@@ -1,0 +1,744 @@
+/* line 1, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  border: 0px solid #ccc;
+  background: #6E8FC9;
+  color: #fff;
+  padding: 0px 1px;
+  margin-right: 15%;
+  margin-bottom: 13px;
+}
+
+/* line 12, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+ul.marquee li {
+  display: inline-block;
+  padding: 5px 10px 1px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open-sans-regular' !important;
+}
+
+/* line 20, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.bet_status_box {
+  min-height: 100%;
+  height: 100%;
+  background-color: #3A61A2;
+  border-right: solid 10px #eee;
+  padding: 0px;
+}
+
+/* line 28, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.favorite_market span {
+  color: #fff !important;
+}
+
+/* line 32, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.center > th {
+  text-align: center;
+}
+
+/* line 34, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.input-coin {
+  width: 100%;
+  text-align: center;
+}
+
+/* line 39, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* line 43, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.close-status {
+  background-color: #fff;
+  opacity: 1.5;
+}
+
+/* line 48, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.event {
+  font-size: 28px;
+  text-align: center;
+  min-height: 50px;
+  max-height: 50px;
+  line-height: 50px;
+  color: white;
+  font-family: 'open-sans-regular' !important;
+  margin-bottom: 0px;
+  overflow: hidden;
+}
+
+/* line 60, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.event_bet_status {
+  font-size: 18px;
+  text-align: center;
+  min-height: 40px;
+  max-height: 40px;
+  line-height: 40px;
+  color: white;
+  font-family: 'open-sans-regular' !important;
+  /*font-family: 'open-sans-bold' !important;
+  /*font-family: 'open-sans-extrabold' !important;*/
+  margin-bottom: 0px;
+}
+
+/* line 73, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.refresh_img {
+  position: relative;
+  top: 14px;
+  font-size: 35px !important;
+  color: #fff;
+}
+
+/* line 96, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.span-btn {
+  height: 35px;
+  width: auto;
+  margin-left: 0px;
+}
+
+/* line 102, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.img-height {
+  height: 30px;
+  margin-top: 5px;
+  width: auto;
+  margin-left: 3px;
+}
+
+
+/* line 175, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.refresh-btn {
+  padding-right: 15px;
+  /*width: 14.3%;*/
+  float: right;
+  background-color: #fff;
+  text-align: center;
+  padding: 14px;
+  position: relative;
+  right: 5px;
+  min-height: 100%;
+  height: 100%;
+  background-color: #3a61a2;
+}
+
+/* line 268, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.navbar-fixed-bottom {
+  position: static !important;
+}
+
+/* line 272, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+body {
+  overflow: auto;
+}
+
+/* line 280, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.inplay-show-tbl-td {
+  text-align: center !important;
+}
+
+/* line 284, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.session_count_right {
+  position: absolute;
+  text-align: right;
+  width: 34%;
+}
+
+/* line 302, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.content_matches_wrapper {
+  max-height: 100px;
+  height: 100px;
+  padding: 5px;
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+}
+
+/* line 309, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.content_in_play_wrapper {
+  min-height: 100%;
+  height: 100%;
+  background-color: #3A61A2;
+  overflow: hidden;
+  border-right: solid 5px #eee;
+}
+
+/* line 323, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.first-runner-bet-odds-yes-value {
+  font-family: 'open-sans-extrabold' !important;
+  padding: 7px !important;
+  font-size: 16px;
+}
+
+/* line 329, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.first-runner-bet-odds-no-value {
+  font-family: 'open-sans-extrabold' !important;
+  padding: 7px !important;
+  font-size: 16px;
+}
+
+/* line 337, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.bet_status_box,
+.match-status-table,
+.refresh-btn.reload-class {
+  height: 100px !important;
+}
+
+/* line 341, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.match-status-table {
+  display: table !important;
+  line-height: 1.5;
+}
+
+/* line 345, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.match-status-text {
+  display: table-cell !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  padding: 0px 10px !important;
+}
+
+/* line 351, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.bet-status-text-div {
+  display: table !important;
+  line-height: 1;
+}
+
+/* line 355, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.bet-status-text-p {
+  display: table-cell;
+  text-align: center !important;
+  vertical-align: middle !important;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  font-family: 'open-sans-extrabold' !important;
+}
+
+/* line 364, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.bet-status-text-p i {
+  font-size: 15px;
+  position: relative;
+  bottom: 10px;
+}
+
+/* line 396, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.single-no-text {
+  font-size: 50px;
+  font-family: 'open-sans-extrabold' !important;
+}
+
+/*LOAD BUTTON CSS FROM USER MATCH SHOW PAGE*/
+/* line 404, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button.alert:before,
+.button.alert:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 410, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button.round, .button.round {
+  border-radius: 1000px;
+}
+
+/* line 414, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button.alert, .button.alert {
+  background-color: #3A61A2;
+  border-color: #3A61A2;
+  color: white;
+}
+
+/* line 426, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button:not(.disabled):before {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -11px;
+  width: 20px;
+  height: 20px;
+  border: 4px solid;
+  border-left-color: transparent;
+  border-radius: 50%;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -moz-animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -moz-animation-name: rotate;
+  -webkit-animation-name: rotate;
+  animation-name: rotate;
+  -moz-animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+/* line 460, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button:not(.disabled):after {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 0px;
+  -moz-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+  -moz-transition-duration: 0.75s;
+  -o-transition-duration: 0.75s;
+  -webkit-transition-duration: 0.75s;
+  transition-duration: 0.75s;
+  -moz-transition-property: width;
+  -o-transition-property: width;
+  -webkit-transition-property: width;
+  transition-property: width;
+}
+
+/* line 479, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button, .button {
+  border-style: solid;
+  border-width: 0px;
+  cursor: pointer;
+  font-family: "open-sans-semibold";
+  font-weight: normal;
+  line-height: normal;
+  margin: 0 0 1.25rem;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  display: inline-block;
+  padding-top: 1rem;
+  padding-right: 2rem;
+  padding-bottom: 1.0625rem;
+  padding-left: 2rem;
+  font-size: 14px;
+  background-color: #008cba;
+  border-color: #007095;
+  color: white;
+  transition: background-color 300ms ease-out;
+}
+
+/* line 511, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button:not(.disabled).sending {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* line 515, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button:not(.disabled).sending:not(.expand) {
+  text-align: left;
+}
+
+/* line 518, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button:not(.disabled).sending:before {
+  -moz-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+
+/* line 530, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button:not(.disabled).sending:after {
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  width: 20px;
+}
+
+@keyframes rotate {
+  /* line 539, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+  0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 545, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/*LOAD BUTTON CSS FROM USER MATCH SHOW PAGE*/
+/* line 555, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.button.alert.round {
+  margin-left: 15px;
+}
+/* line 582, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.market-block, .session-block,
+.place-amount-div {
+  height: 98px;
+  line-height: 95px;
+}
+
+/* line 587, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.place-amount-div input {
+  height: 25px;
+}
+
+/* BET VALUES (500, 1000, CLEAR) STYLE */
+/* line 592, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.bet-value-buttons-table {
+  text-align: center;
+  margin-top: 10px;
+  /*margin-left: 50px; */
+}
+
+/* line 598, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.bet-value-buttons-table tr td button {
+  width: 60px;
+  padding: 10px 0;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  background-color: #61ACDE;
+  color: #fff;
+}
+
+/* line 611, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.bet-value-buttons-table tr td {
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+/* line 616, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.bet-value-buttons-table tr td button.bet-value-clear-button {
+  background-color: #d45151;
+  color: #fff;
+}
+
+/* line 662, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.break-on-mobile {
+  display: none;
+}
+
+
+/* line 683, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.numeric-keypad-main-div {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: none;
+}
+
+/* line 692, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.num-pad {
+  text-align: center;
+  width: 100%;
+  font-size: 15px;
+  font-family: "open-sans-bold";
+  border: 1px solid #3a61a2;
+  border-collapse: collapse;
+}
+
+/* line 701, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.numpad-table {
+  background-color: rgba(233, 233, 233, 0.75);
+}
+
+/* line 705, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.min-max-stack-table {
+  border: 1px solid #3a61a2;
+  color: #fff;
+}
+
+/* line 710, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.min-max-stack-table tr.bet-values-row td {
+  background-color: #3a61a2;
+}
+
+/* line 714, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.numpad-table td.numpad-done-button {
+  background-color: #3a61a2;
+  color: #fff;
+}
+
+/* line 719, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.numpad-table td {
+  color: #3e3e3e;
+}
+
+/* line 722, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.numpad-table td input {
+  font-size: 15px;
+}
+
+/* line 726, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.min-max-stack-table td {
+  border: 1px solid #3a61a2;
+  /*padding: 16px 0;*/
+  font-size: 13px;
+}
+
+/* line 732, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.num-pad.input-close-table {
+  border: 0px solid #fff;
+}
+
+/* line 736, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.min-max-stack-table td input,
+table.input-close-table td input {
+  width: 100%;
+  text-align: center;
+  outline: none;
+  padding: 10px 0;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+/* line 746, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.input-close-table td input#quantity,
+table.input-close-table td input#quantity-session {
+  color: #223f6f;
+  background-color: #e9e9e9;
+  font-family: "open-sans-bold";
+  font-size: 16px;
+  border: none;
+}
+
+/* line 754, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.input-close-table td.close-num-keyboard {
+  width: 60px;
+  color: #fff;
+  background-color: #631415;
+  background-image: url("/images/delete-button.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+}
+
+/* line 763, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.num-pad.input-close-table td {
+  border: 2px solid #223f6f;
+  border-bottom: 1px solid #223f6f;
+}
+
+/* line 768, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.min-max-stack-table td.min-stack {
+  background-color: #223f6f;
+}
+
+/* line 772, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.min-max-stack-table td.max-stack {
+  background-color: #3a61a2;
+}
+
+/* line 776, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.min-max-stack-table tr.bet-values-row td {
+  width: 20%;
+}
+
+/* line 780, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.num-pad tr td {
+  border: 1px solid #223f6f;
+  border-bottom: none;
+  background-color: #e9e9e9;
+}
+
+/* line 786, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.numpad-table tr td input {
+  width: 90%;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+/* line 794, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+td.clear-button {
+  background-image: url("/images/delete.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 25px auto;
+}
+
+/* line 801, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.done-button-table {
+  width: 100%;
+  text-align: center;
+}
+
+/* line 806, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.done-button-table td.numpad-done-button {
+  background-color: #3b62a1;
+  width: 50%;
+}
+
+/* line 811, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.done-button-table button.amount-btn-color {
+  font-size: 15px;
+  padding: 10px 20px 13px 0;
+  margin: 0;
+  background-color: rgba(58, 97, 162, 0) !important;
+}
+
+/* line 818, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.done-button-table td.clear-button-td {
+  background-color: #631515;
+}
+
+/* line 822, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+td.clear-button-td input {
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(255, 0, 0, 0);
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: "open-sans-bold";
+  color: #fff;
+  width: 100%;
+}
+
+/* line 857, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+div.overlay-div {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* line 870, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.market-rate-table {
+  width: 100%;
+  background-color: #e9e9e9;
+  border-collapse: collapse;
+  border: 2px solid #3a61a2;
+  border-bottom: 0px solid;
+}
+
+/* line 877, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.market-rate-table td {
+  width: 33%;
+  text-align: center;
+  font-family: "open-sans-bold";
+  border: 2px solid #3a61a2;
+  border-bottom: 0px solid;
+  height: 40px;
+  font-size: 12px;
+  color: #3e3e3e;
+}
+
+/* line 887, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.market-rate-table td span {
+  color: #3a61a2;
+  font-family: "open-sans-bold" !important;
+}
+
+/*STYELE FOR LANDSCAP NUMPAD*/
+/* line 900, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.landscape-view-super-values {
+  width: 30%;
+  text-align: center;
+  font-size: 15px;
+  font-family: "open-sans-bold";
+  border: 1px solid #3a61a2;
+  border-collapse: collapse;
+}
+
+/* line 909, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.landscape-view-super-values td {
+  border: 1px solid #223f6f;
+  width: 50%;
+  height: 24px;
+  border-left: none;
+  color: #fff;
+  background-color: #3a61a2;
+  font-family: "open-sans-semibold";
+  font-size: 12px;
+}
+
+/* line 920, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+table.landscape-view-super-values td input {
+  width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+/* line 928, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.hide-table {
+  display: none !important;
+}
+
+/* line 932, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.show-table {
+  display: table !important;
+}
+
+/* line 936, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.height-thirty {
+  height: 30px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* line 942, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.height-thirty input {
+  padding: 0 !important;
+  font-size: 13px !important;
+}
+
+/* line 946, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.height-thirty button {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  font-size: 13px !important;
+}
+
+/* line 952, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.table-width {
+  width: 70% !important;
+  float: left;
+}
+
+/* line 957, /home/define/Documents/heroic-deploy/heroic/app/assets/stylesheets/user/show14.css.scss */
+.cls-td {
+  background-color: #e9e9e9;
+}
+
+.place-amount.load-button-new-class {
+  width: 100%;
+  text-align: left;
+}
+.place-amount.load-button-new-class {
+  width: 50%;
+  float: right;
+  text-align: right;
+}

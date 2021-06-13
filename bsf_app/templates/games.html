@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+  <div class="content-top-padding">
+    <div class="match-index-row header-top-spacing match-text-flag-box">
+      <div class="row" style="margin: auto auto 15px;">
+          <div class="row alert-match-status-box" id="alert-status">
+            <main class="site-content text-center">
+               <div class="site-content__center">
+                  <div class="">
+                     <div class="game-lobby">
+                        <div class="row gutters-5">
+                           <!---->
+                           <div class="col-lg-4 col-xs-6 col-sm-6 col-md-3">
+                              <a href="{% url 'teen_patti_t20' %}" class="cursor-pointer">
+                                 <div class="lobby-list">
+                                    <div class="lobby-holder">
+                                       <img alt="" class="img-responsive" src="{% static '/images/g1.png' %}">
+                                       <div class="game-name">
+                                          <div class="c--anim-btn">
+                                             <span class="c-anim-btn" style="font-size: 12px;">
+                                             Teen Patti T20 </span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+                          <!--
+                           <div class="col-lg-4 col-xs-6 col-sm-6 col-md-3">
+                              <a href="/teenPatti1Day" class="cursor-pointer">
+                                 <div class="lobby-list">
+                                    <div class="lobby-holder">
+                                       <img alt="" class="img-responsive" src="/user/img/g2.png">
+                                       <div class="game-name">
+                                          <div class="c--anim-btn">
+                                             <span class="c-anim-btn" style="font-size: 12px;">
+                                             Teen Patti 1Day </span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+                           <div class="col-lg-4 col-xs-6 col-sm-6 col-md-3">
+                              <a href="/AndarBahar" class="cursor-pointer">
+                                 <div class="lobby-list">
+                                    <div class="lobby-holder">
+                                       <img alt="" class="img-responsive" src="/user/img/g6.png">
+                                       <div class="game-name">
+                                          <div class="c--anim-btn">
+                                             <span class="c-anim-btn" style="font-size: 12px;">
+                                             Andar Bahar</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+                           <div class="col-lg-4 col-xs-6 col-sm-6 col-md-3">
+                              <a href="/sevenupdown" class="cursor-pointer">
+                                 <div class="lobby-list">
+                                    <div class="lobby-holder">
+                                       <img alt="" class="img-responsive" src="/user/img/g7.png">
+                                       <div class="game-name">
+                                          <div class="c--anim-btn">
+                                             <span class="c-anim-btn" style="font-size: 12px;">
+                                             7UPDOWN</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+                           <div class="col-lg-4 col-xs-6 col-sm-6 col-md-3">
+                              <a href="/teenPattiDtl20" class="cursor-pointer">
+                                 <div class="lobby-list">
+                                    <div class="lobby-holder">
+                                       <img alt="" class="img-responsive" src="/user/img/g5.png">
+                                       <div class="game-name">
+                                          <div class="c--anim-btn">
+                                             <span class="c-anim-btn" style="font-size: 12px;">
+                                             Dragon Tiger </span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+                           <div class="col-lg-4 col-xs-6 col-sm-6 col-md-3">
+                              <a href="/thirtyTwoCardCasino" class="cursor-pointer">
+                                 <div class="lobby-list">
+                                    <div class="lobby-holder">
+                                       <img alt="" class="img-responsive" src="/user/img/g1.png">
+                                       <div class="game-name">
+                                          <div class="c--anim-btn">
+                                             <span class="c-anim-btn" style="font-size: 12px;">
+                                             32 Cards </span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+                           <div class="col-lg-4 col-xs-6 col-sm-6 col-md-3">
+                              <a href="/amarAkbarAnthony" class="cursor-pointer">
+                                 <div class="lobby-list">
+                                    <div class="lobby-holder">
+                                       <img alt="" class="img-responsive" src="/user/img/g2.png">
+                                       <div class="game-name">
+                                          <div class="c--anim-btn">
+                                             <span class="c-anim-btn" style="font-size: 12px;">
+                                             Amar Akbar Anthony</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+                         -->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </main>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+
+.site-content {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .7s cubic-bezier(.86, 0, .07, 1) .6s;
+}
+
+.site-content__center {
+    position: relative;
+    padding-top: 5.208333vh;
+    padding-bottom: 8.59375vh;
+    z-index: 1;
+    width: 100%;
+}
+
+.row.gutters-5 {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.lobby-list {
+    width: 100%;
+    height: 180px;
+    background-color: #191c29;
+    border: 1px solid #fcce34;
+    position: relative;
+    margin-top: 30px;
+    transition: all .4s;
+}
+
+.lobby-holder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+}
+
+.lobby-holder img {
+    max-width: 80%;
+    margin: 0 auto;
+    transition: all .4s;
+}
+
+.game-name {
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 10px 5px;
+    line-height: 100%;
+    color: #000;
+    background-image: linear-gradient(to right, #fdd437 25%, #f6a422 75%);
+}
+
+.c--anim-btn {
+    height: 25px;
+    overflow: hidden;
+}
+
+.c--anim-btn span {
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+}
+
+@media (min-width: 1200px){
+.container {
+    max-width: 900px;
+}
+}
+
+</style>
+</style>
+
+{% endblock %}

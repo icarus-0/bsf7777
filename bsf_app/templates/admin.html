@@ -1,0 +1,297 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+  <div class="tab-view">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active market-tab" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">MARKET</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link session-tab" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">SESSION</a>
+        </li>
+      </ul>
+  </div>
+
+
+
+  <div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+  <div class="bet-place-tbl-th"
+    style="margin: 0px;border-bottom: 0px !important;">
+    Market Bets
+  </div>
+  <div class="mobile-hscroll" style="padding-bottom: 15px;">
+    <table class="table table-bordered header-top-spacing">
+      <thead>
+        <tr>
+          <th class ="ldg-tbl-th match-box-color">
+          Date
+          <input type="date" id="date_input1" >
+          </th>
+          <th class="ldg-tbl-th match-box-color">Market Name</th>
+          <th class="ldg-tbl-th match-box-color">Market Type</th>
+          <th class="ldg-tbl-th match-box-color">Market Rate</th>
+          <th class="ldg-tbl-th match-box-color">Market ID</th>
+          <th class="ldg-tbl-th match-box-color">Status</th>
+          <th class="ldg-tbl-th match-box-color">Action</th>
+        </tr>
+      </thead>
+      <tbody id="market_tbody">
+        {% for row in lagai_khai_list %}
+        {% if row.4 and row.0 and row.1 and row.2 and row.6 %}
+        <tr>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.4 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.0 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.1 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.2 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.6 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.7 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color" style="text-align:center;">
+            {% if not row.7 %}
+            <div class="butn-side-by-side">
+            	<button class="btn btn-primary pill-butn butn-left" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'won')">WON</button>
+            	<!--&nbsp;&nbsp;
+            	<button class="btn btn-primary pill-butn butn-right" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'lose')">LOSE</button>-->
+            </div>
+            {% endif %}
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+  <div class="bet-place-tbl-th"
+    style="margin: 0px;border-bottom: 0px !important;">
+    Session Bets
+  </div>
+  <div class="mobile-hscroll" style="padding-bottom: 15px;">
+    <table class="table table-bordered header-top-spacing">
+      <thead>
+        <tr>
+          <th class ="ldg-tbl-th match-box-color">
+            Date
+            <input type="date" id="date_input2" >
+          </th>
+          <th class="ldg-tbl-th match-box-color">Session Name</th>
+          <th class="ldg-tbl-th match-box-color">Session Type</th>
+          <th class="ldg-tbl-th match-box-color">Session Rate</th>
+          <th class="ldg-tbl-th match-box-color">Session ID</th>
+          <th class="ldg-tbl-th match-box-color">Status</th>
+          <th class="ldg-tbl-th match-box-color">Action</th>
+        </tr>
+      </thead>
+      <tbody id="session_tbody">
+        {% for row in yes_no_list %}
+        {% if row.4 and row.0 and row.1 and row.2 and row.6 %}
+        <tr>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.4 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.0 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.1 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.2 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.6 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.7 }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color" style="text-align:center;">
+            {% if not row.7 %}
+            <div class="butn-side-by-side">
+              <button class="btn btn-primary pill-butn butn-left" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'yes')">YES</button>
+              &nbsp;&nbsp;
+              <button class="btn btn-primary pill-butn butn-right" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}','no')">NO</button>
+            </div>
+            {% endif %}
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+
+  });
+
+  var date_input1 = document.getElementById('date_input1');
+  var date_input2 = document.getElementById('date_input2');
+  
+  date_input1.onchange = function (){
+     var date = new Date(this.value); // M-D-YYYY
+
+      var d = date.getDate();
+      var m = date.getMonth() + 1;
+      var y = date.getFullYear();
+
+      var dateString = (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
+     console.log(dateString);
+     var fdata = {
+      "date": dateString,
+    }
+    $(".container").css({"opacity": 0.3})
+    $.post("{% url 'get_filter_bet_records' %}", fdata, function(data){
+      var data = data
+      if(data.status == "success"){
+        $(".container").css({"opacity": 1})
+        $('#market_tbody').html(data.market_tbody)
+        $('#session_tbody').html(data.session_tbody)
+        notify("Updated Successfully", "success")
+        // location.reload(true);
+        console.log(data)
+      }else{
+        $(".container").css({"opacity": 1})
+        notify("Update Failed", "error")
+      }
+    });
+  }
+
+
+  date_input2.onchange = function (){
+     var date = new Date(this.value); // M-D-YYYY
+
+      var d = date.getDate();
+      var m = date.getMonth() + 1;
+      var y = date.getFullYear();
+
+      var dateString = (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
+     console.log(dateString);
+     var fdata = {
+      "date": dateString,
+    }
+    $(".container").css({"opacity": 0.3})
+    $.post("{% url 'get_filter_bet_records' %}", fdata, function(data){
+      var data = data
+      if(data.status == "success"){
+        $(".container").css({"opacity": 1})
+        $('#market_tbody').html(data.market_tbody)
+        $('#session_tbody').html(data.session_tbody)
+        notify("Updated Successfully", "success")
+        // location.reload(true);
+        console.log(data)
+      }else{
+        $(".container").css({"opacity": 1})
+        notify("Update Failed", "error")
+      }
+    });
+  }
+
+  function submit_fun(date, name, type, rate, id, status) {
+    console.log(date, name, type, rate, id, status)
+    var fdata = {
+      "date": date,
+      "name": name,
+      "type": type,
+      "rate": rate,
+      "id": id,
+      "status": status
+    }
+    $(".container").css({"opacity": 0.3})
+    $.post("{% url 'update_bet_records' %}", fdata, function(data){
+      var data = data
+      if(data.status == "success"){
+        $(".container").css({"opacity": 1})
+        notify("Updated Successfully", "success")
+        // location.reload(true);
+      }else{
+        $(".container").css({"opacity": 1})
+        notify("Update Failed", "error")
+      }
+    });
+  }
+
+</script>
+
+<style type="text/css">
+
+.butn-side-by-side{
+	display: flex;
+	width: fit-content;
+    margin: auto;
+}
+
+.butn-left {
+	border-color: #d87d1f;
+    background-color: #d87d1f;
+}
+
+.butn-right {
+	border-color: #1e7e34;
+    background-color: #1e7e34;
+}
+
+.butn-right:hover {
+	border-color: #068c26;
+    background-color: #068c26;
+}
+.butn-left:hover {
+	border-color: #e87a07;
+    background-color: #e87a07;
+}
+
+
+.pill-butn{
+	border-radius: 20px;
+}
+
+.tab-view {
+  display: flex;
+}
+
+.mb-3 {
+  margin: auto;
+  vertical-align: middle;
+  margin-bottom: 0 !important;
+  padding: 5px;
+}
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #3a61a2;
+}
+
+@media screen and (max-width: 480px) {
+    .mobile-hscroll{
+      overflow: auto;
+    }
+}
+
+</style>
+
+{% endblock %}

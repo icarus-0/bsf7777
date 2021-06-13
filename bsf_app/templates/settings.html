@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+  <div class="content-top-padding">
+    <div class="match-index-row header-top-spacing match-text-flag-box">
+      <div class="row" style="margin: auto;">
+          <!--<div class="row alert-match-status-box" id="alert-status">
+            <div class="col-md-12 col-lg-12 alert-match-status-text">
+                <span>Currently Not Available.</span>
+            </div>
+          </div>
+
+          <a href="{% url 'admin_view' %}">
+            <button class="btn btn-primary custm-btn">Admin-View</button>
+          </a>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+
+.match-index-row {
+  display: flex;
+}
+
+.custm-btn{
+  border-radius: 20px;
+  background: #3a61a2;
+  border-color: #3a61a2;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #063f7b;
+  border-color: #044080;
+}
+
+
+
+</style>
+
+
+{% endblock %}

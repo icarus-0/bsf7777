@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+
+  <div class="bet-place-tbl-th"
+    style="margin: 0px;border-bottom: 0px !important;">
+    Match Winner Market Bets
+  </div>
+  <div class="mobile-hscroll" style="padding-bottom: 15px;">
+    <table class="table table-bordered header-top-spacing">
+      <thead>
+        <tr>
+          <th class ="ldg-tbl-th match-box-color">Rate</th>
+          <th class="ldg-tbl-th match-box-color">Amount</th>
+          <th class="ldg-tbl-th match-box-color">MODE</th>
+          <th class="ldg-tbl-th match-box-color">Team</th>
+          <th class="ldg-tbl-th match-box-color">Team A</th>
+          <th class="ldg-tbl-th match-box-color">Team B</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in lagai_khai_list %}
+        <tr>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.market_rate }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.bet_amount }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.market_type }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.market_name }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            -----
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            -----
+          </td>
+        </tr>
+
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bet-place-tbl-th"
+    style="margin: 0px;border-bottom: 0px !important;">
+    Session Bets
+  </div>
+  <div class="mobile-hscroll" style="padding-bottom: 15px;">
+    <table class="table table-bordered header-top-spacing">
+      <thead>
+        <tr>
+          <th class ="ldg-tbl-th match-box-color"
+            style="text-align:left;">SESSION</th>
+          <th class="ldg-tbl-th match-box-color">RATE</th>
+          <th class="ldg-tbl-th match-box-color">AMOUNT</th>
+          <th class="ldg-tbl-th match-box-color">RUNS</th>
+          <th class="ldg-tbl-th match-box-color">MODE</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in yes_no_list %}
+        <tr>
+          <td class="ldg-tbl-td match-value-box-color" style="text-align:left;">
+            {{ row.market_name }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.market_rate }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.bet_amount }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.market_type | filter_yes_no:'runs' }}
+          </td>
+          <td class="ldg-tbl-td match-value-box-color">
+            {{ row.market_type | filter_yes_no:'yes_no' }}
+          </td>
+        </tr>
+
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+
+   <div class="bet-place-tbl-th" style="margin: 0px;">Match Plus Minus</div>
+        <div class="bet-place-tbl-td" style="color:red;margin: 0% 0% 4% 0%;">You Lost 0.0/- Coins.</div>
+                                    <!-- End Match Session Plus Minus -->
+
+                                    <!-- My Commission Row -->
+
+
+                                    <!-- End My Commission Row -->
+
+                                    <!-- Amount After Comm. & Share -->
+   <div class="bet-place-tbl-th" style="margin: 0px;">Amount After Comm. &amp; Share</div>
+
+   <div class="bet-place-tbl-td" style="color:red; margin: 0% 0% 4% 0%;">You Lost 0.0 Coins.</div>
+                                    <!-- End Amount After Comm. & Share -->
+
+                                    <!-- Mob. App. Charges -->
+   <div class="bet-place-tbl-th" style="margin: 0px;">Mob. App. Charges</div>
+   <div class="bet-place-tbl-td" style="color:red;margin: 0% 0% 4% 0%;">You Lost 10.0/- Coins.</div>
+                                    <!-- End Mob. App. Charges -->
+
+                                    <!-- Net Plus Minus -->
+   <div class="bet-place-tbl-th" style="margin: 0px;">Net Plus Minus</div>
+
+   <div class="bet-place-tbl-td" style="color:red;margin: 0% 0% 4% 0%;">You Lost 10.0/- Coins.</div>
+                                     <!-- End Net Plus Minus -->
+   <a href="{% url 'ledger' %}">
+      <div class="bet-place-tbl-th" style="margin: 0% 0% 8% 0%;">BACK TO LIST</div>
+   </a>
+
+</div>
+
+<style type="text/css">
+
+@media screen and (max-width: 480px) {
+    .mobile-hscroll{
+      overflow: auto;
+    }
+}
+
+</style>
+
+{% endblock %}

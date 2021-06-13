@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+	<div class="row content-top-padding" style="padding-bottom: 15px;">
+	<table class="table table-bordered header-top-spacing">
+	  <thead>
+	    <tr>
+	<!-- <<<<<<< HEAD -->
+	      <th class="ldg-tbl-th match-box-color">DATE</th>
+	      <th class="ldg-tbl-th match-box-color">ENTRY</th>
+	      <th class="ldg-tbl-th match-box-color">DEBIT</th>
+	      <th class="ldg-tbl-th match-box-color">CREDIT</th>
+	      <th class="ldg-tbl-th match-box-color">BALANCE</th>
+	<!-- =======
+	      <th class="ldg-tbl-th ledger-head-row-color">DATE</th>
+	      <th class="ldg-tbl-th ledger-head-row-color">ENTRY</th>
+	      <th class="ldg-tbl-th debit-box-color">DEBIT</th>
+	      <th class="ldg-tbl-th credit-box-color">CREDIT</th>
+	      <th class="ldg-tbl-th balance-box-color">BALANCE</th>
+	>>>>>>> feature_theme_switching -->
+	    </tr>
+	  </thead>
+	  <tbody>
+
+
+
+	  	{% for each in user_played_matches_list %}
+	  	{% if each.0 %}
+	    <tr>  
+	<!-- <<<<<<< HEAD -->
+	      <td class="ldg-tbl-td match-value-box-color" style="text-align:left;">
+	        {{ each.2 }}
+	      </td>
+	      <td title="{{ each.1 }}" class="ldg-tbl-td match-value-box-color" style="text-align:left;"><a href="{% url 'ledger_team' ledger_id=each.0 %}">{{ each.1 }}</a></td>
+	      <td class="ldg-tbl-td match-value-box-color">
+	      0</td>
+	      <td class="ldg-tbl-td match-value-box-color">
+	<!-- =======
+	      <td class="ldg-tbl-td ledger-box-value-color" style="text-align:left;"></td>
+	      <td class="ldg-tbl-td ledger-box-value-color" style="text-align:left;"><a href=""></a></td>
+	      <td class="ldg-tbl-td ledger-box-value-color">
+	      0</td>
+	      <td class="ldg-tbl-td ledger-box-value-color">
+	>>>>>>> feature_theme_switching -->
+	0
+	      </td>
+	<!-- <<<<<<< HEAD -->
+	      <td class="ldg-tbl-td match-value-box-color">0</td>
+	<!-- =======
+	      <td class="ldg-tbl-td ledger-box-value-color"></td>
+	>>>>>>> feature_theme_switching -->
+	    </tr>
+	    {% endif %}
+	    {% endfor %}
+
+	  </tbody>
+	</table>
+	</div> 
+</div>
+
+<style type="text/css">
+
+.table {
+  table-layout:fixed;
+}
+
+.table td,.table th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media all and (max-width: 480px) and (min-width: 300px) {
+
+.table td,.table th{
+    white-space: unset;
+    word-break:break-all;
+  }
+.table th{
+	white-space: unset;
+	word-break:break-all;
+	vertical-align: middle !important;
+}
+}
+</style>
+
+{% endblock %}
