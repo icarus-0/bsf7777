@@ -13,6 +13,7 @@ from collections import defaultdict
 from django.views.decorators.csrf import csrf_exempt
 import ast
 from django.contrib import messages #import messages
+from .models import *
 # Create your views here.
 
 CONST = 879
@@ -224,9 +225,8 @@ def upcoming(request):
 def inplay(request):
     if request.method == "GET":
         # import pdb; pdb.set_trace()
-        response = requests.get(settings.INPLAY)
-        if response.status_code == 200:
-            match_list = json.loads(response.content)
+        match_list = Match.objects.all()
+        if len(match_list)!=0:
             return render(
                 request, "inplay.html",
                 {"match_list": match_list,
@@ -690,5 +690,12 @@ def get_update_score(request):
 @csrf_exempt
 def saveNewMatchData(request):
     data = json.loads(request.POST['jData'])
-    print(data)
+    ins = Match(
+        match_id =data['data']['MatchId'],
+        match_name = data['data']['Teams'],
+        match_type = data['data']['MatchType'],
+        match_starttime = data['data']['StartTime'],
+        match_details = data
+    )
+    ins.save()
     return HttpResponse('')

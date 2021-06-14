@@ -6,6 +6,7 @@ class Match(models.Model):
     match_id = models.CharField(max_length=100)
     match_name =  models.CharField(max_length=150)
     match_type =  models.CharField(max_length=150)
+    match_starttime = models.CharField(max_length=150)
     match_details = models.JSONField()
     
     def __str__(self):
