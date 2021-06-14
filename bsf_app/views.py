@@ -683,3 +683,12 @@ def get_update_score(request):
          "ball_status": ball_status
          })
     return HttpResponse(html)
+
+
+
+
+@csrf_exempt
+def saveNewMatchData(request):
+    data = json.loads(request.POST['jData'])
+    print(data)
+    return HttpResponse('')

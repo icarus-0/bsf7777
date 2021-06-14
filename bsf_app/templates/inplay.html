@@ -189,6 +189,22 @@ Socket.onmessage = function (event) {
 
    $('#allMatches').append(html);
    match_ids.push(match_id)
+   
+   
+    
+    $.ajax({
+      type: "POST",
+      url: "saveNewMatchData/",
+      data: {
+        jData: JSON.stringify(data),
+      },
+      success: function (data) {
+        console.log('saved');
+      },
+    });
+ 
+
+
     }
   }
   
