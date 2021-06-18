@@ -76,15 +76,18 @@
             </thead>
             <tbody >
                <tr class="non_fav_run">
-                  <td style="font-size:large;font-weight:bold">{{runner1}}</td>
-                  <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white"></td>
-                  <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white"></td>
+                  <td style="font-size:large;font-weight:bold;background-color:white;">{{runner1}}</td>
+                  <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+                  <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+                  <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
                </tr>
                <tr>
-                <td style="font-size:large;font-weight:bold">{{runner2}}</td>
-                <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white"></td>
-                  <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white"></td>
+                <td style="font-size:large;font-weight:bold;background-color:white">{{runner2}}</td>
+                <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+                <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+                <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
                </tr>
+               
             </tbody>
          </table>
       </div>
@@ -741,7 +744,7 @@
           $('#runner1_lagai').html("0."+l1)
           $('#runner2_lagai').html('')
           
-          $('#runner1_lagai').css("background-color", "green");
+          $('#runner1_lagai').css("background-color", "#22db00");
           $('#runner2_lagai').css("background-color", "white");
 
         }
@@ -751,7 +754,7 @@
           $('#runner1_khai').html("0."+k1)
           $('#runner2_khai').html('')
 
-          $('#runner1_khai').css("background-color", "green");
+          $('#runner1_khai').css("background-color", "#22db00");
           $('#runner2_khai').css("background-color", "white");
         }
         pre_laghai_r1 = laghai
@@ -767,7 +770,7 @@
             $('#runner2_lagai').html("0."+l1)
             $('#runner1_lagai').html('')
 
-            $('#runner2_lagai').css("background-color", "green");
+            $('#runner2_lagai').css("background-color", "#22db00");
           $('#runner1_lagai').css("background-color", "white");
           }
           if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
@@ -776,7 +779,7 @@
             $('#runner2_khai').html("0."+k1)
             $('#runner1_khai').html('')
 
-            $('#runner2_khai').css("background-color", "green");
+            $('#runner2_khai').css("background-color", "#22db00");
           $('#runner1_khai').css("background-color", "white");
           }
           pre_laghai_r2 = laghai
