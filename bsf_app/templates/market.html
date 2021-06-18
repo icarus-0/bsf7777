@@ -3,6 +3,8 @@
 {% load custom_tags %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/show14.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&display=swap" rel="stylesheet">
 <script src="{% static 'js/show14.js' %}"></script>
 
 <button onclick="topFunction()" id="myBtn" title="Go to top">
@@ -74,14 +76,14 @@
             </thead>
             <tbody >
                <tr class="non_fav_run">
-                  <td>{{runner1}}</td>
-                  <td id="runner1_lagai">0</td>
-                  <td id="runner1_khai">0</td>
+                  <td style="font-size:large;font-weight:bold">{{runner1}}</td>
+                  <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white"></td>
+                  <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white"></td>
                </tr>
                <tr>
-                <td>{{runner2}}</td>
-                <td id="runner2_lagai">0</td>
-                  <td id="runner2_khai">0</td>
+                <td style="font-size:large;font-weight:bold">{{runner2}}</td>
+                <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white"></td>
+                  <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white"></td>
                </tr>
             </tbody>
          </table>
@@ -707,6 +709,11 @@
 </style>
 <script>
   var Socket = new WebSocket("ws://148.251.21.118:5570");
+  var pre_laghai_r1 = 0
+  var pre_laghai_r2 = 0
+  var pre_khai_r1 = 0
+  var pre_khai_r2 = 0
+
   Socket.onmessage = function (event) {
   
   var data =jQuery.parseJSON(event.data);
@@ -719,35 +726,61 @@
       ratetype = data['data']['RateType']
       laghai = data['data']['BackLays'][2]['Price']
       khai = data['data']['BackLays'][3]['Price']
-
+      l1 = laghai
+      k1 = khai
+      
       r1 = $.trim($('#runner1').val())
       ratetype = $.trim(ratetype)
+      
+      //console.log(pre_laghai_r1,pre_khai_r1,pre_laghai_r2,pre_khai_r2,laghai,khai,ratetype)
       if (ratetype == r1){
-        curr_val = parseInt($.trim(($('#runner2_lagai').html())))
-        curr_val1 = parseInt($.trim(($('#runner2_khai').html())))
         
-        if ((laghai < curr_val) |(curr_val==0)){
-          $('#runner1_lagai').html(laghai)
-          $('#runner2_lagai').html(0)
+        if ((laghai < pre_laghai_r2) |(pre_laghai_r2==0)){
+          l1 = l1.toString();
+          l1 = l1.split('.')[1];
+          $('#runner1_lagai').html("0."+l1)
+          $('#runner2_lagai').html('')
+          
+          $('#runner1_lagai').css("background-color", "green");
+          $('#runner2_lagai').css("background-color", "white");
+
         }
-        if ((khai < curr_val1) |(curr_val1==0)){
-          $('#runner1_khai').html(khai)
-          $('#runner2_khai').html(0)
+        if ((khai < pre_khai_r2) |(pre_khai_r2==0)){
+          k1 = k1.toString();
+          k1 = k1.split('.')[1];
+          $('#runner1_khai').html("0."+k1)
+          $('#runner2_khai').html('')
+
+          $('#runner1_khai').css("background-color", "green");
+          $('#runner2_khai').css("background-color", "white");
         }
+        pre_laghai_r1 = laghai
+        pre_khai_r1 = khai
       }
       else{
         r2 = $.trim($('#runner2').val())
         if (ratetype == r2){
-          curr_val = parseInt($.trim(($('#runner1_lagai').html())))
-          curr_val1 = parseInt($.trim(($('#runner1_khai').html())))
-          if ((laghai < curr_val) |(curr_val==0)){
-            $('#runner2_lagai').html(laghai)
-            $('#runner1_lagai').html(0)
+         
+          if ((laghai < pre_laghai_r1) |(pre_laghai_r1==0)){
+            l1 = l1.toString();
+          l1 = l1.split('.')[1];
+            $('#runner2_lagai').html("0."+l1)
+            $('#runner1_lagai').html('')
+
+            $('#runner2_lagai').css("background-color", "green");
+          $('#runner1_lagai').css("background-color", "white");
           }
-          if ((laghai < curr_val1) |(curr_val1==0)){
-            $('#runner2_khai').html(khai)
-            $('#runner1_khai').html(0)
+          if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
+            k1 = k1.toString();
+          k1 = k1.split('.')[1];
+            $('#runner2_khai').html("0."+k1)
+            $('#runner1_khai').html('')
+
+            $('#runner2_khai').css("background-color", "green");
+          $('#runner1_khai').css("background-color", "white");
           }
+          pre_laghai_r2 = laghai
+          pre_khai_r2 = khai
         }
       }
     }
