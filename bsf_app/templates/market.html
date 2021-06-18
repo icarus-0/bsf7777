@@ -17,7 +17,7 @@
 <div "market_div">
    <ul class="marquee">
       <marquee>
-         <li>!! WELCOME TO BSF7777.COM !! : Sabhi Agent or Client ko Suchit kiya jata hai ki aap Apni id ho ya Master Pannel sabhi k Pasword strong rakhe Normal Paswrod na Rakhe -- ( for ex)-- : 12345/s1234,,,id ya master se koi bhi Mistake ya unused hota hai to company kisi bhi prakar ki Zimedar nahi rahegi........ Thank You !! </li>
+         <li>!! WELCOME TO BSF7777.COM !! : Sabhi Agent or Client ko Suchit kiya jata hai ki aap Apni id ho ya Master Pannel sabhi k Pasword strong rakhe Normal Paswrod na Rakhe -- ( for example )-- : 12345/s1234    |   id ya master se koi bhi Mistake ya unused hota hai to company kisi bhi prakar ki Zimedar nahi rahegi ........! Thank You !! </li>
           <!--<li>
             {{ event_name }}
           </li>-->
@@ -29,18 +29,15 @@
         <div class="row">
          <div class="content_matches_wrapper">
            <div class=" col-lg-8 col-xs-9 col-md-8 col-sm-7 match-score content_in_play_wrapper match-status-table match-score-box-color">
-              <p class="inplay-show-tbl-td match-status-text match-score-box-color" id="score_table_139839">
-              {% for team_score in score %}
-              {{ team_score.name }} {% if team_score.runs %} {{ team_score.runs }}/{{ team_score.wickets }} ({{ team_score.overs }}) {% endif %}
-              <br>
-              {% endfor %}
+              <p class="inplay-show-tbl-td match-status-text match-score-box-color" id="commentary">
+              
               </p>
            </div>
            <div class=" col-lg-3 col-xs-3 col-md-3 col-sm-3 bet_status_box bet-status-text-div">
               <div class="bet-status-text-p event commentry-box-color" style="font-size: 20px; line-height: 20px; padding: 0px;" 
-              id="event_status">BET<br>{{ market_data.cricket.0.status }}</div>
+              id="event_status" id="status">BET</div>
               <div class="bet-status-text-p ball_status" id="ball_status" style="font-size: 20px; line-height: 20px; padding: 0px;">
-                 {{ball_status}}
+                 
               </div>
               <!-- <p class=" col-lg-12 event" id="event_table_139839" > </p>
                  <p class=" col-lg-12  event_bet_status" id="bet-status"></p> -->
@@ -789,6 +786,16 @@
     }
   }
 
+
+  if (data['responseType']==4){
+    comm = data['data']['Commentry']
+    $('#commentary').html(comm)
+  }
+
+  if (data['responseType']==11){
+    status = data['data']['Status']
+    $('#status').html(status)
+  }
 }
 
 </script>
