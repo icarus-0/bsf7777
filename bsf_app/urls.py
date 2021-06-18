@@ -11,7 +11,7 @@ urlpatterns = [
     path('user/dashboard/schedule/', schedule, name="schedule"),
     path('user/dashboard/ledger/', ledger, name="ledger"),
     path('user/dashboard/ledger/<str:ledger_id>/', ledger_team, name="ledger_team"),
-    path('user/market_detail/', market_detail, name="market_detail"),
+    path('user/market_detail/<str:match_id>/', market_detail, name="market_detail"),
     path('user/change-password/', change_password, name="change_password"),
     path('user/upcoming/', upcoming, name="upcoming"),
     path('user/matches/', inplay, name="inplay"),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('get/user-coins', get_user_coins, name="get_user_coins"),
     path('get/filter/bet-records', get_filter_bet_records, name="get_filter_bet_records"),
     path('update-scoe/', get_update_score, name="update_score"),
-    path('user/matches/saveNewMatchData/', saveNewMatchData,name='saveNewMatchData')
+    path('user/matches/saveNewMatchData/', saveNewMatchData,name='saveNewMatchData'),
+    path('saveNewMatchData/', saveNewMatchData,name='saveNewMatchData')
 ]

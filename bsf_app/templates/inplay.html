@@ -25,9 +25,10 @@
 </div>
 -->
 
-
-{% for match in match_list%}
+{% if match_list|length > 1 %}
+{% for match in match_list %}
 <div class="match-index-row header-top-spacing match-text-flag-box" id ="allMatches">
+  <a href="{% url 'market_detail' match_id=match.match_id %}" data-id="{{ match.match_id }}">
   <div class="row" style="margin: auto 15px 15px;">
     <div class="col-xs-12 top-time-dtl in-play-right-box-color">
       {{match.match_id}}
@@ -59,19 +60,20 @@
        </div>
     </div>
 </div>
-
+</a>
  <div class="row" style="padding-bottom: 30px;margin: auto auto;"></div>
 
  {% endfor %}
 </div>
 
  
-
+{% else %}
   <div class="row alert-match-status-box" id="alert-status">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert-match-status-text">
           <span>Currently No Match Available.</span>
       </div>
   </div>
+{% endif %}
 
 
  

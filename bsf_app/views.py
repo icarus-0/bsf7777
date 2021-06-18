@@ -221,6 +221,7 @@ def upcoming(request):
         return render(request, "upcoming.html", {"current_page": "upcoming"})
 
 
+
 @bsf_login_required
 def inplay(request):
     if request.method == "GET":
@@ -235,71 +236,28 @@ def inplay(request):
 
 
 @bsf_login_required
-def market_detail(request):
-    market_id = request.GET.get("marketId")
-    event_name = request.GET.get("eventName")
-    event_id = request.GET.get("eventId")
-    runner1 = request.GET.get("runnerName1")
-    runner2 = request.GET.get("runnerName2")
+def market_detail(request,match_id):
+    print(match_id)
+    ins = Match.objects.filter(match_id= match_id).get()
+    
+    market_id = match_id
+    event_name = ins.match_name
+    event_id = ins.match_id
+    runner1,runner2  = event_name.split('Vs')
+    
     # session_id = request.GET.get("seriesId")
     # section_id1 = request.GET.get("selectionId1")
     # section_id2 = request.GET.get("selectionId2")
-    market_name = request.GET.get("marketName")
-    market_type = request.GET.get("marketType")
-    api_response = requests.get((settings.SCORE_API).format(event_id=event_id))
+    #market_name = request.GET.get("marketName")
+    market_type = ins.match_type
+    #api_response = requests.get((settings.SCORE_API).format(event_id=event_id))
     score = []
-    ball_status = ""
-    # import pdb; pdb.set_trace()
-    if api_response.status_code == 200:
-        score_data = json.loads(api_response.content)
-        if score_data:
-            score = api_score(score_data)
-            ball_status = get_ball_status(score_data)
-    response = requests.get(
-        (settings.ODDS_SESSION.format(market_id=market_id)))
-    if response.status_code == 200:
-        market_data = json.loads(response.content)
-        if market_data:
-            if market_data['cricket']:
-                market_data['cricket'][0] = get_least_market_data(
-                    market_data['cricket'][0])
-            inplay_deduct_data = {
-                "UserID": request.COOKIES.get("user_name"),
-                "market_id": market_id,
-                "InPlaycheck": "True"
-            }
-            # import pdb; pdb.set_trace()
-            inplay_deduct_api = requests.post(settings.INPLAY_DEDUCTION,
-                                           json=inplay_deduct_data)
-            # market_data = get_least_market_data(market_data[0])
-            user_name = request.COOKIES.get("user_name")
-            bet_records_response = requests.get((settings.MARKET_BET_DETAILS).format(userid=user_name, market_id=market_id))
-            lagai_khai_list = []
-            yes_no_list = []
-            if bet_records_response.status_code == 200:
-                bet_details_list = json.loads(bet_records_response.content)
-                lagai_khai_list = [x for x in bet_details_list if x.get("market_type").upper() == 'LAGAI' or x.get("market_type").upper() == 'KHAI']
-                yes_no_list = [x for x in bet_details_list if 'YES' in x.get("market_type").upper()  or 'NO' in x.get("market_type").upper()]
-
-            return render(
-                request, "market.html",
-                {"market_data": market_data,
-                 "event_name": event_name,
-                 "runner1": runner1,
-                 "runner2": runner2,
-                 "event_id": event_id,
-                 "lagai_khai_list": lagai_khai_list,
-                 "yes_no_list": yes_no_list,
-                 # "session_id": session_id,
-                 # "section_id1": section_id1,
-                 # "section_id2": section_id2,
-                 "market_name": market_name,
-                 "market_type": market_type,
-                 "market_id": market_id,
-                 "score": score,
-                 "ball_status": ball_status})
-        return redirect("inplay")
-    return render(request, "market.html")
+    data = {
+        'match_id':match_id,
+        'runner1':runner1,
+        'runner2':runner2
+    }
+    return render(request, "market.html",data)
 
 
 @bsf_login_required
@@ -690,12 +648,21 @@ def get_update_score(request):
 @csrf_exempt
 def saveNewMatchData(request):
     data = json.loads(request.POST['jData'])
-    ins = Match(
-        match_id =data['data']['MatchId'],
-        match_name = data['data']['Teams'],
-        match_type = data['data']['MatchType'],
-        match_starttime = data['data']['StartTime'],
-        match_details = data
-    )
+    
+    try:
+        ins = Match.objects.filter(match_id=data['data']['MatchId']).get()
+        ins.match_name = data['data']['Teams']
+        ins.match_type = data['data']['MatchType']
+        ins.match_starttime = data['data']['StartTime']
+        ins.match_details = data
+    except Exception as e: 
+        ins = Match(
+            match_id =data['data']['MatchId'],
+            match_name = data['data']['Teams'],
+            match_type = data['data']['MatchType'],
+            match_starttime = data['data']['StartTime'],
+            match_details = data
+        )
+    
     ins.save()
     return HttpResponse('')

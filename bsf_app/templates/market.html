@@ -9,6 +9,9 @@
   <i class="fa fa-arrow-up" aria-hidden="true"></i>
 </button>
 
+<input type="text" value="{{match_id}}" style="display: none;" id="match_id">
+<input type="text" value="{{runner1}}" style="display: none;" id="runner1">
+<input type="text" value="{{runner2}}" style="display: none;" id="runner2">
 <div "market_div">
    <ul class="marquee">
       <marquee>
@@ -19,7 +22,7 @@
       </marquee>
    </ul>
    <!-- Body Code start -->
-   <div class="container">
+   <div class="container">  
       <div class="update_score_data">
         <div class="row">
          <div class="content_matches_wrapper">
@@ -69,36 +72,16 @@
                   <th class="bet-place-tbl-th run-pos-rate-amt-run-mod-color">POSITION</th>
                </tr>
             </thead>
-            <tbody data-market-id="{{market_id }}" data-market-sid="Match Winner_{{ market_id }}">
-               <tr data-runner-id="{{ section_id1 }}" data-runner-sid="{{ runner1 }}  _{{ market_data.cricket.0.runners.0.marketId }}" class="non_fav_run">
-                  <td data-runner-sid="{{ runner1 }}  _{{ market_data.cricket.0.runners.0.id }}" data-column="runner_name" class="
-                  {% if market_data.cricket.0.runners.0.back.0.price %} market_show_team {% else %} market_hide_team {% endif %} flag bet-place-tbl-td" style="">
-                  {{ runner1 }}  </td>
-                  <td data-runner-sid="{{ runner1 }}  _{{ section_id1 }}" data-column="back" class="open-keyboard MarketTable bet-place-tbl-td first-runner-bet-odds-yes-value cursor-pointer active-lagai-bet-box-color
-                  {% if not market_data.cricket.0.runners.0.back.0.price %} close-status {% endif %}" odd-val="{{ market_data.cricket.0.runners.0.back.0.price }}" market-id="{{ market_id }}" market-name="{{ runner1}}" market-type="{{ market_type }}" runner-id="{{ section_id1 }}" event-id="{{event_id }}" event-name="{{ event_name }}" heroic-market-type="Match Winner" data-id="LAGAI" id="Match Winner_{{ section_id1 }}_lay_{{ runner1 }}  _{{ section_id1 }}">
-                    {{ market_data.cricket.0.runners.0.back.0.price | update_market_rate }}
-                  </td>
-                  <td data-runner-sid="{{ runner1 }}  _{{ section_id1 }}" data-column="lay" class="open-keyboard MarketTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer active-khai-bet-box-color
-                  {% if not market_data.cricket.0.runners.0.lay.0.price %} close-status {% endif %}" odd-val="{{ market_data.cricket.0.runners.0.lay.0.price }}" market-id="{{ market_id }}" market-name="{{ runner1 }}" market-type="{{ market_type }}" runner-id="{{ section_id1 }}" event-id="{{event_id }}" event-name="{{ event_name }}" heroic-market-type="Match Winner" data-id="KHAI" id="Match Winner_{{ section_id1 }}_lay_{{ runner1 }}  _{{ section_id1 }}">
-                    {{ market_data.cricket.0.runners.0.lay.0.price | update_market_rate }}
-                  </td>
-                  <td data-runner-sid="Kolkata Knight Riders  _140548" data-column="position" class="{% if market_data.cricket.0.runners.0.back.0.price %} market_show_team {% else %} market_hide_team {% endif %} bet-place-tbl-td  bet-val-cent" data-position="0" style="">
-                     0
-                  </td>
+            <tbody >
+               <tr class="non_fav_run">
+                  <td>{{runner1}}</td>
+                  <td id="runner1_lagai">0</td>
+                  <td id="runner1_khai">0</td>
                </tr>
-               <tr data-runner-id="{{ section_id2 }}" data-runner-sid="{{ runner2 }}_{{ section_id2 }}" class="fav_run">
-                  <td data-runner-sid="{{ runner2 }}_{{ section_id2 }}" data-column="runner_name" class="
-                  {% if market_data.cricket.0.runners.1.back.0.price %} market_show_team {% else %} market_hide_team {% endif %} flag bet-place-tbl-td" style="">{{ runner2 }}</td>
-                  <td data-runner-sid="{{ runner2 }}_{{ section_id2 }}" data-column="back" class="open-keyboard MarketTable bet-place-tbl-td first-runner-bet-odds-yes-value cursor-pointer active-lagai-bet-box-color
-                  {% if not market_data.cricket.0.runners.1.back.0.price %} close-status {% endif %}" odd-val="{{ market_data.cricket.0.runners.1.back.0.price }}" market-id="{{ market_id }}" market-name="{{ runner2 }}" market-type="{{ market_type }}" runner-id="{{ section_id2 }}" event-id="{{event_id }}" event-name="{{ event_name }}" heroic-market-type="Match Winner" data-id="LAGAI" id="Match Winner_{{ section_id2 }}_back_{{ runner2 }}_{{ section_id2 }}">
-                    {{ market_data.cricket.0.runners.1.back.0.price | update_market_rate }}
-                  </td>
-                  <td data-runner-sid="{{ runner2 }}_{{ section_id2 }}" data-column="lay" class="open-keyboard MarketTable bet-place-tbl-td first-runner-bet-odds-no-value cursor-pointer active-khai-bet-box-color {% if not market_data.cricket.0.runners.1.lay.0.price %} close-status {% endif %}" odd-val="{{ market_data.cricket.0.runners.1.lay.0.price }}" market-id="{{ market_id }}" market-name="{{ runner2 }}" market-type="{{ market_type }}" runner-id="{{ section_id2 }}" event-id="{{event_id }}" event-name="{{ event_name }}" heroic-market-type="Match Winner" data-id="KHAI" id="Match Winner_{{ section_id2 }}_lay_{{ runner2 }}_{{ section_id2 }}">
-                    {{ market_data.cricket.0.runners.1.lay.0.price | update_market_rate }}
-                  </td>
-                  <td data-runner-sid="{{ runner2 }}_{{ section_id2 }}" data-column="position" class="{% if market_data.cricket.0.runners.1.back.0.price %} market_show_team {% else %} market_hide_team {% endif %} bet-place-tbl-td  bet-val-cent" data-position="0" style="">
-                     0
-                  </td>
+               <tr>
+                <td>{{runner2}}</td>
+                <td id="runner2_lagai">0</td>
+                  <td id="runner2_khai">0</td>
                </tr>
             </tbody>
          </table>
@@ -722,159 +705,56 @@
   }
 }
 </style>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#ball_status").hide();
-    $('[data-toggle="tooltip"]').tooltip();
-    var old_over = '{{ team_score.overs }}'
-    var formdata = {}
-    var scoreForm = {}
-    scoreForm["eventId"] = "{{event_id}}"
-    formdata["marketId"] = "{{market_id}}"
-    formdata["eventName"] = "{{event_name}}"
-    formdata["eventId"] = "{{event_id}}"
-    formdata["runnerName1"] = "{{runner1}}"
-    formdata["runnerName2"] = "{{runner2}}"
-    formdata["seriesId"] = "{{series_id}}"
-    formdata["selectionId1"] = "{{section_id1}}"
-    formdata["selectionId2"] = "{{section_id12}}"
-    formdata["marketName"] = "{{market_name}}"
-    formdata["marketType"] = "{{market_type}}"
-     setInterval(function(){
-        // $("#event_status").show();
-        // $("#ball_status").hide();
-        $.get("{% url 'update_market' %}", formdata,
-          function (data) {
-            // console.log(data)
-            $('.update_market_data').html(data);
-            // var new_over = '{{ team_score.overs }}'
-            // $("#event_status").hide();
-            // $("#ball_status").show();
+<script>
+  var Socket = new WebSocket("ws://148.251.21.118:5570");
+  Socket.onmessage = function (event) {
+  
+  var data =jQuery.parseJSON(event.data);
+  //console.log(data)
+  
+  if (data['responseType'] == 10){
+    match_id = $('#match_id').val()
+    if (data['data']['MatchId'] == match_id){
+      
+      ratetype = data['data']['RateType']
+      laghai = data['data']['BackLays'][2]['Price']
+      khai = data['data']['BackLays'][3]['Price']
 
-          });
-          // console.log(old_over, new_over)
-
-      // }
-      },4000);
-
-     setInterval(function(){
-        $.get("{% url 'update_score' %}", scoreForm,
-          function (data) {
-            $('.update_score_data').html(data);
-            $("#event_status").hide();
-            $("#ball_status").show();
-
-          });
-
-    },1000);
-
-
-    //Get the button:
-    mybutton = document.getElementById("myBtn");
-
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-      } else {
-        mybutton.style.display = "none";
+      r1 = $.trim($('#runner1').val())
+      ratetype = $.trim(ratetype)
+      if (ratetype == r1){
+        curr_val = parseInt($.trim(($('#runner2_lagai').html())))
+        curr_val1 = parseInt($.trim(($('#runner2_khai').html())))
+        
+        if ((laghai < curr_val) |(curr_val==0)){
+          $('#runner1_lagai').html(laghai)
+          $('#runner2_lagai').html(0)
+        }
+        if ((khai < curr_val1) |(curr_val1==0)){
+          $('#runner1_khai').html(khai)
+          $('#runner2_khai').html(0)
+        }
+      }
+      else{
+        r2 = $.trim($('#runner2').val())
+        if (ratetype == r2){
+          curr_val = parseInt($.trim(($('#runner1_lagai').html())))
+          curr_val1 = parseInt($.trim(($('#runner1_khai').html())))
+          if ((laghai < curr_val) |(curr_val==0)){
+            $('#runner2_lagai').html(laghai)
+            $('#runner1_lagai').html(0)
+          }
+          if ((laghai < curr_val1) |(curr_val1==0)){
+            $('#runner2_khai').html(khai)
+            $('#runner1_khai').html(0)
+          }
+        }
       }
     }
-
-  });
-
-  // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-
-
-  $("#pw_close_btn").click(function(){
-  // function removeGameBanner(){
-     $("#show_play").css("display", "none");
-  });
-
-  $('.market-form').submit(function(e){
-    e.preventDefault();
-    if($("#coin_countity_bet").val() != ""){
-        $(".sub-content").css({"opacity": 0.4})
-        $.post("{% url 'create_bet' %}", $(this).serialize(), function(data){
-          var data = data
-          if(data.status == "success"){
-            $(".sub-content").css({"opacity": 1})
-            notify(data.message, "success")
-            $(".market-form").hide();
-            $(".enter-default-value").hide();
-            location.reload(true);
-          }else{
-            $(".sub-content").css({"opacity": 1})
-            notify(data.message, "error")
-            $(".market-form").hide();
-            $(".enter-default-value").hide();
-          }
-      });
-    }else{
-      $("#coin_countity_bet").css("border", "2px solid red")
-      setTimeout(function(){
-        $("#coin_countity_bet").css("border", "1px solid black")
-      }, 3000);
-    }
-
-});
-
-$('.session-form').submit(function(e){
-    e.preventDefault();
-    if($("#coin_countity_session").val() != ""){
-        $(".sub-content").css({"opacity": 0.4})
-        $.post("{% url 'create_bet' %}", $(this).serialize(), function(data){
-          var data = data
-          if(data.status == "success"){
-            $(".sub-content").css({"opacity": 1})
-            notify(data.message, "success")
-            $(".session-form").hide();
-            $(".enter-default-value").hide();
-            location.reload(true);
-          }else{
-            $(".sub-content").css({"opacity": 1})
-            notify(data.message, "error")
-            $(".session-form").hide();
-            $(".enter-default-value").hide();
-          }
-      });
-    }else{
-      $("#coin_countity_session").css("border", "2px solid red")
-      setTimeout(function(){ 
-        $("#coin_countity_session").css("border", "1px solid black")
-      }, 3000);
-    }
-
-  function update_market(){
-    // var formdata = {}
-    // formdata["marketId"] = "{{market_id}}"
-    // formdata["eventName"] = "{{event_name}}"
-    // formdata["eventId"] = "{{event_id}}"
-    // formdata["runnerName1"] = "{{runner1}}"
-    // formdata["runnerName2"] = "{{runner12}}"
-    // formdata["seriesId"] = "{{series_id}}"
-    // formdata["selectionId1"] = "{{section_id1}}"
-    // formdata["selectionId2"] = "{{section_id12}}"
-    // formdata["marketName"] = "{{market_name}}"
-    // formdata["marketType"] = "{{market_type}}"
-    //  setInterval(function(){
-    //   $.getJSON("{% url 'update_market' %}", formdata,
-    //     function (data) {
-    //       console.log(data)
-    //     });
-    //  },5000);
   }
 
+}
 
-
-
-});
 </script>
 
 {% endblock %}
