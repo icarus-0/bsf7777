@@ -112,28 +112,10 @@
                   <th class="bet-place-tbl-th run-pos-rate-amt-run-mod-color">RATE</th>
                </tr>
             </thead>
-            <tbody>
-              {% for row in market_data.session.0.value.session %}
-              {% if row.GameStatus == "" %}
-               <tr data-session-type="runs_in_innings" data-heroic-market-type="session" data-heroic-market-id="{{ market_id }}" data-innings="1" data-overs="20">
-                  <td data-column="session_title" class="bet-place-tbl-td" style="text-align:left;"  data-toggle="tooltip" title="{{ row.RunnerName }}">
-                    {{ row.RunnerName }}
-                  </td>
-                  <td data-column="no_runs" class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-yes-value" data-id="NO" market-name="{{ row.RunnerName }}" market-rate="{{ row.LaySize1 | update_session_rate }}" event-name="{{ event_name }}" market-id="{{ market_id }}" market-value="{{ row.LayPrice1 }}">
-                    {{ row.LayPrice1 }}
-                  </td>
-                  <td data-column="no_rate" class="bet-place-tbl-td bet-val-cent close-status">
-                    {{ row.LaySize1 | update_session_rate }}
-                  </td>
-                  <td data-column="yes_runs" class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-no-value" data-id="YES" market-name="{{ row.RunnerName }}" market-rate="{{ row.BackSize1 | update_session_rate }}" event-name="{{ event_name }}" market-id="{{ market_id }}" market-value="{{ row.BackPrice1 }}">
-                    {{ row.BackPrice1 }}
-                  </td>
-                  <td data-column="yes_rate" class="bet-place-tbl-td bet-val-cent close-status">
-                    {{ row.BackSize1 | update_session_rate }}
-                  </td>
-               </tr>
-               {% endif %}
-               {% endfor %}
+            <tbody id="mainSession">
+              
+               
+               
             </tbody>
          </table>
       </div>
@@ -707,6 +689,7 @@
   }
 }
 </style>
+
 <script>
   var Socket = new WebSocket("ws://148.251.21.118:5570");
   var pre_laghai_r1 = 0
@@ -787,7 +770,7 @@
   }
 
 
-  if (data['responseType']==4){
+  if (data['responseType']==4 | data['responseType']==8){
     comm = data['data']['Commentry']
     $('#commentary').html(comm)
   }
@@ -798,6 +781,57 @@
   }
 }
 
+</script>
+
+
+<script>
+  var Socket = new WebSocket("ws://148.251.21.118:5570");
+  var sessionNames = []
+
+  Socket.onmessage = function (event) {
+  
+  var data =jQuery.parseJSON(event.data);
+  //{"responseType":11,"data":{"MatchId":"p10004","Name":"IND Only 3rd Over Runs","No":"2","NoValue":"100","Yes":"3","YesValue":"100","Status":"","IsRemove":false}}
+  if (data['responseType']==11){
+    match_id = $('#match_id').val()
+    if (data['data']['MatchId'] == match_id){
+      sessName =  data['data']['Name']
+      sessId = sessName.split(" ").join('_')
+      if (sessionNames.indexOf(sessName)!= -1){
+        $(document).ready(function(){
+      
+          noid = "#"+sessId+"_no"
+          novalid = "#"+sessId+"_no_rate"
+          yesid= "#"+sessId+"_yes"
+          yesvalid = "#"+sessId+"_yes_rate"
+          
+          $('#mainSession').find(noid).html(data['data']['No'])
+          $('#mainSession').find(novalid).html(data['data']['NoValue'])
+          $('#mainSession').find(yesid).html(data['data']['Yes'])
+          $('#mainSession').find(novalid).html(data['data']['YesValue'])
+          
+          console.log(noid,'  ',novalid,'  ',yesid,'  ',yesvalid)
+       
+        })
+        
+        
+        
+      }
+      else{
+        sessionNames.push(sessName);
+        html = `<tr id="`+sessId+`"><td class="bet-place-tbl-td" style="text-align:left;">`+sessName+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-yes-value" id="`+sessId+`_no">`+data['data']['No']+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_no_rate">`+data['data']['NoValue']+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-no-value" id="`+sessId+`_yes">`+data['data']['Yes']+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_yes_rate">`+data['data']['YesValue']+`</td></tr>`
+        $('#mainSession').append(html);
+      
+      }
+      
+      if(data['data']['IsRemove'] == true){
+        $("#"+sessId).remove()
+      }
+    
+    }
+  }
+ 
+}
 </script>
 
 {% endblock %}
