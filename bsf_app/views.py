@@ -651,7 +651,7 @@ def saveNewMatchData(request):
     data = json.loads(request.POST['jData'])
     
     try:
-        ins = Match.objects.filter(match_id=data['data']['MatchId']).get()
+        ins = Match.objects.filter(match_name=data['data']['Teams']).get()
         ins.match_name = data['data']['Teams']
         ins.match_type = data['data']['MatchType']
         ins.match_starttime = data['data']['StartTime']

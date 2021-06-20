@@ -29,14 +29,17 @@
       <div class="update_score_data">
         <div class="row">
          <div class="content_matches_wrapper">
-           <div class=" col-lg-8 col-xs-9 col-md-8 col-sm-7 match-score content_in_play_wrapper match-status-table match-score-box-color">
-              <p class="inplay-show-tbl-td match-status-text match-score-box-color" id="commentary">
-              
-              </p>
+           <div class=" col-lg-8 col-xs-9 col-md-8 col-sm-7 match-score content_in_play_wrapper match-status-table match-score-box-color" style="align-items:center; text-align:center">
+            
+            
+            <p class="inplay-show-tbl-td match-status-text match-score-box-color" >
+              <h5 style="font-weight: bold;color:white" id="Score"></h5>  
+              <p id="commentary" style="color: white;font-weight:bold;font-size:large"></p>
+            </p>
            </div>
            <div class=" col-lg-3 col-xs-3 col-md-3 col-sm-3 bet_status_box bet-status-text-div">
               <div class="bet-status-text-p event commentry-box-color" style="font-size: 20px; line-height: 20px; padding: 0px;" 
-              id="event_status" id="status">BET</div>
+              id="event_status" >BET</div>
               <div class="bet-status-text-p ball_status" id="ball_status" style="font-size: 20px; line-height: 20px; padding: 0px;">
                  
               </div>
@@ -878,8 +881,19 @@
   }
 
   if (data['responseType']==11){
-    status = data['data']['Status']
-    $('#status').html(status)
+    match_id = $('#match_id').val()
+    if (data['data']['MatchId'] == match_id){
+
+      status = data['data']['Status']
+      if (status == ""){
+        $('#event_status').html('BET OPEN')    
+      }else{
+        $('#event_status').html(status)
+      }
+    
+    }
+
+    
   }
 }
 
@@ -918,7 +932,8 @@
             $('#mainSession').find(novalid).html('')
           }
           else{
-            $('#mainSession').find(novalid).html(data['data']['NoValue'])
+            kz = data['data']['NoValue'] / 100
+            $('#mainSession').find(novalid).html(kz)
           }
 
           if (data['data']['Yes'] == 0){
@@ -930,10 +945,11 @@
           }
 
           if (data['data']['YesValue']== 0){
-            $('#mainSession').find(novalid).html('')
+            $('#mainSession').find(yesvalid).html('')
           }
           else{
-            $('#mainSession').find(novalid).html(data['data']['YesValue'])
+            kz = data['data']['YesValue'] / 100
+            $('#mainSession').find(yesvalid).html(kz)
          
           }
           
@@ -948,7 +964,7 @@
       }
       else{
         sessionNames.push(sessName);
-        html = `<tr id="`+sessId+`"><td class="bet-place-tbl-td" style="text-align:left;">`+sessName+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-yes-value" id="`+sessId+`_no">`+data['data']['No']+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_no_rate">`+data['data']['NoValue']+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-no-value" id="`+sessId+`_yes">`+data['data']['Yes']+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_yes_rate">`+data['data']['YesValue']+`</td></tr>`
+        html = `<tr id="`+sessId+`"><td class="bet-place-tbl-td" style="text-align:left;">`+sessName+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-yes-value" id="`+sessId+`_no">`+''+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_no_rate">`+''+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-no-value" id="`+sessId+`_yes">`+''+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_yes_rate">`+''+`</td></tr>`
         $('#mainSession').append(html);
       
       }
@@ -960,7 +976,25 @@
     }
   }
  
+
+
+  if(data['responseType'] == 6){
+    match_id = $('#match_id').val()
+    if (data['data']['MatchId'] == match_id){
+      sc = data['data']['Name']+' : '+data['data']['Inning1Score']
+      $('#Score').text(sc)
+    }
+  }
+
+  if(data['responseType'] == 5){
+    match_id = $('#match_id').val()
+    if (data['data']['MatchId'] == match_id){
+     alert('Res5')
+    }
+  }
+
 }
 </script>
+
 
 {% endblock %}
