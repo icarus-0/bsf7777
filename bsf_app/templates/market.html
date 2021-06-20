@@ -914,16 +914,30 @@
             $('#mainSession').find(noid).html(data['data']['No'])
           }
 
-          if (data['data']['NoValue']){
+          if (data['data']['NoValue'] == 0){
             $('#mainSession').find(novalid).html('')
           }
           else{
             $('#mainSession').find(novalid).html(data['data']['NoValue'])
           }
+
+          if (data['data']['Yes'] == 0){
+            $('#mainSession').find(yesid).html('')
+          }
+          else{
+            $('#mainSession').find(yesid).html(data['data']['Yes'])
          
+          }
+
+          if (data['data']['YesValue']== 0){
+            $('#mainSession').find(novalid).html('')
+          }
+          else{
+            $('#mainSession').find(novalid).html(data['data']['YesValue'])
+         
+          }
           
-          $('#mainSession').find(yesid).html(data['data']['Yes'])
-          $('#mainSession').find(novalid).html(data['data']['YesValue'])
+          
           
           //console.log(noid,'  ',novalid,'  ',yesid,'  ',yesvalid)
        
