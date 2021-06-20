@@ -14,6 +14,7 @@
 <input type="text" value="{{match_id}}" style="display: none;" id="match_id">
 <input type="text" value="{{runner1}}" style="display: none;" id="runner1">
 <input type="text" value="{{runner2}}" style="display: none;" id="runner2">
+<input type="text" value="{{match_type}}" style="display: none;" id="match_type">
 <div "market_div">
    <ul class="marquee">
       <marquee>
@@ -696,6 +697,7 @@
   var pre_laghai_r2 = 0
   var pre_khai_r1 = 0
   var pre_khai_r2 = 0
+  var match_type = $('#match_type').val()
 
   Socket.onmessage = function (event) {
   
@@ -706,73 +708,173 @@
     match_id = $('#match_id').val()
     if (data['data']['MatchId'] == match_id){
       
-      ratetype = data['data']['RateType']
-      laghai = data['data']['BackLays'][2]['Price']
-      khai = data['data']['BackLays'][3]['Price']
-      l1 = laghai
-      k1 = khai
-      
-      r1 = $.trim($('#runner1').val())
-      ratetype = $.trim(ratetype)
-      
-      //console.log(pre_laghai_r1,pre_khai_r1,pre_laghai_r2,pre_khai_r2,laghai,khai,ratetype)
-      if (ratetype == r1){
+      if (match_type == 'TEST'){
+
+
+
+        ratetype = data['data']['RateType']
+        laghai = data['data']['BackLays'][2]['Price']
+        khai = data['data']['BackLays'][3]['Price']
+        l1 = laghai
+        k1 = khai
         
-        if ((laghai < pre_laghai_r2) |(pre_laghai_r2==0)){
-          l1 = l1.toString();
-          l1 = l1.split('.')[1];
-          $('#runner1_lagai').html("0."+l1)
-          $('#runner2_lagai').html('')
+        r1 = $.trim($('#runner1').val())
+        ratetype = $.trim(ratetype)
+        
+        //console.log(pre_laghai_r1,pre_khai_r1,pre_laghai_r2,pre_khai_r2,laghai,khai,ratetype)
+        if (ratetype == r1){
           
-          $('#runner1_lagai').css("background-color", "#22db00");
-          $('#runner2_lagai').css("background-color", "white");
-
+          if ((laghai < pre_laghai_r2) |(pre_laghai_r2==0)){
+            l1 = l1.toString();
+            l1 = l1.split('.')[1];
+            $('#runner1_lagai').html(laghai)
+            $('#runner2_lagai').html('')
+            
+            $('#runner1_lagai').css("background-color", "#22db00");
+            $('#runner2_lagai').css("background-color", "white");
+  
+          }
+          if ((khai < pre_khai_r2) |(pre_khai_r2==0)){
+            k1 = k1.toString();
+            k1 = k1.split('.')[1];
+            $('#runner1_khai').html(khai)
+            $('#runner2_khai').html('')
+  
+            $('#runner1_khai').css("background-color", "#22db00");
+            $('#runner2_khai').css("background-color", "white");
+          }
+          pre_laghai_r1 = laghai
+          pre_khai_r1 = khai
+      }else{
+          r2 = $.trim($('#runner2').val())
+          if (ratetype == r2){
+           
+            if ((laghai < pre_laghai_r1) |(pre_laghai_r1==0)){
+              l1 = l1.toString();
+            l1 = l1.split('.')[1];
+              $('#runner2_lagai').html(laghai)
+              $('#runner1_lagai').html('')
+  
+              $('#runner2_lagai').css("background-color", "#22db00");
+            $('#runner1_lagai').css("background-color", "white");
+            }
+            if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
+              k1 = k1.toString();
+            k1 = k1.split('.')[1];
+              $('#runner2_khai').html(khai)
+              $('#runner1_khai').html('')
+  
+              $('#runner2_khai').css("background-color", "#22db00");
+            $('#runner1_khai').css("background-color", "white");
+            }
+            pre_laghai_r2 = laghai
+            pre_khai_r2 = khai
+          }
         }
-        if ((khai < pre_khai_r2) |(pre_khai_r2==0)){
-          k1 = k1.toString();
-          k1 = k1.split('.')[1];
-          $('#runner1_khai').html("0."+k1)
-          $('#runner2_khai').html('')
+      
+      
 
-          $('#runner1_khai').css("background-color", "#22db00");
-          $('#runner2_khai').css("background-color", "white");
-        }
-        pre_laghai_r1 = laghai
-        pre_khai_r1 = khai
+
+
       }
       else{
-        r2 = $.trim($('#runner2').val())
-        if (ratetype == r2){
-         
-          if ((laghai < pre_laghai_r1) |(pre_laghai_r1==0)){
+
+
+
+        ratetype = data['data']['RateType']
+        laghai = data['data']['BackLays'][2]['Price']
+        khai = data['data']['BackLays'][3]['Price']
+        l1 = laghai
+        k1 = khai
+        
+        r1 = $.trim($('#runner1').val())
+        ratetype = $.trim(ratetype)
+        
+        //console.log(pre_laghai_r1,pre_khai_r1,pre_laghai_r2,pre_khai_r2,laghai,khai,ratetype)
+        if (ratetype == r1){
+          
+          if ((laghai < pre_laghai_r2) |(pre_laghai_r2==0)){
             l1 = l1.toString();
-          l1 = l1.split('.')[1];
-            $('#runner2_lagai').html("0."+l1)
-            $('#runner1_lagai').html('')
-
-            $('#runner2_lagai').css("background-color", "#22db00");
-          $('#runner1_lagai').css("background-color", "white");
+            l1 = l1.split('.')[1];
+            $('#runner1_lagai').html("0."+l1)
+            $('#runner2_lagai').html('')
+            
+            $('#runner1_lagai').css("background-color", "#22db00");
+            $('#runner2_lagai').css("background-color", "white");
+  
           }
-          if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
+          if ((khai < pre_khai_r2) |(pre_khai_r2==0)){
             k1 = k1.toString();
-          k1 = k1.split('.')[1];
-            $('#runner2_khai').html("0."+k1)
-            $('#runner1_khai').html('')
-
-            $('#runner2_khai').css("background-color", "#22db00");
-          $('#runner1_khai').css("background-color", "white");
+            k1 = k1.split('.')[1];
+            $('#runner1_khai').html("0."+k1)
+            $('#runner2_khai').html('')
+  
+            $('#runner1_khai').css("background-color", "#22db00");
+            $('#runner2_khai').css("background-color", "white");
           }
-          pre_laghai_r2 = laghai
-          pre_khai_r2 = khai
+          pre_laghai_r1 = laghai
+          pre_khai_r1 = khai
+      }else{
+          r2 = $.trim($('#runner2').val())
+          if (ratetype == r2){
+           
+            if ((laghai < pre_laghai_r1) |(pre_laghai_r1==0)){
+              l1 = l1.toString();
+            l1 = l1.split('.')[1];
+              $('#runner2_lagai').html("0."+l1)
+              $('#runner1_lagai').html('')
+  
+              $('#runner2_lagai').css("background-color", "#22db00");
+            $('#runner1_lagai').css("background-color", "white");
+            }
+            if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
+              k1 = k1.toString();
+            k1 = k1.split('.')[1];
+              $('#runner2_khai').html("0."+k1)
+              $('#runner1_khai').html('')
+  
+              $('#runner2_khai').css("background-color", "#22db00");
+            $('#runner1_khai').css("background-color", "white");
+            }
+            pre_laghai_r2 = laghai
+            pre_khai_r2 = khai
+          }
         }
+      
+
+
+
+
+
+
+
+
+
+
+
+        
       }
+      
+    
+    
+    
+    
+
+    
+    
+    
+    
     }
   }
 
 
   if (data['responseType']==4 | data['responseType']==8){
-    comm = data['data']['Commentry']
+    match_id = $('#match_id').val()
+    if (data['data']['MatchId'] == match_id){
+      comm = data['data']['Commentry']
     $('#commentary').html(comm)
+    }
+    
   }
 
   if (data['responseType']==11){
@@ -805,8 +907,21 @@
           yesid= "#"+sessId+"_yes"
           yesvalid = "#"+sessId+"_yes_rate"
           
-          $('#mainSession').find(noid).html(data['data']['No'])
-          $('#mainSession').find(novalid).html(data['data']['NoValue'])
+          if (data['data']['No'] == 0){
+            $('#mainSession').find(noid).html('')
+          }
+          else{
+            $('#mainSession').find(noid).html(data['data']['No'])
+          }
+
+          if (data['data']['NoValue']){
+            $('#mainSession').find(novalid).html('')
+          }
+          else{
+            $('#mainSession').find(novalid).html(data['data']['NoValue'])
+          }
+         
+          
           $('#mainSession').find(yesid).html(data['data']['Yes'])
           $('#mainSession').find(novalid).html(data['data']['YesValue'])
           

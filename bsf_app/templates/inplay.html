@@ -25,7 +25,7 @@
 </div>
 -->
 
-{% if match_list|length > 1 %}
+{% if match_list|length > 0 %}
 {% for match in match_list %}
 <div class="match-index-row header-top-spacing match-text-flag-box" id ="allMatches">
   <a href="{% url 'market_detail' match_id=match.match_id %}" data-id="{{ match.match_id }}">
@@ -196,8 +196,6 @@ Socket.onmessage = function (event) {
         location.reload();
       },
     });
- 
-
 
     }
   }

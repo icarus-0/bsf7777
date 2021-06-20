@@ -255,7 +255,8 @@ def market_detail(request,match_id):
     data = {
         'match_id':match_id,
         'runner1':runner1,
-        'runner2':runner2
+        'runner2':runner2,
+        'match_type':ins.match_type
     }
     return render(request, "market.html",data)
 
