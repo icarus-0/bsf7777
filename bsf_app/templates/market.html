@@ -39,7 +39,7 @@
            </div>
            <div class=" col-lg-3 col-xs-3 col-md-3 col-sm-3 bet_status_box bet-status-text-div">
               <div class="bet-status-text-p event commentry-box-color" style="font-size: 20px; line-height: 20px; padding: 0px;" 
-              id="event_status" >BET</div>
+              id="event_status" >BET CLOSED</div>
               <div class="bet-status-text-p ball_status" id="ball_status" style="font-size: 20px; line-height: 20px; padding: 0px;">
                  
               </div>
@@ -57,41 +57,87 @@
       </div>
     </div>  
       <!-- Market Bet Board start -->
+      
     <div class="update_market_data">
+
+      {% if match_type == 'TEST' %}
       <div class="row scroll-form" style="padding-top: 10px;">
-         <table class="table table-bordered">
-            <thead>
-               <tr>
-                  <th colspan="4" class="bet-place-tbl-th market_type_row market-name-row-color">
-                     Market
-                     :
-                     Match Winner
-                  </th>
-               </tr>
-               <tr>
-                  <th class="bet-place-tbl-th run-pos-rate-amt-run-mod-color">RUNNER</th>
-                  <th class="bet-odds-type bet-place-tbl-th lagai-box-color">LAGAI</th>
-                  <th class="bet-odds-type bet-place-tbl-th khai-box-color">KHAI</th>
-                  <th class="bet-place-tbl-th run-pos-rate-amt-run-mod-color">POSITION</th>
-               </tr>
-            </thead>
-            <tbody >
-               <tr class="non_fav_run">
-                  <td style="font-size:large;font-weight:bold;background-color:white;">{{runner1}}</td>
-                  <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
-                  <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
-                  <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
-               </tr>
-               <tr>
-                <td style="font-size:large;font-weight:bold;background-color:white">{{runner2}}</td>
-                <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
-                <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+        <table class="table table-bordered">
+           <thead>
+              <tr>
+                 <th colspan="4" class="bet-place-tbl-th market_type_row market-name-row-color">
+                    Market
+                    :
+                    Match Winner
+                 </th>
+              </tr>
+              <tr>
+                 <th class="bet-place-tbl-th run-pos-rate-amt-run-mod-color">RUNNER</th>
+                 <th class="bet-odds-type bet-place-tbl-th lagai-box-color">LAGAI</th>
+                 <th class="bet-odds-type bet-place-tbl-th khai-box-color">KHAI</th>
+                 <th class="bet-place-tbl-th run-pos-rate-amt-run-mod-color">POSITION</th>
+              </tr>
+           </thead>
+           <tbody >
+              <tr class="non_fav_run">
+                 <td style="font-size:large;font-weight:bold;background-color:white;">{{runner1}}</td>
+                 <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white;background-color:#72e883"></td>
+                 <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white;background-color:#f27987"></td>
+                 <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
+              </tr>
+              <tr>
+               <td style="font-size:large;font-weight:bold;background-color:white">{{runner2}}</td>
+               <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white;background-color:#72e883"></td>
+               <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white;background-color:#f27987"></td>
+               <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
+              </tr>
+              <tr>
+                <td style="font-size:large;font-weight:bold;background-color:white">Draw</td>
+                <td id="draw_lagai" style="font-size:large;font-weight:bold;color:white;background-color:#72e883"></td>
+                <td id="draw_khai" style="font-size:large;font-weight:bold;color:white;background-color:#f27987"></td>
                 <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
                </tr>
-               
-            </tbody>
-         </table>
-      </div>
+           </tbody>
+        </table>
+     </div>
+      {% else %}
+      <div class="row scroll-form" style="padding-top: 10px;">
+        <table class="table table-bordered">
+           <thead>
+              <tr>
+                 <th colspan="4" class="bet-place-tbl-th market_type_row market-name-row-color">
+                    Market
+                    :
+                    Match Winner
+                 </th>
+              </tr>
+              <tr>
+                 <th class="bet-place-tbl-th run-pos-rate-amt-run-mod-color">RUNNER</th>
+                 <th class="bet-odds-type bet-place-tbl-th lagai-box-color">LAGAI</th>
+                 <th class="bet-odds-type bet-place-tbl-th khai-box-color">KHAI</th>
+                 <th class="bet-place-tbl-th run-pos-rate-amt-run-mod-color">POSITION</th>
+              </tr>
+           </thead>
+           <tbody >
+              <tr class="non_fav_run">
+                 <td style="font-size:large;font-weight:bold;background-color:white;">{{runner1}}</td>
+                 <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+                 <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+                 <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
+              </tr>
+              <tr>
+               <td style="font-size:large;font-weight:bold;background-color:white">{{runner2}}</td>
+               <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+               <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+               <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
+              </tr>
+              
+              
+           </tbody>
+        </table>
+     </div>
+      {% endif %}
+     
       <!-- Market bet board end -->
       <!-- custom market start-->
       <div class="row scroll-form custom-markets-divs" style="padding-top: 0px;">
@@ -704,176 +750,171 @@
 
   Socket.onmessage = function (event) {
   
-  var data =jQuery.parseJSON(event.data);
-  //console.log(data)
-  
-  if (data['responseType'] == 10){
-    match_id = $('#match_id').val()
-    if (data['data']['MatchId'] == match_id){
-      
-      if (match_type == 'TEST'){
+              var data =jQuery.parseJSON(event.data);
+              //console.log(data)
+              
+              if (data['responseType'] == 10){
+
+                match_id = $('#match_id').val()
+                if (data['data']['MatchId'] == match_id){
+                  
+                  if (match_type == 'TEST'){
+
+                    ratetype = data['data']['RateType']
+                    laghai = data['data']['BackLays'][2]['Price']
+                    khai = data['data']['BackLays'][3]['Price']
+                    l1 = laghai
+                    k1 = khai
+                    
+                    r1 = $.trim($('#runner1').val())
+                    r2 = $.trim($('#runner2').val())
+                    ratetype = $.trim(ratetype)
+                    
+                    //console.log(pre_laghai_r1,pre_khai_r1,pre_laghai_r2,pre_khai_r2,laghai,khai,ratetype)
+                    if (ratetype == r1){
+                        $('#runner1_lagai').html(laghai)
+                        $('#runner1_khai').html(khai)
+                      
+                      }
+                    if (ratetype == r2){
+                      $('#runner2_lagai').html(laghai)
+                        $('#runner2_khai').html(khai)
+                    }
+                    if (ratetype == 'The Draw'){
+                      $('#draw_lagai').html(laghai)
+                        $('#draw_khai').html(khai)
+                    }
+
+                      
+                  }else{
+                      r2 = $.trim($('#runner2').val())
+                      if (ratetype == r2){
+                      
+                        if ((laghai < pre_laghai_r1) |(pre_laghai_r1==0)){
+                          l1 = l1.toString();
+                        l1 = l1.split('.')[1];
+                          $('#runner2_lagai').html(laghai)
+                          $('#runner1_lagai').html('')
+              
+                        
+                        }
+                        if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
+                          k1 = k1.toString();
+                        k1 = k1.split('.')[1];
+                          $('#runner2_khai').html(khai)
+                          $('#runner1_khai').html('')
+              
+                          
+                        }
+                        pre_laghai_r2 = laghai
+                        pre_khai_r2 = khai
+                      }
+                    }
 
 
-
-        ratetype = data['data']['RateType']
-        laghai = data['data']['BackLays'][2]['Price']
-        khai = data['data']['BackLays'][3]['Price']
-        l1 = laghai
-        k1 = khai
-        
-        r1 = $.trim($('#runner1').val())
-        ratetype = $.trim(ratetype)
-        
-        //console.log(pre_laghai_r1,pre_khai_r1,pre_laghai_r2,pre_khai_r2,laghai,khai,ratetype)
-        if (ratetype == r1){
-          
-          if ((laghai < pre_laghai_r2) |(pre_laghai_r2==0)){
-            l1 = l1.toString();
-            l1 = l1.split('.')[1];
-            $('#runner1_lagai').html(laghai)
-            $('#runner2_lagai').html('')
-            
-            $('#runner1_lagai').css("background-color", "#22db00");
-            $('#runner2_lagai').css("background-color", "white");
-  
-          }
-          if ((khai < pre_khai_r2) |(pre_khai_r2==0)){
-            k1 = k1.toString();
-            k1 = k1.split('.')[1];
-            $('#runner1_khai').html(khai)
-            $('#runner2_khai').html('')
-  
-            $('#runner1_khai').css("background-color", "#22db00");
-            $('#runner2_khai').css("background-color", "white");
-          }
-          pre_laghai_r1 = laghai
-          pre_khai_r1 = khai
-      }else{
-          r2 = $.trim($('#runner2').val())
-          if (ratetype == r2){
-           
-            if ((laghai < pre_laghai_r1) |(pre_laghai_r1==0)){
-              l1 = l1.toString();
-            l1 = l1.split('.')[1];
-              $('#runner2_lagai').html(laghai)
-              $('#runner1_lagai').html('')
-  
-              $('#runner2_lagai').css("background-color", "#22db00");
-            $('#runner1_lagai').css("background-color", "white");
-            }
-            if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
-              k1 = k1.toString();
-            k1 = k1.split('.')[1];
-              $('#runner2_khai').html(khai)
-              $('#runner1_khai').html('')
-  
-              $('#runner2_khai').css("background-color", "#22db00");
-            $('#runner1_khai').css("background-color", "white");
-            }
-            pre_laghai_r2 = laghai
-            pre_khai_r2 = khai
-          }
-        }
+                  }
+                  else{
 
 
-      }
-      else{
+                    ratetype = data['data']['RateType']
+                    laghai = data['data']['BackLays'][2]['Price']
+                    khai = data['data']['BackLays'][3]['Price']
+                    l1 = laghai
+                    k1 = khai
+                    
+                    r1 = $.trim($('#runner1').val())
+                    ratetype = $.trim(ratetype)
+                    
+                    //console.log(pre_laghai_r1,pre_khai_r1,pre_laghai_r2,pre_khai_r2,laghai,khai,ratetype)
+                    if (ratetype == r1){
+                      
+                      if ((laghai < pre_laghai_r2) |(pre_laghai_r2==0)){
+                        l1 = l1.toString();
+                        l1 = l1.split('.')[1];
+                        $('#runner1_lagai').html("0."+l1)
+                        $('#runner2_lagai').html('')
+                        
+                        $('#runner1_lagai').css("background-color", "#22db00");
+                        $('#runner2_lagai').css("background-color", "white");
+              
+                      }
+                      if ((khai < pre_khai_r2) |(pre_khai_r2==0)){
+                        k1 = k1.toString();
+                        k1 = k1.split('.')[1];
+                        $('#runner1_khai').html("0."+k1)
+                        $('#runner2_khai').html('')
+              
+                        $('#runner1_khai').css("background-color", "#22db00");
+                        $('#runner2_khai').css("background-color", "white");
+                      }
+                      pre_laghai_r1 = laghai
+                      pre_khai_r1 = khai
+                  }else{
+                      r2 = $.trim($('#runner2').val())
+                      if (ratetype == r2){
+                      
+                        if ((laghai < pre_laghai_r1) |(pre_laghai_r1==0)){
+                          l1 = l1.toString();
+                        l1 = l1.split('.')[1];
+                          $('#runner2_lagai').html("0."+l1)
+                          $('#runner1_lagai').html('')
+              
+                          $('#runner2_lagai').css("background-color", "#22db00");
+                        $('#runner1_lagai').css("background-color", "white");
+                        }
+                        if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
+                          k1 = k1.toString();
+                        k1 = k1.split('.')[1];
+                          $('#runner2_khai').html("0."+k1)
+                          $('#runner1_khai').html('')
+              
+                          $('#runner2_khai').css("background-color", "#22db00");
+                        $('#runner1_khai').css("background-color", "white");
+                        }
+                        pre_laghai_r2 = laghai
+                        pre_khai_r2 = khai
+                      }
+                    }
+                  
+
+                    
+                  }
+
+                
+                }
 
 
-        ratetype = data['data']['RateType']
-        laghai = data['data']['BackLays'][2]['Price']
-        khai = data['data']['BackLays'][3]['Price']
-        l1 = laghai
-        k1 = khai
-        
-        r1 = $.trim($('#runner1').val())
-        ratetype = $.trim(ratetype)
-        
-        //console.log(pre_laghai_r1,pre_khai_r1,pre_laghai_r2,pre_khai_r2,laghai,khai,ratetype)
-        if (ratetype == r1){
-          
-          if ((laghai < pre_laghai_r2) |(pre_laghai_r2==0)){
-            l1 = l1.toString();
-            l1 = l1.split('.')[1];
-            $('#runner1_lagai').html("0."+l1)
-            $('#runner2_lagai').html('')
-            
-            $('#runner1_lagai').css("background-color", "#22db00");
-            $('#runner2_lagai').css("background-color", "white");
-  
-          }
-          if ((khai < pre_khai_r2) |(pre_khai_r2==0)){
-            k1 = k1.toString();
-            k1 = k1.split('.')[1];
-            $('#runner1_khai').html("0."+k1)
-            $('#runner2_khai').html('')
-  
-            $('#runner1_khai').css("background-color", "#22db00");
-            $('#runner2_khai').css("background-color", "white");
-          }
-          pre_laghai_r1 = laghai
-          pre_khai_r1 = khai
-      }else{
-          r2 = $.trim($('#runner2').val())
-          if (ratetype == r2){
-           
-            if ((laghai < pre_laghai_r1) |(pre_laghai_r1==0)){
-              l1 = l1.toString();
-            l1 = l1.split('.')[1];
-              $('#runner2_lagai').html("0."+l1)
-              $('#runner1_lagai').html('')
-  
-              $('#runner2_lagai').css("background-color", "#22db00");
-            $('#runner1_lagai').css("background-color", "white");
-            }
-            if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
-              k1 = k1.toString();
-            k1 = k1.split('.')[1];
-              $('#runner2_khai').html("0."+k1)
-              $('#runner1_khai').html('')
-  
-              $('#runner2_khai').css("background-color", "#22db00");
-            $('#runner1_khai').css("background-color", "white");
-            }
-            pre_laghai_r2 = laghai
-            pre_khai_r2 = khai
-          }
-        }
-      
+                if (data['responseType']==4 | data['responseType']==8){
+                  match_id = $('#match_id').val()
+                  if (data['data']['MatchId'] == match_id){
+                    comm = data['data']['Commentry']
+                  $('#commentary').html(comm)
+                  }
+                  
+                }
+              
+                if (data['responseType']==11){
+                  match_id = $('#match_id').val()
+                  if (data['data']['MatchId'] == match_id){
+              
+                    status = data['data']['Status']
+                    if (status == ""){
+                      $('#event_status').html('BET OPEN')    
+                    }else{
+                      $('#event_status').html(status)
+                    }
+                  
+                  }
+              
+                  
+              }
 
-        
-      }
-
-    
-    }
   }
 
 
-  if (data['responseType']==4 | data['responseType']==8){
-    match_id = $('#match_id').val()
-    if (data['data']['MatchId'] == match_id){
-      comm = data['data']['Commentry']
-    $('#commentary').html(comm)
-    }
-    
-  }
 
-  if (data['responseType']==11){
-    match_id = $('#match_id').val()
-    if (data['data']['MatchId'] == match_id){
+  
 
-      status = data['data']['Status']
-      if (status == ""){
-        $('#event_status').html('BET OPEN')    
-      }else{
-        $('#event_status').html(status)
-      }
-    
-    }
-
-    
-  }
-}
 
 </script>
 

@@ -29,7 +29,7 @@
 {% for match in match_list %}
 <div class="match-index-row header-top-spacing match-text-flag-box" id ="allMatches">
   <a href="{% url 'market_detail' match_id=match.match_id %}" data-id="{{ match.match_id }}">
-  <div class="row" style="margin: auto 15px 15px;">
+  <div class="row" style="margin: auto 15px 15px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <div class="col-xs-12 top-time-dtl in-play-right-box-color">
       {{match.match_id}}
     </div>

@@ -649,9 +649,10 @@ def get_update_score(request):
 @csrf_exempt
 def saveNewMatchData(request):
     data = json.loads(request.POST['jData'])
-    
+
     try:
         ins = Match.objects.filter(match_name=data['data']['Teams']).get()
+        ins.match_id =data['data']['MatchId']
         ins.match_name = data['data']['Teams']
         ins.match_type = data['data']['MatchType']
         ins.match_starttime = data['data']['StartTime']
