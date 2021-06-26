@@ -674,3 +674,42 @@ def saveNewMatchData(request):
 def saveMatchScore(request):
     score = request.POST['score']
     print(score)
+    return HttpResponse('')    
+
+@csrf_exempt
+def saveBettingDetails(request,match_id):
+    userId = request.POST['userId']
+    session = request.POST['session']
+    sessionRate = request.POST['sessionRate']
+    betCurrCoins = request.POST['betCurrCoins']
+    totalRate = request.POST['totalRate']
+    
+    sessionVal =  float(sessionRate.split("/")[0])
+    sessionR =  float(sessionRate.split("/")[1].split("(")[0])
+    #print(userId,session,sessionRate,betCurrCoins,totalRate)
+    
+    bet_ins = BettingDetail(
+        userId = userId,
+        match = Match.objects.filter(match_id=match_id).get(),
+        session = session,
+        sessionVal = sessionVal,
+        sessionRate = sessionR,
+        betcoin = float(betCurrCoins),
+        totalrate = float(totalRate)
+        
+    )
+    
+    #bet_ins.save()
+    leftcoins = float(betCurrCoins) - float(totalRate)
+    try:
+        uCoin_ins = UserCoins.objects.filter(userId=userId).get()
+        uCoin_ins.coins = leftcoins
+    except:
+        uCoin_ins = UserCoins(
+            userId= userId,
+            coins = leftcoins
+        )
+    
+   # uCoin_ins.save()
+    
+    return HttpResponse(str(leftcoins))

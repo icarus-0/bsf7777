@@ -405,9 +405,11 @@
             <input id="session_event_name" type="hidden" name="event_name" value="">
          </div>
          <div class="place-amount load-button-new-class place-amount-div">
+          <h6 id="errorBettingText" style="color: red;"> Sorry You Don't Have Enough Coins For Betting !</h6>
+          <h6 id="compBettingText" style="color: green;"> Bet Placed successfully !</h6>
             AMOUNT:  <span class=""><input class="amt_field" autocomplete="off" style="text-decoration:none;line-height: normal;" id="coin_countity_session" type="text" name="stack" title="Coin"> </span>
             <button type="button" class="button alert round amount-btn-color place-bet-done-btn" id="submitBet">Done</button>
-            <h6 id="errorBettingText" style="color: red;"> Sorry You Don't Have Enough Coins For Betting !</h6>
+            
           </div>
       </form>
       <!-- Session Amount Form End -->
@@ -1053,17 +1055,44 @@ $('#rateTable').on("click","td",function(){
 </script>
 
 <script>
+$("#errorBettingText").hide();
+$("#compBettingText").hide();
+
 $("#submitBet").click(function(){
   sessEnt = $("#coin_countity_session").val()
 
   if (sessEnt != ""){
-    entered_ammount = parseInt(sessEnt)
+    entered_ammount = parseFloat(sessEnt)
     session = $("#session_nm").text()
     session_rate = $("#session_rt").text()
-    coins = "{{request.COOKIES.user_coins}}"
+    coins = $("#userCoins").text()
     coins =  parseFloat(coins)
     rateVal = parseFloat(session_rate.split("/")[1].split("(")[0])
     
+    if (rateVal*entered_ammount > coins){
+      $("#errorBettingText").show();
+      $("#compBettingText").hide();
+    }
+    else{
+      id = "{{request.COOKIES.user_name}}"
+      console.log(id)
+      $.ajax({
+        url: 'saveBettingDetails/',
+        method: "Post",
+        data: {
+          'userId':id,
+          'session': session,
+          'sessionRate': session_rate,
+          'betCurrCoins':coins,
+          "totalRate" : rateVal*entered_ammount
+        },
+        success: function (data) {
+          $("#errorBettingText").hide();
+          $("#compBettingText").show();
+          $("#userCoins").text(data)
+        }
+      });
+    }
 
   }
 })

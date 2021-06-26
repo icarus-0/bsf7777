@@ -30,5 +30,6 @@ urlpatterns = [
     path('update-scoe/', get_update_score, name="update_score"),
     path('user/matches/saveNewMatchData/', saveNewMatchData,name='saveNewMatchData'),
     path('saveNewMatchData/', saveNewMatchData,name='saveNewMatchData'),
-    path('saveMatchScore/', saveMatchScore,name="saveMatchScore")
+    path('saveMatchScore/', saveMatchScore,name="saveMatchScore"),
+    path('user/market_detail/<str:match_id>/saveBettingDetails/', saveBettingDetails,name="saveMatchScore")
 ]

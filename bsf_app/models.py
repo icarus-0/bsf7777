@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.fields.related import ForeignKey
+from requests.sessions import session
 
 # Create your models here.
 class Match(models.Model):
@@ -24,3 +25,26 @@ class Match_Score(models.Model):
     
     def __str__(self):
         return self.match+' | '+self.over+' | '+self.ball+' | '+self.run+' | '+self.runner 
+    
+    
+class BettingDetail(models.Model):
+    bet_id = models.AutoField(primary_key=True)
+    userId = models.CharField(max_length=100)
+    match = models.ForeignKey(Match,on_delete=models.CASCADE)
+    session = models.CharField(max_length=500)
+    sessionVal = models.FloatField()
+    sessionRate = models.FloatField()
+    betcoin = models.FloatField()
+    totalrate = models.FloatField()
+    
+    def __str__(self):
+        return self.userId +" | " +self.bet_id+" | "+self.match
+    
+
+class UserCoins(models.Model):
+    coin_id = models.AutoField(primary_key=True)
+    userId = models.CharField(max_length=100)
+    coins = models.FloatField()
+    
+    def __str__(self):
+        return self.userId 
