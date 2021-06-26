@@ -32,13 +32,14 @@ class BettingDetail(models.Model):
     userId = models.CharField(max_length=100)
     match = models.ForeignKey(Match,on_delete=models.CASCADE)
     session = models.CharField(max_length=500)
-    sessionVal = models.FloatField()
+    mode = models.CharField(max_length=5)
+    sessionVal = models.IntegerField()
     sessionRate = models.FloatField()
     betcoin = models.FloatField()
     totalrate = models.FloatField()
     
     def __str__(self):
-        return self.userId +" | " +self.bet_id+" | "+self.match
+        return self.userId +" | " +str(self.bet_id)+" | "+str(self.match)
     
 
 class UserCoins(models.Model):

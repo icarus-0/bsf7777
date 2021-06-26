@@ -314,7 +314,7 @@
 
         {% endif %}
 
-        {% if yes_no_list %}
+        
 
         <div class="bet-place-tbl-th"
           style="margin: 0px;border-bottom: 0px !important;">
@@ -332,33 +332,33 @@
                 <th class="ldg-tbl-th match-box-color">MODE</th>
               </tr>
             </thead>
-            <tbody>
-              {% for row in yes_no_list %}
+            <tbody id="SessionBetingDetailsTable">
+              {% for r in sessionData %}
               <tr>
                 <td class="ldg-tbl-td match-value-box-color" style="text-align:left;">
-                  {{ row.market_name }}
+                  {{r.session}}
                 </td>
                 <td class="ldg-tbl-td match-value-box-color">
-                  {{ row.market_rate }}
+                  {{r.sessionRate}}
                 </td>
                 <td class="ldg-tbl-td match-value-box-color">
-                  {{ row.bet_amount }}
+                  {{r.totalrate}}
                 </td>
                 <td class="ldg-tbl-td match-value-box-color">
-                  {{ row.market_type | filter_yes_no:'runs' }}
+                    {{r.sessionVal}}
                 </td>
                 <td class="ldg-tbl-td match-value-box-color">
-                  {{ row.market_type | filter_yes_no:'yes_no' }}
+                   {{ r.mode}}
                 </td>
               </tr>
-
               {% endfor %}
+              
 
             </tbody>
           </table>
         </div>
 
-        {% endif %}
+        
 
       </div>
 
@@ -1087,9 +1087,28 @@ $("#submitBet").click(function(){
           "totalRate" : rateVal*entered_ammount
         },
         success: function (data) {
+          redata = data.split("_")
           $("#errorBettingText").hide();
           $("#compBettingText").show();
-          $("#userCoins").text(data)
+          $("#userCoins").text(redata[0])
+
+          html = `<tr>
+            <td class="ldg-tbl-td match-value-box-color" style="text-align:left;">
+              `+redata[1]+`</td>
+            <td class="ldg-tbl-td match-value-box-color">
+              `+redata[2]+`
+            </td>
+            <td class="ldg-tbl-td match-value-box-color">
+              `+redata[3]+`
+            </td>
+            <td class="ldg-tbl-td match-value-box-color">
+              `+redata[4]+` 
+            </td>
+            <td class="ldg-tbl-td match-value-box-color">
+              `+redata[5]+` 
+            </td>
+          </tr>`
+          $("#SessionBetingDetailsTable").append(html);
         }
       });
     }

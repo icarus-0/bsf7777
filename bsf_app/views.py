@@ -238,8 +238,11 @@ def inplay(request):
 
 @bsf_login_required
 def market_detail(request,match_id):
-    print(match_id)
+    
+    userId =  request.COOKIES['user_name']
+    
     ins = Match.objects.filter(match_id= match_id).get()
+    sessionData = BettingDetail.objects.filter(userId=userId,match=ins)
     
     market_id = match_id
     event_name = ins.match_name
@@ -257,8 +260,10 @@ def market_detail(request,match_id):
         'match_id':match_id,
         'runner1':runner1,
         'runner2':runner2,
-        'match_type':ins.match_type
+        'match_type':ins.match_type,
+        'sessionData':sessionData
     }
+    
     return render(request, "market.html",data)
 
 
@@ -686,20 +691,22 @@ def saveBettingDetails(request,match_id):
     
     sessionVal =  float(sessionRate.split("/")[0])
     sessionR =  float(sessionRate.split("/")[1].split("(")[0])
+    mode  = sessionRate.split("(")[1][:-1]
     #print(userId,session,sessionRate,betCurrCoins,totalRate)
     
     bet_ins = BettingDetail(
         userId = userId,
         match = Match.objects.filter(match_id=match_id).get(),
         session = session,
-        sessionVal = sessionVal,
+        mode = mode,
+        sessionVal = int(sessionVal),
         sessionRate = sessionR,
         betcoin = float(betCurrCoins),
         totalrate = float(totalRate)
         
     )
     
-    #bet_ins.save()
+    bet_ins.save()
     leftcoins = float(betCurrCoins) - float(totalRate)
     try:
         uCoin_ins = UserCoins.objects.filter(userId=userId).get()
@@ -710,6 +717,7 @@ def saveBettingDetails(request,match_id):
             coins = leftcoins
         )
     
-   # uCoin_ins.save()
+    uCoin_ins.save()
+    reData = str(leftcoins)+"_"+str(session)+"_"+str(sessionR)+"_"+str(totalRate)+"_"+str(int(sessionVal))+"_"+str(mode)
     
-    return HttpResponse(str(leftcoins))
+    return HttpResponse(reData)
