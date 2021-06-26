@@ -29,5 +29,6 @@ urlpatterns = [
     path('get/filter/bet-records', get_filter_bet_records, name="get_filter_bet_records"),
     path('update-scoe/', get_update_score, name="update_score"),
     path('user/matches/saveNewMatchData/', saveNewMatchData,name='saveNewMatchData'),
-    path('saveNewMatchData/', saveNewMatchData,name='saveNewMatchData')
+    path('saveNewMatchData/', saveNewMatchData,name='saveNewMatchData'),
+    path('saveMatchScore/', saveMatchScore,name="saveMatchScore")
 ]

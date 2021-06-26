@@ -668,3 +668,8 @@ def saveNewMatchData(request):
     
     ins.save()
     return HttpResponse('')
+
+@csrf_exempt
+def saveMatchScore(request):
+    score = request.POST['score']
+    print(score)

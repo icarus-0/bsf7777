@@ -164,46 +164,7 @@ $(document).ready(function(){
 
 });
 
-  $('body').on('click', 'td.SessionTable', function(e) {
-
-    var cell = $(e.target).get(0)
-    var clicked_value = $(cell).html();
-    $(".market-form").hide();
-    $(".even-odd-market-form").hide();
-    $(".enter-default-value").show();
-    if (clicked_value > 0) {
-      $(".bet_records").hide()
-      $(".session-form").show();
-      $("#coin_countity_session").focus();
-      $(".amt_field").removeAttr('disabled');
-      $(".amt_field1").removeAttr('disabled');
-      $(".amt_field_even_odd").removeAttr('disabled');
-      $("#coin_countity_session").val('');
-      var session = $(this).siblings(":first").text()
-      var tr = $(this);
-      var market_type = $(this).attr('data-id')
-      var market_name = $(this).attr('market-name')
-      var market_rate = $(this).attr('market-rate')
-      var event_name = $(this).attr('event-name')
-      var market_id = $(this).attr('market-id')
-      var market_value = $(this).attr('market-value')
-
-      $('#session_market_name').val(market_name);
-      $('#session_market_type').val(market_value +'('+market_type+')');
-      $('#session_market_rate').val(market_rate);
-      $('#session_event_name').val(event_name);
-      $('#session_market_id').val(market_id);
-
-      $('#session_rt').empty();
-      $('#session_nm').empty();
-      $('#session_rt').html($('#session_rt').html()+market_value+  '&nbsp;&nbsp;('+market_type+')');
-      $('#session_nm').html($('#session_nm').html()+market_name);
-    } else {
-      $(".session-form").hide();
-      $(".enter-default-value").hide();
-      $(".bet_records").show();
-    }
-  });
+ 
 
 //   // CustomMarket start
 //   $('body').on('click', 'td.CustomMarket', function(e) {

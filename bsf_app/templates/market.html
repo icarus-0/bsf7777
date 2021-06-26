@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/show14.css' %}">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&display=swap" rel="stylesheet">
-<script src="{% static 'js/show14.js' %}"></script>
+
 
 <button onclick="topFunction()" id="myBtn" title="Go to top">
   <i class="fa fa-arrow-up" aria-hidden="true"></i>
@@ -15,6 +15,8 @@
 <input type="text" value="{{runner1}}" style="display: none;" id="runner1">
 <input type="text" value="{{runner2}}" style="display: none;" id="runner2">
 <input type="text" value="{{match_type}}" style="display: none;" id="match_type">
+
+
 <div "market_div">
    <ul class="marquee">
       <marquee>
@@ -81,20 +83,20 @@
            <tbody >
               <tr class="non_fav_run">
                  <td style="font-size:large;font-weight:bold;background-color:white;">{{runner1}}</td>
-                 <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white;background-color:#72e883"></td>
-                 <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white;background-color:#f27987"></td>
+                 <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white;background-color:#72e883;cursor:pointer;"></td>
+                 <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white;background-color:#f27987;cursor:pointer;"></td>
                  <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
               </tr>
               <tr>
                <td style="font-size:large;font-weight:bold;background-color:white">{{runner2}}</td>
-               <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white;background-color:#72e883"></td>
-               <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white;background-color:#f27987"></td>
+               <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white;background-color:#72e883;cursor:pointer;"></td>
+               <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white;background-color:#f27987;cursor:pointer;"></td>
                <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
               </tr>
               <tr>
                 <td style="font-size:large;font-weight:bold;background-color:white">Draw</td>
-                <td id="draw_lagai" style="font-size:large;font-weight:bold;color:white;background-color:#72e883"></td>
-                <td id="draw_khai" style="font-size:large;font-weight:bold;color:white;background-color:#f27987"></td>
+                <td id="draw_lagai" style="font-size:large;font-weight:bold;color:white;background-color:#72e883;cursor:pointer;"></td>
+                <td id="draw_khai" style="font-size:large;font-weight:bold;color:white;background-color:#f27987;cursor:pointer;"></td>
                 <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
                </tr>
            </tbody>
@@ -121,14 +123,14 @@
            <tbody >
               <tr class="non_fav_run">
                  <td style="font-size:large;font-weight:bold;background-color:white;">{{runner1}}</td>
-                 <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
-                 <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+                 <td id="runner1_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white;cursor:pointer;"></td>
+                 <td id="runner1_khai" style="font-size:large;font-weight:bold;color:white;background-color:white;cursor:pointer;"></td>
                  <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
               </tr>
               <tr>
                <td style="font-size:large;font-weight:bold;background-color:white">{{runner2}}</td>
-               <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
-               <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white;background-color:white"></td>
+               <td id="runner2_lagai" style="font-size:large;font-weight:bold;color:white;background-color:white;cursor:pointer;"></td>
+               <td id="runner2_khai" style="font-size:large;font-weight:bold;color:white;background-color:white;cursor:pointer;"></td>
                <td style="font-size:large;font-weight:bold;background-color:white;">0</td>
               </tr>
               
@@ -145,7 +147,7 @@
       <!-- custom market end -->
       <!-- Session bet board start -->
       <div class="row" style="padding-top: 0px;">
-         <table class="table table-bordered session-bets-table">
+         <table class="table table-bordered session-bets-table" id="rateTable">
             <thead class="sessions-thead">
                <tr class="sessions-title">
                   <th colspan="5" class="bet-place-tbl-th market_type_row market-name-row-color">SESSION</th>
@@ -386,8 +388,8 @@
       </form>
       <!-- Market Bet Amount Form End -->
       <!-- Session Amount Form Start -->
-      <form accept-charset="UTF-8" action="#" class="input-coin session-form show_bet_place_btn" data-remote="true" method="post" style="display:none;">
-         {% csrf_token %}
+      <form accept-charset="UTF-8" action="#" class="input-coin session-form show_bet_place_btn" data-remote="true" method="post" id="bettingArea">
+         
          <div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
          <div class="session-block" style="float: left;">
             <text class="align-to-right-on-mobile" style="font-weight: bold;">SESSION :</text>
@@ -432,7 +434,7 @@
          </div>
       </form>
       <!-- Even Odd Amount Form end -->
-      <div class="place-amount load-button-new-class enter-default-value place-bet-buttons-div" style="display: none;">
+      <div class="place-amount load-button-new-class enter-default-value place-bet-buttons-div" id="ammounts">
          <table class="bet-value-buttons-table lg-table">
             <tbody>
                <tr>
@@ -480,7 +482,8 @@
       <!--          ENEN ODD MARKET BETS LISTING         -->
       <!--          ENDING DIGIT MARKET BET LISTING        -->
       <!--          ENDING DIGIT MARKET BET LISTING        -->
-      <br>
+      <!-- 
+        <br>
          <div class="game-footer-outer show-play-and-win" id="show_play">
             <div class="games-footer">
               <a href="{% url 'games' %}">
@@ -488,6 +491,8 @@
               </a>
                 <div class="pw-close" id="pw_close_btn">×</div>
          </div>
+      -->
+      
       <div class="row">
          <div class="match-index-row header-top-spacing">
             <div class="row" style="padding-bottom: 30px;margin: auto auto;"></div>
@@ -740,6 +745,8 @@
 }
 </style>
 
+
+
 <script>
   var Socket = new WebSocket("ws://148.251.21.118:5570");
   var pre_laghai_r1 = 0
@@ -786,35 +793,7 @@
                     }
 
                       
-                  }else{
-                      r2 = $.trim($('#runner2').val())
-                      if (ratetype == r2){
-                      
-                        if ((laghai < pre_laghai_r1) |(pre_laghai_r1==0)){
-                          l1 = l1.toString();
-                        l1 = l1.split('.')[1];
-                          $('#runner2_lagai').html(laghai)
-                          $('#runner1_lagai').html('')
-              
-                        
-                        }
-                        if ((khai < pre_khai_r1) |(pre_khai_r1==0)){
-                          k1 = k1.toString();
-                        k1 = k1.split('.')[1];
-                          $('#runner2_khai').html(khai)
-                          $('#runner1_khai').html('')
-              
-                          
-                        }
-                        pre_laghai_r2 = laghai
-                        pre_khai_r2 = khai
-                      }
-                    }
-
-
-                  }
-                  else{
-
+                 }else{
 
                     ratetype = data['data']['RateType']
                     laghai = data['data']['BackLays'][2]['Price']
@@ -874,6 +853,8 @@
                         pre_laghai_r2 = laghai
                         pre_khai_r2 = khai
                       }
+                    
+                    
                     }
                   
 
@@ -884,35 +865,25 @@
                 }
 
 
-                if (data['responseType']==4 | data['responseType']==8){
-                  match_id = $('#match_id').val()
-                  if (data['data']['MatchId'] == match_id){
-                    comm = data['data']['Commentry']
-                  $('#commentary').html(comm)
-                  }
-                  
-                }
+               
               
-                if (data['responseType']==11){
-                  match_id = $('#match_id').val()
-                  if (data['data']['MatchId'] == match_id){
-              
-                    status = data['data']['Status']
-                    if (status == ""){
-                      $('#event_status').html('BET OPEN')    
-                    }else{
-                      $('#event_status').html(status)
-                    }
-                  
-                  }
-              
-                  
+             
+  
               }
 
+              if (data['responseType']==4 | data['responseType']==8){
+                
+                match_id = $('#match_id').val()
+                if (data['data']['MatchId'] == match_id){
+                  
+                  comm = data['data']['Commentry']
+                $('#commentary').html(comm)
+                }
+                
+              }
+
+
   }
-
-
-
   
 
 
@@ -983,8 +954,16 @@
       }
       else{
         sessionNames.push(sessName);
-        html = `<tr id="`+sessId+`"><td class="bet-place-tbl-td" style="text-align:left;">`+sessName+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-yes-value" id="`+sessId+`_no">`+''+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_no_rate">`+''+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-no-value" id="`+sessId+`_yes">`+''+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_yes_rate">`+''+`</td></tr>`
+        var strng;  
+        strng = sessName;  
+        if (strng.includes("Boundaries") | (strng.includes("Only") & strng.includes("Over Runs") ) )  {
+          console.log();
+        }
+        else{
+          html = `<tr id="`+sessId+`"><td class="bet-place-tbl-td" style="text-align:left;">`+sessName+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-yes-value No" id="`+sessId+`_no">`+''+`</td><td class="bet-place-tbl-td bet-val-cent close-status No_value" id="`+sessId+`_no_rate">`+''+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-no-value" id="`+sessId+`_yes">`+''+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_yes_rate">`+''+`</td></tr>`
         $('#mainSession').append(html);
+        }
+        
       
       }
       
@@ -992,28 +971,79 @@
         $("#"+sessId).remove()
       }
     
+
+
+      status = data['data']['Status']
+      if (status == ""){
+        $('#event_status').html('BET OPEN')    
+      }else{
+        $('#event_status').html(status)
+      }
     }
   }
- 
-
-
   if(data['responseType'] == 6){
+    
     match_id = $('#match_id').val()
     if (data['data']['MatchId'] == match_id){
       sc = data['data']['Name']+' : '+data['data']['Inning1Score']
       $('#Score').text(sc)
+
+      $.ajax({
+        url: 'saveMatchScore/',
+        data: {
+          'score': sc
+        },
+        success: function (data) {
+          if (data.is_taken) {
+            alert("A user with this username already exists.");
+          }
+        }
+      });
+
     }
   }
 
-  if(data['responseType'] == 5){
-    match_id = $('#match_id').val()
-    if (data['data']['MatchId'] == match_id){
-     alert('Res5')
-    }
-  }
+ 
 
 }
 </script>
+
+<script>
+$("#ammounts").hide();
+$("#bettingArea").hide();
+
+$('#rateTable').on("click","td",function(){
+  tdid = this.id
+  val = $('#'+tdid).text()
+
+  if (val!=""){
+  c_list =  tdid.split("_")
+  check = c_list.pop()
+  session = c_list.join(" ")
+  //console.log(session)
+  $('#session_nm').text(session)
+  if(check=="no"){
+    runs = val+"( No )"
+    $("#session_rt").text(runs)
+  }
+  else{
+    runs = val+" ( Yes )"
+    $("#session_rt").text(runs)
+  }
+  $("#ammounts").show();
+  $("#bettingArea").show();
+  $("#bettingArea").focus();
+
+  }
+  else{
+    $("#ammounts").hide();
+  $("#bettingArea").hide();
+  }
+  
+})
+
+</script>
+
 
 
 {% endblock %}

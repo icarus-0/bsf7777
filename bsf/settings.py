@@ -141,7 +141,9 @@ ODDS_SESSION = "http://ec2-18-223-117-37.us-east-2.compute.amazonaws.com:8080/IP
 CREATE_BET = "http://ec2-18-223-117-37.us-east-2.compute.amazonaws.com:8080/IPL/place_bet/place"
 SCORE_API = "https://ips.betfair.com/inplayservice/v1/scores?_ak=nzIFcwyWhrlwYMrh&alt=json&eventIds={event_id}&locale=en_GB&productType=EXCHANGE&regionCode=UK"
 # SCORE_API = "http://ec2-13-58-41-168.us-east-2.compute.amazonaws.com:8080/IPL/betfair/getmatchscore/{eventid}"
+
 USER_PROFILE = "http://ec2-18-223-117-37.us-east-2.compute.amazonaws.com:8080/IPL/fetchuserdetails/{user_id}"
+
 BET_DETAILS = "http://ec2-18-223-117-37.us-east-2.compute.amazonaws.com:8080/IPL/fetchbetdetails/{user_id}"
 MARKET_BET_DETAILS = "http://ec2-18-223-117-37.us-east-2.compute.amazonaws.com:8080/IPL/fetchbetdetails/getspecific?userid={userid}&marketid={market_id}"
 BET_RECORDS = "http://ec2-18-223-117-37.us-east-2.compute.amazonaws.com:8080/IPL/Ledger/distinctbetrecords"
