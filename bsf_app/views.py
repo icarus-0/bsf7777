@@ -87,6 +87,7 @@ def signin_view(request):
                                     user_profile.get("UserName"))
                 response.set_cookie(
                     "user_coins", user_profile.get("Total_Coins"))
+                
                 return response
             return render(request, "sign_in.html", {"error": "UserID or Password is incorrect", "otp": captcha_key, "captcha_otp": int(captcha_key) // CONST})
         return render(request, "sign_in.html", {"error": "Authentication Failed", "otp": captcha_key, "captcha_otp": int(captcha_key) // CONST})

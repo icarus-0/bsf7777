@@ -61,11 +61,11 @@
         <img class="img-circle" src="{% static 'images/heroic_logo.png' %}" alt="">
     </a>
     <div class="user_profile_detail">
-        <span class="header-user_span">{{ request.COOKIES.user_name }}</span>
-        <span class="header-user_span"> ( {{ request.COOKIES.user_name }} )</span>
+        <span class="header-user_span">{{ request.COOKIES.userprofile_name }}</span>
+        <span class="header-user_span" id="userID"> ( {{ request.COOKIES.user_name }} )</span>
         <br>
         <span class="header-user-coins">
-            Coins - <span class="user_coins-span">{{ request.COOKIES.user_coins }}</span>
+            Coins - <span class="user_coins-span" id="userCoins">{{ request.COOKIES.user_coins }}</span>
         </span>
     </div>
     <button type="button" class="navbar-toggle collapsed left-menu" aria-label="Open Menu">

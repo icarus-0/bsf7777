@@ -406,8 +406,9 @@
          </div>
          <div class="place-amount load-button-new-class place-amount-div">
             AMOUNT:  <span class=""><input class="amt_field" autocomplete="off" style="text-decoration:none;line-height: normal;" id="coin_countity_session" type="text" name="stack" title="Coin"> </span>
-            <button type="submit" class="button alert round amount-btn-color place-bet-done-btn">Done</button>
-         </div>
+            <button type="button" class="button alert round amount-btn-color place-bet-done-btn" id="submitBet">Done</button>
+            <h6 id="errorBettingText" style="color: red;"> Sorry You Don't Have Enough Coins For Betting !</h6>
+          </div>
       </form>
       <!-- Session Amount Form End -->
       <!-- Even Odd Amount Form start -->
@@ -894,10 +895,14 @@
   var Socket = new WebSocket("ws://148.251.21.118:5570");
   var sessionNames = []
 
-  Socket.onmessage = function (event) {
-  
-  var data =jQuery.parseJSON(event.data);
+ // Socket.onmessage = function (event) {
+   for (i=0;i<2;i++){
+  dataString = `{"responseType":11,"data":{"MatchId":"p10024","Name":"IND 3rd Over Runs","No":"20","NoValue":"100","Yes":"3","YesValue":"100","Status":"","IsRemove":false}}`
+  //var data =jQuery.parseJSON(event.data);
   //{"responseType":11,"data":{"MatchId":"p10004","Name":"IND Only 3rd Over Runs","No":"2","NoValue":"100","Yes":"3","YesValue":"100","Status":"","IsRemove":false}}
+  
+  var data =jQuery.parseJSON(dataString);
+  console.log(data)
   if (data['responseType']==11){
     match_id = $('#match_id').val()
     if (data['data']['MatchId'] == match_id){
@@ -1004,8 +1009,9 @@
   }
 
  
+   }
 
-}
+//}
 </script>
 
 <script>
@@ -1023,11 +1029,13 @@ $('#rateTable').on("click","td",function(){
   //console.log(session)
   $('#session_nm').text(session)
   if(check=="no"){
-    runs = val+"( No )"
+    rate = $("#"+tdid+"_rate").text()
+    runs = val+"/"+rate+"( No )"
     $("#session_rt").text(runs)
   }
   else{
-    runs = val+" ( Yes )"
+    rate = $("#"+tdid+"_rate").text()
+    runs = val+"/"+rate+"( Yes )"
     $("#session_rt").text(runs)
   }
   $("#ammounts").show();
@@ -1044,6 +1052,24 @@ $('#rateTable').on("click","td",function(){
 
 </script>
 
+<script>
+$("#submitBet").click(function(){
+  sessEnt = $("#coin_countity_session").val()
+
+  if (sessEnt != ""){
+    entered_ammount = parseInt(sessEnt)
+    session = $("#session_nm").text()
+    session_rate = $("#session_rt").text()
+    coins = "{{request.COOKIES.user_coins}}"
+    coins =  parseFloat(coins)
+    rateVal = parseFloat(session_rate.split("/")[1].split("(")[0])
+    
+
+  }
+})
+
+
+</script>
 
 
 {% endblock %}
