@@ -902,11 +902,38 @@
   //{"responseType":11,"data":{"MatchId":"p10004","Name":"IND Only 3rd Over Runs","No":"2","NoValue":"100","Yes":"3","YesValue":"100","Status":"","IsRemove":false}}
   
   //var data =jQuery.parseJSON(dataString);
-  console.log(data)
+  //console.log(data)
   if (data['responseType']==11){
     match_id = $('#match_id').val()
     if (data['data']['MatchId'] == match_id){
       sessName =  data['data']['Name']
+
+
+      tempcheck = $('#Score').text()
+      if (tempcheck == ""){
+        over = "Over Runs"
+      }
+      else{
+        mt = "{{match_type}}"
+        if (mt!="TEST"){
+
+          curr_over = parseInt($('#Score').text().split("/")[1].split(": ")[1])
+          sess_over = parseInt(sessName.split(" ")[1])
+
+          if ((sess_over - curr_over)>0 & (sess_over - curr_over)<=5){
+            over = "Can be Displayed"
+          }
+          else{
+            over = sessName.split(" ")[1] + " Over Runs"
+          }
+        }else{
+          over = "Can be Displayed"
+        }
+        
+      }
+      //console.log(over , '         ',sessName)
+      
+      
       sessId = sessName.split(" ").join('_')
       if (sessionNames.indexOf(sessName)!= -1){
         $(document).ready(function(){
@@ -958,13 +985,14 @@
         
       }
       else{
-        sessionNames.push(sessName);
+        
         var strng;  
         strng = sessName;  
-        if (strng.includes("Boundaries") | (strng.includes("Only") & strng.includes("Over Runs") ) )  {
+        if (strng.includes("Boundaries") | (strng.includes("Only") & strng.includes("Over Runs") ) | (strng.includes(over)) )  {
           console.log();
         }
         else{
+          sessionNames.push(sessName);
           html = `<tr id="`+sessId+`"><td class="bet-place-tbl-td" style="text-align:left;">`+sessName+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-yes-value No" id="`+sessId+`_no">`+''+`</td><td class="bet-place-tbl-td bet-val-cent close-status No_value" id="`+sessId+`_no_rate">`+''+`</td><td class="bet-place-tbl-td open-keyboard-session SessionTable bet-val-cent cursor-pointer first-runner-bet-odds-no-value" id="`+sessId+`_yes">`+''+`</td><td class="bet-place-tbl-td bet-val-cent close-status" id="`+sessId+`_yes_rate">`+''+`</td></tr>`
         $('#mainSession').append(html);
         }
