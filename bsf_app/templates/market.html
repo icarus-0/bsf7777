@@ -1008,7 +1008,17 @@
     }
   }
 
- 
+  
+
+  if(data['responseType'] == 5){
+    match_id = $('#match_id').val()
+    if (data['data']['MatchId'] == match_id){
+      sc = "Score : "+data['data']['Score']+"<br> Over : "+data['data']['Over']
+      $('#Score').html(sc)
+    }
+
+  }
+
    }
 
 //}
