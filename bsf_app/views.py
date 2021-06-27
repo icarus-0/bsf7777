@@ -703,8 +703,8 @@ def saveBettingDetails(request,match_id):
         mode = mode,
         sessionVal = int(sessionVal),
         sessionRate = sessionR,
-        betcoin = float(betCurrCoins),
-        totalrate = float(totalRate)
+        betcoin = round(float(betCurrCoins),2),
+        totalrate = round(float(totalRate),2)
         
     )
     
@@ -742,7 +742,7 @@ def saveLaghaiKhaiDetails(request,match_id):
         match = Match.objects.filter(match_id=match_id).get(),
         rate = rate,
         mode = mode,
-        amount = float(totalRate),
+        amount = round(float(totalRate),2),
         team = market,
         betcoin=betCurrCoins
     )
