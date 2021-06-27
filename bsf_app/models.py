@@ -40,6 +40,20 @@ class BettingDetail(models.Model):
     
     def __str__(self):
         return self.userId +" | " +str(self.bet_id)+" | "+str(self.match)
+
+class LaghaiKhaliBetDetail(models.Model):
+    bet_id = models.AutoField(primary_key=True)
+    userId = models.CharField(max_length=100)
+    match = models.ForeignKey(Match,on_delete=models.CASCADE)
+    rate = models.FloatField()
+    amount =  models.FloatField()
+    mode = models.CharField(max_length=100)
+    team = models.CharField(max_length=100)
+    betcoin = models.FloatField()
+    
+    
+    def __str__(self):
+        return self.userId +" | " +str(self.bet_id)+" | "+str(self.match)
     
 
 class UserCoins(models.Model):

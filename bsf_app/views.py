@@ -243,6 +243,7 @@ def market_detail(request,match_id):
     
     ins = Match.objects.filter(match_id= match_id).get()
     sessionData = BettingDetail.objects.filter(userId=userId,match=ins)
+    marketData = LaghaiKhaliBetDetail.objects.filter(userId=userId,match=ins)
     
     market_id = match_id
     event_name = ins.match_name
@@ -261,7 +262,8 @@ def market_detail(request,match_id):
         'runner1':runner1,
         'runner2':runner2,
         'match_type':ins.match_type,
-        'sessionData':sessionData
+        'sessionData':sessionData,
+        'marketData':marketData
     }
     
     return render(request, "market.html",data)
@@ -720,4 +722,43 @@ def saveBettingDetails(request,match_id):
     uCoin_ins.save()
     reData = str(leftcoins)+"_"+str(session)+"_"+str(sessionR)+"_"+str(totalRate)+"_"+str(int(sessionVal))+"_"+str(mode)
     
+    return HttpResponse(reData)
+
+
+@csrf_exempt
+def saveLaghaiKhaiDetails(request,match_id):
+    userId = request.POST['userId']
+    market = request.POST['market']
+    marketRate = request.POST['marketRate']
+    betCurrCoins = request.POST['betCurrCoins']
+    totalRate = request.POST['totalRate']
+    
+    rate = float(marketRate.split("(")[0])
+    mode = marketRate.split("(")[1][:-1]
+    #print(userId,market,marketRate,betCurrCoins,totalRate)
+    
+    bet_ins = LaghaiKhaliBetDetail(
+        userId = userId,
+        match = Match.objects.filter(match_id=match_id).get(),
+        rate = rate,
+        mode = mode,
+        amount = float(totalRate),
+        team = market,
+        betcoin=betCurrCoins
+    )
+    
+    bet_ins.save()
+    leftcoins = float(betCurrCoins) - float(totalRate)
+    try:
+        uCoin_ins = UserCoins.objects.filter(userId=userId).get()
+        uCoin_ins.coins = leftcoins
+    except:
+        uCoin_ins = UserCoins(
+            userId= userId,
+            coins = leftcoins
+        )
+    
+    #uCoin_ins.save()
+    reData = str(leftcoins)+"_"+str(rate)+"_"+str(totalRate)+"_"+str(mode)+"_"+str(market)
+    print(reData)
     return HttpResponse(reData)

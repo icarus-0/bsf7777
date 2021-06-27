@@ -64,7 +64,7 @@
 
       {% if match_type == 'TEST' %}
       <div class="row scroll-form" style="padding-top: 10px;">
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="LaghaiKhaiTable">
            <thead>
               <tr>
                  <th colspan="4" class="bet-place-tbl-th market_type_row market-name-row-color">
@@ -166,8 +166,6 @@
             </thead>
             <tbody id="mainSession">
               
-               
-               
             </tbody>
          </table>
       </div>
@@ -273,7 +271,7 @@
 
       <div class="bet_records">
 
-        {% if lagai_khai_list %}
+        
 
         <div class="bet-place-tbl-th"
           style="margin: 0px;border-bottom: 0px !important;">
@@ -289,20 +287,20 @@
                 <th class="ldg-tbl-th match-box-color">Team</th>
               </tr>
             </thead>
-            <tbody>
-              {% for row in lagai_khai_list %}
+            <tbody id="MarketBetingDetailsTable">
+              {% for r in marketData %}
               <tr>
                 <td class="ldg-tbl-td match-value-box-color">
-                  {{ row.market_rate }}
+                  {{r.rate}}
                 </td>
                 <td class="ldg-tbl-td match-value-box-color">
-                  {{ row.bet_amount }}
+                  {{r.amount}}
                 </td>
                 <td class="ldg-tbl-td match-value-box-color">
-                  {{ row.market_type }}
+                 {{r.mode}}
                 </td>
                 <td class="ldg-tbl-td match-value-box-color">
-                  {{ row.market_name }}
+                {{r.team}}
                 </td>
               </tr>
 
@@ -312,9 +310,6 @@
           </table>
         </div>
 
-        {% endif %}
-
-        
 
         <div class="bet-place-tbl-th"
           style="margin: 0px;border-bottom: 0px !important;">
@@ -362,8 +357,8 @@
 
       </div>
 
-      <form accept-charset="UTF-8"  class="input-coin market-form show_bet_place_btn" data-remote="true" method="post" style="display:none;">
-        {% csrf_token %}
+      <form accept-charset="UTF-8"  class="input-coin market-form show_bet_place_btn" data-remote="true" method="post" id="laghaiKhaiBetingArea">
+       
          <div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
          <div class="market-block" style="float: left;">
             <text class="align-to-right-on-mobile" style="font-weight: bold;">Market :</text>
@@ -381,9 +376,12 @@
             <input id="match_winner_heroic_market_type" type="hidden" name="heroic_market_type" value="">
          </div>
          <div class="place-amount load-button-new-class place-amount-div">
+          <h6 id="errorMarketBettingText" style="color: red;"> Sorry You Don't Have Enough Coins For Betting !</h6>
+          <h6 id="compMarketBettingText" style="color: green;"> Bet Placed successfully !</h6>
+          
             AMOUNT:  <span class=""><input class="amt_field1" autocomplete="off" style="text-decoration:none;line-height: normal;" id="coin_countity_bet" type="text" name="stack" title="Coin"></span>
             <!-- <button class="inplay-show-amount" type="submit" style="color:#61ACDE;">DONE</button>  -->
-            <button type="submit" class="button alert round amount-btn-color place-bet-done-btn">Done</button>
+            <button type="button" class="button alert round amount-btn-color place-bet-done-btn" id="laghaiKhaiSubmit">Done</button>
          </div>
       </form>
       <!-- Market Bet Amount Form End -->
@@ -897,13 +895,13 @@
   var Socket = new WebSocket("ws://148.251.21.118:5570");
   var sessionNames = []
 
- // Socket.onmessage = function (event) {
-   for (i=0;i<2;i++){
-  dataString = `{"responseType":11,"data":{"MatchId":"p10024","Name":"IND 3rd Over Runs","No":"20","NoValue":"100","Yes":"3","YesValue":"100","Status":"","IsRemove":false}}`
-  //var data =jQuery.parseJSON(event.data);
+ Socket.onmessage = function (event) {
+   //for (i=0;i<2;i++){
+  //dataString = `{"responseType":11,"data":{"MatchId":"p10024","Name":"IND 3rd Over Runs","No":"20","NoValue":"100","Yes":"3","YesValue":"100","Status":"","IsRemove":false}}`
+  var data =jQuery.parseJSON(event.data);
   //{"responseType":11,"data":{"MatchId":"p10004","Name":"IND Only 3rd Over Runs","No":"2","NoValue":"100","Yes":"3","YesValue":"100","Status":"","IsRemove":false}}
   
-  var data =jQuery.parseJSON(dataString);
+  //var data =jQuery.parseJSON(dataString);
   console.log(data)
   if (data['responseType']==11){
     match_id = $('#match_id').val()
@@ -1055,6 +1053,69 @@ $('#rateTable').on("click","td",function(){
 </script>
 
 <script>
+  $("#laghaiKhaiBetingArea").hide();
+  $("#ammounts").hide();
+
+  $("#runner1_lagai").click(function(){
+    val = $("#runner1_lagai").text()
+
+    if (val !=""){
+      $("#laghaiKhaiBetingArea").show();
+      $("#ammounts").show();
+      $("#market_nm").text("{{runner1}}")
+      $("#market_rt").text(val+"( LAGHAI )")
+    }else{
+      $("#laghaiKhaiBetingArea").hide();
+      $("#ammounts").hide();
+    }
+   
+  })
+  $("#runner2_lagai").click(function(){
+    val = $("#runner2_lagai").text()
+    if (val !=""){
+      $("#laghaiKhaiBetingArea").show();
+      $("#ammounts").show();
+      $("#market_nm").text("{{runner2}}")
+      $("#market_rt").text(val+"( LAGHAI )")
+    }else{
+      $("#laghaiKhaiBetingArea").hide();
+      $("#ammounts").hide();
+     
+    }
+  })
+  
+
+  $("#runner1_khai").click(function(){
+    val = $("#runner1_khai").text()
+    if (val !=""){
+      $("#laghaiKhaiBetingArea").show();
+      $("#ammounts").show();
+      $("#market_nm").text("{{runner1}}")
+      $("#market_rt").text(val+"( KHAI )")
+    }else{
+      $("#laghaiKhaiBetingArea").hide();
+      $("#ammounts").hide();
+    }
+  
+  })
+
+  $("#runner2_khai").click(function(){
+    val = $("#runner2_khai").text()
+    if (val !=""){
+      $("#laghaiKhaiBetingArea").show();
+      $("#ammounts").show();
+      $("#market_nm").text("{{runner2}}")
+      $("#market_rt").text(val+"( KHAI )")
+    }else{
+      $("#laghaiKhaiBetingArea").hide();
+      $("#ammounts").hide();
+    }
+  })
+
+</script>
+
+
+<script>
 $("#errorBettingText").hide();
 $("#compBettingText").hide();
 
@@ -1119,5 +1180,70 @@ $("#submitBet").click(function(){
 
 </script>
 
+
+<script>
+  $("#errorMarketBettingText").hide();
+  $("#compMarketBettingText").hide();
+
+  $("#laghaiKhaiSubmit").click(function(){
+    sessEnt = $("#coin_countity_bet").val()
+    
+    
+    if (sessEnt != ""){
+      entered_ammount = parseFloat(sessEnt)
+      market = $("#market_nm").text()
+      market_rate = $("#market_rt").text()
+      coins = $("#userCoins").text()
+      coins =  parseFloat(coins)
+      rateVal = parseFloat(market_rate.split("(")[0])
+
+      if(rateVal*entered_ammount > coins){
+        $("#errorMarketBettingText").show();
+        $("#compMarketBettingText").hide();
+      }
+      else{
+        $.ajax({
+          url: 'saveLaghaiKhaiDetails/',
+          method: "Post",
+          data: {
+            'userId':"{{request.COOKIES.user_name}}",
+            'market': market,
+            'marketRate': market_rate,
+            'betCurrCoins':coins,
+            "totalRate" : rateVal*entered_ammount
+          },
+          success: function (data) {
+            redata = data.split("_")
+            $("#errorMarketBettingText").hide();
+            $("#compMarketBettingText").show();
+            $("#userCoins").text(redata[0]);
+
+            html = `<tr>
+              <td class="ldg-tbl-td match-value-box-color">
+                `+redata[1]+` 
+              </td>
+              <td class="ldg-tbl-td match-value-box-color">
+                `+redata[2]+` 
+              </td>
+              <td class="ldg-tbl-td match-value-box-color">
+                `+redata[3]+` 
+              </td>
+              <td class="ldg-tbl-td match-value-box-color">
+                `+redata[4]+` 
+              </td>
+            </tr>`
+            $("#MarketBetingDetailsTable").append(html);
+          }
+        });
+      }
+      
+
+
+
+    }
+    
+  })
+
+</script>
 
 {% endblock %}
