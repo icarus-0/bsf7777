@@ -21,8 +21,11 @@ class Match_Score(models.Model):
     over = models.IntegerField()
     ball = models.IntegerField()
     run =  models.IntegerField()
+    wickets = models.IntegerField()
     runner = models.CharField(max_length=100)
     player =  models.CharField(max_length=100)
+    player_Curr_Run = models.IntegerField()
+    score_Json = models.JSONField()
     
     def __str__(self):
         return self.match

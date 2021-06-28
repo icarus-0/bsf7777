@@ -376,7 +376,7 @@
             <input id="match_winner_heroic_market_type" type="hidden" name="heroic_market_type" value="">
          </div>
          <div class="place-amount load-button-new-class place-amount-div">
-          <h6 id="errorMarketBettingText" style="color: red;"> Sorry You Don't Have Enough Coins For Betting !</h6>
+          <h6 id="errorMarketBettingText" style="color: red;"> Sorry, Either You Don't Have Enough Coins For Betting or Please Enter amount more than 500 !</h6>
           <h6 id="compMarketBettingText" style="color: green;"> Bet Placed successfully !</h6>
           
             AMOUNT:  <span class=""><input class="amt_field1" autocomplete="off" style="text-decoration:none;line-height: normal;" id="coin_countity_bet" type="text" name="stack" title="Coin"></span>
@@ -403,7 +403,7 @@
             <input id="session_event_name" type="hidden" name="event_name" value="">
          </div>
          <div class="place-amount load-button-new-class place-amount-div">
-          <h6 id="errorBettingText" style="color: red;"> Sorry You Don't Have Enough Coins For Betting !</h6>
+          <h6 id="errorBettingText" style="color: red;"> Sorry, Either You Don't Have Enough Coins For Betting or Please Enter amount more than 500 !</h6>
           <h6 id="compBettingText" style="color: green;"> Bet Placed successfully !</h6>
             AMOUNT:  <span class=""><input class="amt_field" autocomplete="off" style="text-decoration:none;line-height: normal;" id="coin_countity_session" type="text" name="stack" title="Coin"> </span>
             <button type="button" class="button alert round amount-btn-color place-bet-done-btn" id="submitBet">Done</button>
@@ -1023,13 +1023,13 @@
 
       $.ajax({
         url: 'saveMatchScore/',
+        method:'Post',
         data: {
-          'score': sc
+          'score': sc,
+          'type':'TEST'
         },
         success: function (data) {
-          if (data.is_taken) {
-            alert("A user with this username already exists.");
-          }
+          console.log();
         }
       });
 
@@ -1043,6 +1043,19 @@
     if (data['data']['MatchId'] == match_id){
       sc = "Score : "+data['data']['Score']+"<br> Over : "+data['data']['Over']
       $('#Score').html(sc)
+      sc += " : "+data['data']['OnFiledDetail']
+      $.ajax({
+        url: 'saveMatchScore/',
+        method:'Post',
+        data: {
+          'score': sc,
+          'type':'OTHER',
+          'json':JSON.stringify(data)
+        },
+        success: function (data) {
+          console.log();
+        }
+      });
     }
 
   }
@@ -1168,7 +1181,7 @@ $("#submitBet").click(function(){
     coins =  parseFloat(coins)
     rateVal = parseFloat(session_rate.split("/")[1].split("(")[0])
     
-    if (rateVal*entered_ammount > coins){
+    if ( (rateVal*entered_ammount > coins) | (rateVal*entered_ammount < 500) ){
       $("#errorBettingText").show();
       $("#compBettingText").hide();
     }
@@ -1235,7 +1248,7 @@ $("#submitBet").click(function(){
       coins =  parseFloat(coins)
       rateVal = parseFloat(market_rate.split("(")[0])
 
-      if(rateVal*entered_ammount > coins){
+      if((rateVal*entered_ammount > coins) | (rateVal*entered_ammount < 500)){
         $("#errorMarketBettingText").show();
         $("#compMarketBettingText").hide();
       }

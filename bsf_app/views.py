@@ -678,9 +678,54 @@ def saveNewMatchData(request):
     return HttpResponse('')
 
 @csrf_exempt
-def saveMatchScore(request):
+def saveMatchScore(request,match_id):
     score = request.POST['score']
-    print(score)
+    type = request.POST['type']
+    jsonData = request.POST['json']
+    print("scorin data")
+    match = Match.objects.filter(match_id=match_id).get()
+    if type == 'OTHER':
+        
+        over_balls = jsonData['data']['Over'].split("/")[0]
+        
+        try:
+            over,ball = over_balls.split(".")
+            over,ball =  int(over),int(ball)
+        except :
+            over = int(over_balls)
+            ball = 0
+        
+        try:
+            ins = Match_Score.objects.filter(match=match,over=over,ball=ball).get()
+            return HttpResponse('')
+        except :
+            run_wickets = jsonData['data']['Score']
+            run,wicket = run_wickets.split("/")
+            run,wicket = int(run) ,int(wicket)
+            runner = jsonData['data']['Name']
+            filedDetails = jsonData['data']['OnFiledDetail']
+            p1,p2 = filedDetails.split(",")
+            if '*' in p1:
+                player,player_Curr_Run = p1.split(" ")
+                player_Curr_Run = int(player_Curr_Run)
+            else:
+                player,player_Curr_Run = p2.split(" ")
+                player_Curr_Run = int(player_Curr_Run)
+            
+            m_ins = Match_Score(
+                match=match,
+                over=over,
+                ball=ball,
+                run=run,
+                wickets=wicket,
+                runner= runner,
+                player= player,
+                player_Curr_Run=player_Curr_Run,
+                score_Json=jsonData
+            )
+            
+            m_ins.save()
+
     return HttpResponse('')    
 
 @csrf_exempt
