@@ -28,7 +28,7 @@ class Match_Score(models.Model):
     score_Json = models.JSONField()
     
     def __str__(self):
-        return self.match
+        return str(self.over)+'     |     '+str(self.ball)+"      |       "+str(self.player)+"        |     "+str(self.run)
     
     
 class BettingDetail(models.Model):
@@ -41,6 +41,8 @@ class BettingDetail(models.Model):
     sessionRate = models.FloatField()
     betcoin = models.FloatField()
     totalrate = models.FloatField()
+    date = models.DateField(null=True)
+    comp = models.CharField(max_length=5,null=True)
     
     def __str__(self):
         return self.userId +" | " +str(self.bet_id)+" | "+str(self.match)
@@ -54,7 +56,8 @@ class LaghaiKhaliBetDetail(models.Model):
     mode = models.CharField(max_length=100)
     team = models.CharField(max_length=100)
     betcoin = models.FloatField()
-    
+    date = models.DateField(null=True)
+    comp = models.CharField(max_length=5,null=True)
     
     def __str__(self):
         return self.userId +" | " +str(self.bet_id)+" | "+str(self.match)

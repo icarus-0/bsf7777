@@ -41,28 +41,28 @@
       </thead>
       <tbody id="market_tbody">
         {% for row in lagai_khai_list %}
-        {% if row.4 and row.0 and row.1 and row.2 and row.6 %}
+        {% if row.mode %}
         <tr>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.4 }}
+            {{ row.date }}
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.0 }}
+            {{ row.team }}
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.1 }}
+            {{ row.mode }}
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.2 }}
+            {{ row.rate }}
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.6 }}
+            {{ row.bet_id }}
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.7 }}
+            {{ row.comp }}
           </td>
           <td class="ldg-tbl-td match-value-box-color" style="text-align:center;">
-            {% if not row.7 %}
+            {% if row.comp == 'F' %}
             <div class="butn-side-by-side">
             	<button class="btn btn-primary pill-butn butn-left" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'won')">WON</button>
             	<!--&nbsp;&nbsp;
@@ -102,28 +102,28 @@
       </thead>
       <tbody id="session_tbody">
         {% for row in yes_no_list %}
-        {% if row.4 and row.0 and row.1 and row.2 and row.6 %}
+        {% if row.session %}
         <tr>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.4 }}
+            {{ row.date }}
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.0 }}
+            {{ row.session }} 
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.1 }}
+            {{ row.sessionVal }} ({{ row.mode }})
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.2 }}
+            {{ row.sessionRate }}
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.6 }}
+            {{ row.bet_id }}
           </td>
           <td class="ldg-tbl-td match-value-box-color">
-            {{ row.7 }}
+            {{ row.comp }}
           </td>
           <td class="ldg-tbl-td match-value-box-color" style="text-align:center;">
-            {% if not row.7 %}
+            {% if row.comp == 'F' or  row.comp == None %}
             <div class="butn-side-by-side">
               <button class="btn btn-primary pill-butn butn-left" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'yes')">YES</button>
               &nbsp;&nbsp;

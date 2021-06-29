@@ -529,13 +529,8 @@ def admin_view(request):
     user_name = request.COOKIES.get("user_name")
     if user_name in settings.ADMIN_USERS:
 
-        response = requests.get(settings.BET_RECORDS)
-        lagai_khai_list = []
-        yes_no_list = []
-        if response.status_code == 200:
-            data = json.loads(response.content)
-            lagai_khai_list = [x for x in data if x[1].upper() == 'LAGAI' or x[1].upper() == 'KHAI']
-            yes_no_list = [x for x in data if 'YES' in x[1].upper() or 'NO' in x[1].upper()]
+        lagai_khai_list = LaghaiKhaliBetDetail.objects.all().order_by('bet_id')
+        yes_no_list = BettingDetail.objects.all().order_by(('bet_id'))
         return render(request,
                         "admin.html",
                         {"lagai_khai_list": lagai_khai_list,
@@ -682,6 +677,7 @@ def saveMatchScore(request,match_id):
     score = request.POST['score']
     type = request.POST['type']
     jsonData = request.POST['json']
+    jsonData = json.loads(jsonData)
     print("scorin data")
     match = Match.objects.filter(match_id=match_id).get()
     if type == 'OTHER':
@@ -707,10 +703,11 @@ def saveMatchScore(request,match_id):
             p1,p2 = filedDetails.split(",")
             if '*' in p1:
                 player,player_Curr_Run = p1.split(" ")
-                player_Curr_Run = int(player_Curr_Run)
+                player_Curr_Run = int(player_Curr_Run[:-1])
             else:
-                player,player_Curr_Run = p2.split(" ")
-                player_Curr_Run = int(player_Curr_Run)
+                _,player,player_Curr_Run = p2.split(" ")
+                player_Curr_Run = int(player_Curr_Run[:-1])
+                
             
             m_ins = Match_Score(
                 match=match,
@@ -725,6 +722,7 @@ def saveMatchScore(request,match_id):
             )
             
             m_ins.save()
+            print(m_ins)
 
     return HttpResponse('')    
 
@@ -749,7 +747,9 @@ def saveBettingDetails(request,match_id):
         sessionVal = int(sessionVal),
         sessionRate = sessionR,
         betcoin = round(float(betCurrCoins),2),
-        totalrate = round(float(totalRate),2)
+        totalrate = round(float(totalRate),2),
+        date = date.today(),
+        comp = 'F'
         
     )
     
@@ -789,7 +789,9 @@ def saveLaghaiKhaiDetails(request,match_id):
         mode = mode,
         amount = round(float(totalRate),2),
         team = market,
-        betcoin=betCurrCoins
+        betcoin=betCurrCoins,
+        date = date.today(),
+        comp = 'F'
     )
     
     bet_ins.save()
