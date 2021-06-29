@@ -528,7 +528,6 @@ def teen_patti_t20(request):
 def admin_view(request):
     user_name = request.COOKIES.get("user_name")
     if user_name in settings.ADMIN_USERS:
-
         lagai_khai_list = LaghaiKhaliBetDetail.objects.all().order_by('bet_id')
         yes_no_list = BettingDetail.objects.all().order_by(('bet_id'))
         return render(request,
@@ -693,7 +692,35 @@ def saveMatchScore(request,match_id):
         
         try:
             ins = Match_Score.objects.filter(match=match,over=over,ball=ball).get()
-            return HttpResponse('')
+            if ins.runner == jsonData['data']['Name']:
+                return HttpResponse('')
+            else:
+                run_wickets = jsonData['data']['Score']
+                run,wicket = run_wickets.split("/")
+                run,wicket = int(run) ,int(wicket)
+                runner = jsonData['data']['Name']
+                filedDetails = jsonData['data']['OnFiledDetail']
+                p1,p2 = filedDetails.split(",")
+                if '*' in p1:
+                    player,player_Curr_Run = p1.split(" ")
+                    player_Curr_Run = int(player_Curr_Run[:-1])
+                else:
+                    _,player,player_Curr_Run = p2.split(" ")
+                    player_Curr_Run = int(player_Curr_Run[:-1])
+                    
+                
+                m_ins = Match_Score(
+                    match=match,
+                    ining = 2,
+                    over=over,
+                    ball=ball,
+                    run=run,
+                    wickets=wicket,
+                    runner= runner,
+                    player= player,
+                    player_Curr_Run=player_Curr_Run,
+                    score_Json=jsonData
+                )  
         except :
             run_wickets = jsonData['data']['Score']
             run,wicket = run_wickets.split("/")
@@ -711,6 +738,7 @@ def saveMatchScore(request,match_id):
             
             m_ins = Match_Score(
                 match=match,
+                ining = 1,
                 over=over,
                 ball=ball,
                 run=run,
@@ -809,3 +837,21 @@ def saveLaghaiKhaiDetails(request,match_id):
     reData = str(leftcoins)+"_"+str(rate)+"_"+str(totalRate)+"_"+str(mode)+"_"+str(market)
     print(reData)
     return HttpResponse(reData)
+
+@csrf_exempt
+def ajaxAutoValidator(request):
+    sessionList = BettingDetail.objects.filter(comp='F').order_by('bet_id')
+    for obj in sessionList:
+        name = obj.session
+        try:   # SL 24 Over Runs
+            try:
+                temp_list = name.split(" ")
+                temp_var = int(temp_list[-3])
+                if 'Only' not in name:
+                    pass
+            except :
+                continue
+        except :
+            pass
+    
+    return HttpResponse('')

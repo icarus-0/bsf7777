@@ -18,6 +18,7 @@ class Match(models.Model):
 class Match_Score(models.Model):
     score_pk = models.AutoField(primary_key=True)
     match = models.ForeignKey(Match,on_delete=models.CASCADE)
+    ining = models.IntegerField(null=True)
     over = models.IntegerField()
     ball = models.IntegerField()
     run =  models.IntegerField()
