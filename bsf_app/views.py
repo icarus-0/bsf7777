@@ -238,12 +238,18 @@ def inplay(request):
 
 @bsf_login_required
 def market_detail(request,match_id):
+    bookset = False
+    bookset_price = 0
     
     userId =  request.COOKIES['user_name']
     
     ins = Match.objects.filter(match_id= match_id).get()
-    sessionData = BettingDetail.objects.filter(userId=userId,match=ins)
-    marketData = LaghaiKhaliBetDetail.objects.filter(userId=userId,match=ins)
+    sessionData = BettingDetail.objects.filter(userId=userId,match=ins).order_by('bet_id')
+    marketData = LaghaiKhaliBetDetail.objects.filter(userId=userId,match=ins).order_by('bet_id')
+    if len(marketData) >=2:
+        if marketData[0].team == marketData[1].team:
+            bookset = True
+            bookset_price = marketData[0].amount - marketData[1].amount
     
     market_id = match_id
     event_name = ins.match_name
@@ -263,7 +269,9 @@ def market_detail(request,match_id):
         'runner2':runner2,
         'match_type':ins.match_type,
         'sessionData':sessionData,
-        'marketData':marketData
+        'marketData':marketData,
+        'bookset' : bookset,
+        'bookset_price':bookset_price
     }
     
     return render(request, "market.html",data)

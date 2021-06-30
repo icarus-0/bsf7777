@@ -111,8 +111,16 @@
                     Market
                     :
                     Match Winner
-                    <p id="marketWinner"></p>
+                    {% if bookset == True %}
+                    <p id="marketWinner" style="color:rgb(243, 74, 74)">You Made A Bookset of : {{bookset_price}} Rs</p>
+                    {% endif %}
+
+                    {% if bookset == False %}
+                    <p id="marketWinner" style="color:rgb(243, 74, 74)"></p>
+                    {% endif %}
                  </th>
+                 
+                
               </tr>
               <tr>
                  <th class="bet-place-tbl-th run-pos-rate-amt-run-mod-color">RUNNER</th>
@@ -1292,14 +1300,15 @@ $("#submitBet").click(function(){
             
             if (checker == 'LAGHAI'){
               console.log('Lagai')
-              if ($('#KHAI_ammount').text() & $('#KHAI_team').text() == redata[4]){
+              kammount = $.trim($('#KHAI_ammount').text())
+              if (typeof(kammount)!="undefined" & $.trim($('#KHAI_team').text()) == $.trim(redata[4])){
                 console.log('Lagai YES')
-                preval = parseFloat($('#KHAI_ammount').text())
-                val = parseFloat(redata[3])
+                preval = parseFloat(kammount)
+                val = parseFloat(redata[2])
 
                 fu = preval -val
 
-                str = 'You Make A Bookset : '+fu
+                str = 'You Made A Bookset of : '+fu +' Rs'
                 console.log(fu)
                 $('#marketWinner').text(str)
               }
@@ -1307,14 +1316,14 @@ $("#submitBet").click(function(){
               
               lammount = $.trim($('#LAGHAI_ammount').text())
               console.log(lammount)
-              if (lammount & $.trim($('#KHAI_team').text()) == $.trim(redata[4])){
+              if (typeof(lammount)!="undefined" & $.trim($('#LAGHAI_team').text()) == $.trim(redata[4])){
                 console.log('khgai YES')
-                preval = parseFloat($('#LAGHAI_ammount').text())
-                val = parseFloat(redata[3])
-
+                preval = parseFloat(lammount)
+                val = parseFloat(redata[2])
+                console.log(preval , val)
                 fu = preval -val
 
-                str = 'You Make A Bookset : '+fu
+                str = 'You Made A Bookset of : '+fu +' Rs'
                 console.log(fu)
                 $('#marketWinner').text(str)
               }
