@@ -881,7 +881,9 @@ def ajaxAutoValidator(request,match_id):
             match = obj.match
             try:
                 checker_obj = Match_Score.objects.filter(match=match,over=over)[-1]
-                if checker_obj.run >= runs:
+                if checker_obj.run >= runs and obj.mode == 'YES':
+                    obj.comp = 'T'
+                if checker_obj.run < runs and obj.mode == 'NO':
                     obj.comp = 'T'        
             except:
                 continue
@@ -905,7 +907,9 @@ def ajaxAutoValidator(request,match_id):
                 except:
                     continue
             
-            if checker_obj.player_Curr_Run >= obj.sessionVal:
+            if checker_obj.player_Curr_Run >= obj.sessionVal and obj.mode == 'YES':
+                obj.comp = 'T'
+            if checker_obj.player_Curr_Run < obj.sessionVal and obj.mode == 'NO':
                 obj.comp = 'T'
         elif 'Fall of' in name and 'Wicket' in name:
             wickets = get_wickets(name)
@@ -913,7 +917,9 @@ def ajaxAutoValidator(request,match_id):
                 continue
             try:
                 checker_obj = Match_Score.objects.filter(match=obj.match,wickets=wickets)[-1]
-                if checker_obj.run >= obj.sessionVal:
+                if checker_obj.run >= obj.sessionVal and obj.mode == 'YES':
+                    obj.comp = 'T'
+                if checker_obj.run < obj.sessionVal and obj.mode == 'NO':
                     obj.comp = 'T'
             except :
                 continue
