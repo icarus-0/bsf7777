@@ -64,7 +64,7 @@
           <td class="ldg-tbl-td match-value-box-color" style="text-align:center;">
             {% if row.comp == 'F' %}
             <div class="butn-side-by-side">
-            	<button class="btn btn-primary pill-butn butn-left" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'won')">WON</button>
+            	<button class="btn btn-primary pill-butn butn-left" onclick="submit_fun('{{ row.bet_id }}', 'won')">WON</button>
             	<!--&nbsp;&nbsp;
             	<button class="btn btn-primary pill-butn butn-right" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'lose')">LOSE</button>-->
             </div>
@@ -125,9 +125,9 @@
           <td class="ldg-tbl-td match-value-box-color" style="text-align:center;">
             {% if row.comp == 'F' or  row.comp == None %}
             <div class="butn-side-by-side">
-              <button class="btn btn-primary pill-butn butn-left" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}', 'yes')">YES</button>
+              <button class="btn btn-primary pill-butn butn-left" onclick="submit_fun('{{ row.bet_id }}', 'yes')">YES</button>
               &nbsp;&nbsp;
-              <button class="btn btn-primary pill-butn butn-right" onclick="submit_fun('{{row.4}}', '{{row.0}}', '{{row.1}}','{{row.2}}', '{{row.6}}','no')">NO</button>
+              <button class="btn btn-primary pill-butn butn-right" onclick="submit_fun('{{ row.bet_id }}','no')">NO</button>
             </div>
             {% endif %}
           </td>
@@ -211,13 +211,9 @@
     });
   }
 
-  function submit_fun(date, name, type, rate, id, status) {
-    console.log(date, name, type, rate, id, status)
+  function submit_fun(id, status) {
+
     var fdata = {
-      "date": date,
-      "name": name,
-      "type": type,
-      "rate": rate,
       "id": id,
       "status": status
     }
@@ -227,6 +223,7 @@
       if(data.status == "success"){
         $(".container").css({"opacity": 1})
         notify("Updated Successfully", "success")
+        location.reload();
         // location.reload(true);
       }else{
         $(".container").css({"opacity": 1})

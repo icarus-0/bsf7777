@@ -548,31 +548,28 @@ def admin_view(request):
 
 @csrf_exempt
 def update_bet_records(request):
-    bet_date = request.POST.get("date")
-    market_name = request.POST.get("name")
-    market_type = request.POST.get("type")
-    market_rate = request.POST.get("rate")
     market_id = request.POST.get("id")
     status = request.POST.get("status")
-
-    data = {
-        "bet_date": bet_date,
-        "market_name": market_name,
-        "market_type": market_type,
-        "market_rate": market_rate,
-        "market_id": market_id,
-        "status": status
-    }
-    print(data)
-    result = requests.post(settings.UPDATE_BET_RECORDS, json=data)
-    if result.status_code == 200 and json.loads(result.content).get("IsBetStatusProcessed") == "done":
+    
+    try:
+        if status == 'won':
+            ins = LaghaiKhaliBetDetail.objects.get(pk=int(market_id))
+            ins.comp = 'T'
+            
+        elif status in ['yes' ,'no']:
+            ins =  BettingDetail.objects.get(pk=int(market_id))
+            ins.comp = 'T'
+            
+        ins.save()
+        
         return JsonResponse(
             {"status": "success",
-             "message": "Update Successfully"})
-
-    return JsonResponse(
-        {"status": "fail",
-         "message": "Update Failed"})
+                "message": "Update Successfully"})
+    
+    except Exception as e:    
+        return JsonResponse(
+            {"status": "fail",
+            "message": "Update Failed"})
 
 
 def get_user_coins(request):
@@ -846,20 +843,82 @@ def saveLaghaiKhaiDetails(request,match_id):
     print(reData)
     return HttpResponse(reData)
 
+
+def check_Int_val(s):
+    for i in s:
+        try:
+            a = int(i)
+            return False
+        except:
+            continue
+    
+    return True
+
+def get_wickets(s):
+    wickets = ''
+    for i in s:
+        try:
+            a = int(i)
+            wickets += i
+        except :
+            continue
+    if wickets != '':
+        return int(wickets)
+    else:
+        return 0
+    
+
+
 @csrf_exempt
-def ajaxAutoValidator(request):
+def ajaxAutoValidator(request,match_id):
     sessionList = BettingDetail.objects.filter(comp='F').order_by('bet_id')
     for obj in sessionList:
         name = obj.session
-        try:   # SL 24 Over Runs
+        
+        if 'Over Runs' in name and 'Only' not in name:
+            over = int(name.split(" ")[-3])
+            runs = obj.sessionVal
+            match = obj.match
             try:
-                temp_list = name.split(" ")
-                temp_var = int(temp_list[-3])
-                if 'Only' not in name:
-                    pass
+                checker_obj = Match_Score.objects.filter(match=match,over=over)[-1]
+                if checker_obj.run >= runs:
+                    obj.comp = 'T'        
+            except:
+                continue
+            
+        elif 'Runs' in name and name.split(' ')[-1] == 'Runs' and check_Int_val(name):
+            plist = name.split(" ")
+            plist.pop()
+            player = " ".join(plist)
+            try:
+                checker_obj = Match_Score.objects.filter(match=obj.match,player=player)[-1]
+            except:
+                player_initials = ''
+                player_last_name = plist.pop()
+                
+                for i in plist:
+                    player_initials += i[0]+'.'
+                
+                player_name = player_initials+player_last_name
+                try:
+                    checker_obj = Match_Score.objects.filter(match=obj.match,player=player)[-1]
+                except:
+                    continue
+            
+            if checker_obj.player_Curr_Run >= obj.sessionVal:
+                obj.comp = 'T'
+        elif 'Fall of' in name and 'Wicket' in name:
+            wickets = get_wickets(name)
+            if wickets == 0:
+                continue
+            try:
+                checker_obj = Match_Score.objects.filter(match=obj.match,wickets=wickets)[-1]
+                if checker_obj.run >= obj.sessionVal:
+                    obj.comp = 'T'
             except :
                 continue
-        except :
-            pass
-    
+            
+        obj.save()
+                
+            
     return HttpResponse('')

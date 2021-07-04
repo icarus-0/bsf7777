@@ -1100,7 +1100,8 @@ $('#rateTable').on("click","td",function(){
   }
   $("#ammounts").show();
   $("#bettingArea").show();
-  $("#bettingArea").focus();
+  $("#coin_countity_bet").focus();
+  $("#laghaiKhaiBetingArea").hide();
 
   }
   else{
@@ -1124,6 +1125,8 @@ $('#rateTable').on("click","td",function(){
       $("#ammounts").show();
       $("#market_nm").text("{{runner1}}")
       $("#market_rt").text(val+"( LAGHAI )")
+      $("#bettingArea").hide();
+      $("#coin_countity_session").focus()
     }else{
       $("#laghaiKhaiBetingArea").hide();
       $("#ammounts").hide();
@@ -1137,6 +1140,8 @@ $('#rateTable').on("click","td",function(){
       $("#ammounts").show();
       $("#market_nm").text("{{runner2}}")
       $("#market_rt").text(val+"( LAGHAI )")
+      $("#bettingArea").hide();
+      $("#coin_countity_session").focus()
     }else{
       $("#laghaiKhaiBetingArea").hide();
       $("#ammounts").hide();
@@ -1152,6 +1157,8 @@ $('#rateTable').on("click","td",function(){
       $("#ammounts").show();
       $("#market_nm").text("{{runner1}}")
       $("#market_rt").text(val+"( KHAI )")
+      $("#bettingArea").hide();
+      $("#coin_countity_session").focus()
     }else{
       $("#laghaiKhaiBetingArea").hide();
       $("#ammounts").hide();
@@ -1166,6 +1173,8 @@ $('#rateTable').on("click","td",function(){
       $("#ammounts").show();
       $("#market_nm").text("{{runner2}}")
       $("#market_rt").text(val+"( KHAI )")
+      $("#bettingArea").hide();
+      $("#coin_countity_session").focus()
     }else{
       $("#laghaiKhaiBetingArea").hide();
       $("#ammounts").hide();
@@ -1232,6 +1241,15 @@ $("#submitBet").click(function(){
           $("#SessionBetingDetailsTable").append(html);
         }
       });
+
+      $.ajax({
+        url : 'ajaxAutoValidator/',
+        method:"Post",
+        data:{
+          'userId':id
+        }
+      });
+
     }
 
   }
@@ -1302,7 +1320,7 @@ $("#submitBet").click(function(){
               console.log('Lagai')
               kammount = $.trim($('#KHAI_ammount').text())
               if (typeof(kammount)!="undefined" & $.trim($('#KHAI_team').text()) == $.trim(redata[4])){
-                console.log('Lagai YES')
+                
                 preval = parseFloat(kammount)
                 val = parseFloat(redata[2])
 
@@ -1310,14 +1328,15 @@ $("#submitBet").click(function(){
 
                 str = 'You Made A Bookset of : '+fu +' Rs'
                 console.log(fu)
-                $('#marketWinner').text(str)
+                $('#marketWinner').append(str)
+                location.reload();
               }
             }else{
               
               lammount = $.trim($('#LAGHAI_ammount').text())
               console.log(lammount)
               if (typeof(lammount)!="undefined" & $.trim($('#LAGHAI_team').text()) == $.trim(redata[4])){
-                console.log('khgai YES')
+                
                 preval = parseFloat(lammount)
                 val = parseFloat(redata[2])
                 console.log(preval , val)
@@ -1325,11 +1344,22 @@ $("#submitBet").click(function(){
 
                 str = 'You Made A Bookset of : '+fu +' Rs'
                 console.log(fu)
-                $('#marketWinner').text(str)
+                $('#marketWinner').append(str);
+                location.reload();
               }
             }
           }
         });
+
+        $.ajax({
+          url : 'ajaxAutoValidator/',
+          method:"Post",
+          data:{
+            'userId':id
+          }
+        });
+
+        
       }
       
 
