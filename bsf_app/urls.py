@@ -33,5 +33,6 @@ urlpatterns = [
     path('user/market_detail/<str:match_id>/saveMatchScore/', saveMatchScore,name="saveMatchScore"),
     path('user/market_detail/<str:match_id>/saveBettingDetails/', saveBettingDetails,name="saveMatchScore"),
     path('user/market_detail/<str:match_id>/saveLaghaiKhaiDetails/', saveLaghaiKhaiDetails,name="saveLaghaiKhaiDetails"),
-    path('user/market_detail/<str:match_id>/ajaxAutoValidator/', ajaxAutoValidator,name="ajaxAutoValidator")
+    path('user/market_detail/<str:match_id>/ajaxAutoValidator/', ajaxAutoValidator,name="ajaxAutoValidator"),
+     path('admin-view/ajaxAutoValidator/', ajaxAutoValidator2,name="ajaxAutoValidator2")
 ]

@@ -291,4 +291,14 @@
 
 </style>
 
+
+<script>
+  setInterval(function(){  $.ajax({
+    url : 'ajaxAutoValidator/',
+    method:"Post",
+    data:{
+      'userId':1
+    }
+  }); }, 3000);
+</script>
 {% endblock %}
