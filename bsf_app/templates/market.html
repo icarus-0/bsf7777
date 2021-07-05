@@ -453,7 +453,7 @@
                   <td><button amt-value="3000" class="default-value-btn" style="cursor: pointer;" id="3000rs">3000</button></td>
                   <td><button amt-value="5000" class="default-value-btn" style="cursor: pointer;" id="5000rs">5000</button></td>
                   <td><button amt-value="10000" class="default-value-btn" style="cursor: pointer;" id="10krs">10 K</button></td>
-                  <td rowspan="2"><button amt-value="clear" class="default-value-btn bet-value-clear-button" id="500rs">Clear</button></td>
+                  <td rowspan="2"><button amt-value="clear" class="default-value-btn bet-value-clear-button" id="clearammount">Clear</button></td>
                </tr>
                <tr>
                   <td><button amt-value="15000" class="default-value-btn" style="cursor: pointer;" id="15krs">15 K</button></td>
@@ -1409,6 +1409,11 @@ $("#submitBet").click(function(){
   $('#1lkrs').click(function(){
     $("#coin_countity_bet").val(100000)
     $("#coin_countity_session").val(100000)
+  })
+
+  $("#clearammount").click(function(){
+    $("#coin_countity_bet").val('')
+    $("#coin_countity_session").val('')
   })
 </script>
 
