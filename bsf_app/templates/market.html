@@ -448,19 +448,19 @@
          <table class="bet-value-buttons-table lg-table">
             <tbody>
                <tr>
-                  <td><button amt-value="500" class="default-value-btn">500</button></td>
-                  <td><button amt-value="1000" class="default-value-btn">1000</button></td>
-                  <td><button amt-value="3000" class="default-value-btn">3000</button></td>
-                  <td><button amt-value="5000" class="default-value-btn">5000</button></td>
-                  <td><button amt-value="10000" class="default-value-btn">10 K</button></td>
-                  <td rowspan="2"><button amt-value="clear" class="default-value-btn bet-value-clear-button">Clear</button></td>
+                  <td><button amt-value="500" class="default-value-btn" style="cursor: pointer;" id="500rs">500</button></td>
+                  <td><button amt-value="1000" class="default-value-btn" style="cursor: pointer;" id="1000rs">1000</button></td>
+                  <td><button amt-value="3000" class="default-value-btn" style="cursor: pointer;" id="3000rs">3000</button></td>
+                  <td><button amt-value="5000" class="default-value-btn" style="cursor: pointer;" id="5000rs">5000</button></td>
+                  <td><button amt-value="10000" class="default-value-btn" style="cursor: pointer;" id="10krs">10 K</button></td>
+                  <td rowspan="2"><button amt-value="clear" class="default-value-btn bet-value-clear-button" id="500rs">Clear</button></td>
                </tr>
                <tr>
-                  <td><button amt-value="15000" class="default-value-btn">15 K</button></td>
-                  <td><button amt-value="25000" class="default-value-btn">25 K</button></td>
-                  <td><button amt-value="50000" class="default-value-btn">50 K</button></td>
-                  <td><button amt-value="75000" class="default-value-btn">75 K</button></td>
-                  <td><button amt-value="100000" class="default-value-btn">1 L</button></td>
+                  <td><button amt-value="15000" class="default-value-btn" style="cursor: pointer;" id="15krs">15 K</button></td>
+                  <td><button amt-value="25000" class="default-value-btn" style="cursor: pointer;" id="25krs">25 K</button></td>
+                  <td><button amt-value="50000" class="default-value-btn" style="cursor: pointer;" id="50krs">50 K</button></td>
+                  <td><button amt-value="75000" class="default-value-btn" style="cursor: pointer;" id="75krs">75 K</button></td>
+                  <td><button amt-value="100000" class="default-value-btn" style="cursor: pointer;" id="1lrs">1 L</button></td>
                </tr>
             </tbody>
          </table>
@@ -1217,6 +1217,7 @@ $("#submitBet").click(function(){
           "totalRate" : rateVal*entered_ammount
         },
         success: function (data) {
+          $("#coin_countity_session").val('')
           redata = data.split("_")
           $("#errorBettingText").hide();
           $("#compBettingText").show();
@@ -1291,6 +1292,7 @@ $("#submitBet").click(function(){
             "totalRate" : rateVal*entered_ammount
           },
           success: function (data) {
+            $("#coin_countity_bet").val('')
             redata = data.split("_")
             checker = $.trim(redata[3])
             $("#errorMarketBettingText").hide();
@@ -1369,6 +1371,45 @@ $("#submitBet").click(function(){
     
   })
 
+</script>
+
+<script>
+  $('#500rs').click(function(){
+    $("#coin_countity_bet").val(500)
+    $("#coin_countity_session").val(500)
+  })
+  $('#1000rs').click(function(){
+    $("#coin_countity_bet").val(1000)
+    $("#coin_countity_session").val(1000)
+  })
+  $('#3000rs').click(function(){
+    $("#coin_countity_bet").val(3000)
+    $("#coin_countity_session").val(3000)
+  })
+  $('#5000rs').click(function(){
+    $("#coin_countity_bet").val(5000)
+    $("#coin_countity_session").val(5000)
+  })
+  $('#10krs').click(function(){
+    $("#coin_countity_bet").val(10000)
+    $("#coin_countity_session").val(10000)
+  })
+  $('#15krs').click(function(){
+    $("#coin_countity_bet").val(15000)
+    $("#coin_countity_session").val(15000)
+  })
+  $('#25krs').click(function(){
+    $("#coin_countity_bet").val(25000)
+    $("#coin_countity_session").val(25000)
+  })
+  $('#50krs').click(function(){
+    $("#coin_countity_bet").val(50000)
+    $("#coin_countity_session").val(50000)
+  })
+  $('#1lkrs').click(function(){
+    $("#coin_countity_bet").val(100000)
+    $("#coin_countity_session").val(100000)
+  })
 </script>
 
 {% endblock %}
