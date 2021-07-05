@@ -871,60 +871,181 @@ def get_wickets(s):
 
 @csrf_exempt
 def ajaxAutoValidator(request,match_id):
+    
     sessionList = BettingDetail.objects.filter(comp='F').order_by('bet_id')
+    #print(sessionList)
     for obj in sessionList:
         name = obj.session
-        
+        # SL 10 Over Runs
         if 'Over Runs' in name and 'Only' not in name:
+           
             over = int(name.split(" ")[-3])
             runs = obj.sessionVal
             match = obj.match
             try:
-                checker_obj = Match_Score.objects.filter(match=match,over=over)[-1]
-                if checker_obj.run >= runs and obj.mode == 'YES':
+                checker_obj = list(Match_Score.objects.filter(match=match,over=over-1))[-1]
+                
+                if checker_obj.run >= runs and str(obj.mode).strip().lower() == 'yes':
                     obj.comp = 'T'
-                if checker_obj.run < runs and obj.mode == 'NO':
-                    obj.comp = 'T'        
-            except:
+                    print('yes')
+                if checker_obj.run < runs and str(obj.mode).strip().lower() == 'no':
+                    print('NO')
+                    obj.comp = 'T'
+                
+                if checker_obj.run >= runs and str(obj.mode).strip().lower() == 'no':
+                    obj.comp= 'Loose'
+                
+                if checker_obj.run < runs and str(obj.mode).strip().lower() == 'yes':
+                    obj.comp = 'Loose'
+                
+                obj.save()
+                print('data saved    ',obj.mode,'  ',checker_obj.run,'   ',runs)        
+            except Exception as e:
+                print(e)
                 continue
-            
+        # Player RUns
         elif 'Runs' in name and name.split(' ')[-1] == 'Runs' and check_Int_val(name):
             plist = name.split(" ")
             plist.pop()
             player = " ".join(plist)
+            #print(player)
             try:
-                checker_obj = Match_Score.objects.filter(match=obj.match,player=player)[-1]
+                checker_obj = list(Match_Score.objects.filter(match=obj.match,player=player))[-1]
             except:
-                player_initials = ''
-                player_last_name = plist.pop()
                 
-                for i in plist:
-                    player_initials += i[0]+'.'
                 
-                player_name = player_initials+player_last_name
+                player_name = plist[0][0]+"."+plist[1]
+                print(plist,'   ','    ',player_name)
                 try:
-                    checker_obj = Match_Score.objects.filter(match=obj.match,player=player)[-1]
+                    checker_obj = list(Match_Score.objects.filter(match=obj.match,player=player_name))[-1]
                 except:
                     continue
             
-            if checker_obj.player_Curr_Run >= obj.sessionVal and obj.mode == 'YES':
+            if checker_obj.player_Curr_Run >= obj.sessionVal and str(obj.mode).strip().lower() == 'yes':
                 obj.comp = 'T'
-            if checker_obj.player_Curr_Run < obj.sessionVal and obj.mode == 'NO':
+            if checker_obj.player_Curr_Run < obj.sessionVal and str(obj.mode).strip().lower() == 'no':
                 obj.comp = 'T'
+                
+            if checker_obj.player_Curr_Run < obj.sessionVal and str(obj.mode).strip().lower() == 'yes':
+                obj.comp = 'Loose'
+            if checker_obj.player_Curr_Run > obj.sessionVal and str(obj.mode).strip().lower() == 'no':
+                obj.comp = 'Loose'
+            obj.save()
+        
+        #Fall of the wickets
         elif 'Fall of' in name and 'Wicket' in name:
             wickets = get_wickets(name)
             if wickets == 0:
                 continue
             try:
-                checker_obj = Match_Score.objects.filter(match=obj.match,wickets=wickets)[-1]
-                if checker_obj.run >= obj.sessionVal and obj.mode == 'YES':
+                checker_obj = list(Match_Score.objects.filter(match=obj.match,wickets=wickets))[-1]
+                if checker_obj.run >= obj.sessionVal and str(obj.mode).strip().lower() == 'yes':
                     obj.comp = 'T'
-                if checker_obj.run < obj.sessionVal and obj.mode == 'NO':
+                if checker_obj.run < obj.sessionVal and str(obj.mode).strip().lower() == 'no':
                     obj.comp = 'T'
+                
+                if checker_obj.run < obj.sessionVal and str(obj.mode).strip().lower() == 'yes':
+                    obj.comp = 'Loose'
+                if checker_obj.run >= obj.sessionVal and str(obj.mode).strip().lower() == 'no':
+                    obj.comp = 'Loose'
+                obj.save()
             except :
                 continue
-            
-        obj.save()
-                
-            
+                     
     return HttpResponse('')
+
+
+@csrf_exempt
+def ajaxAutoValidator2(request):
+    sessionList = BettingDetail.objects.filter(comp='F').order_by('bet_id')
+    #print(sessionList)
+    for obj in sessionList:
+        name = obj.session
+        # SL 10 Over Runs
+        if 'Over Runs' in name and 'Only' not in name:
+           
+            over = int(name.split(" ")[-3])
+            runs = obj.sessionVal
+            match = obj.match
+            try:
+                checker_obj = list(Match_Score.objects.filter(match=match,over=over-1))[-1]
+                
+                if checker_obj.run >= runs and str(obj.mode).strip().lower() == 'yes':
+                    obj.comp = 'T'
+                    print('yes')
+                if checker_obj.run < runs and str(obj.mode).strip().lower() == 'no':
+                    print('NO')
+                    obj.comp = 'T'
+                
+                if checker_obj.run >= runs and str(obj.mode).strip().lower() == 'no':
+                    obj.comp= 'Loose'
+                
+                if checker_obj.run < runs and str(obj.mode).strip().lower() == 'yes':
+                    obj.comp = 'Loose'
+                
+                obj.save()
+                print('data saved    ',obj.mode,'  ',checker_obj.run,'   ',runs)        
+            except Exception as e:
+                print(e)
+                continue
+        # Player RUns
+        elif 'Runs' in name and name.split(' ')[-1] == 'Runs' and check_Int_val(name):
+            plist = name.split(" ")
+            plist.pop()
+            player = " ".join(plist)
+            #print(player)
+            try:
+                checker_obj = list(Match_Score.objects.filter(match=obj.match,player=player))[-1]
+            except:
+                
+                
+                player_name = plist[0][0]+"."+plist[1]
+                print(plist,'   ','    ',player_name)
+                try:
+                    checker_obj = list(Match_Score.objects.filter(match=obj.match,player=player_name))[-1]
+                except:
+                    continue
+            
+            if checker_obj.player_Curr_Run >= obj.sessionVal and str(obj.mode).strip().lower() == 'yes':
+                obj.comp = 'T'
+            if checker_obj.player_Curr_Run < obj.sessionVal and str(obj.mode).strip().lower() == 'no':
+                obj.comp = 'T'
+                
+            if checker_obj.player_Curr_Run < obj.sessionVal and str(obj.mode).strip().lower() == 'yes':
+                obj.comp = 'Loose'
+            if checker_obj.player_Curr_Run > obj.sessionVal and str(obj.mode).strip().lower() == 'no':
+                obj.comp = 'Loose'
+            obj.save()
+        
+        #Fall of the wickets
+        elif 'Fall of' in name and 'Wicket' in name:
+            wickets = get_wickets(name)
+            if wickets == 0:
+                continue
+            try:
+                checker_obj = list(Match_Score.objects.filter(match=obj.match,wickets=wickets))[-1]
+                if checker_obj.run >= obj.sessionVal and str(obj.mode).strip().lower() == 'yes':
+                    obj.comp = 'T'
+                if checker_obj.run < obj.sessionVal and str(obj.mode).strip().lower() == 'no':
+                    obj.comp = 'T'
+                
+                if checker_obj.run < obj.sessionVal and str(obj.mode).strip().lower() == 'yes':
+                    obj.comp = 'Loose'
+                if checker_obj.run >= obj.sessionVal and str(obj.mode).strip().lower() == 'no':
+                    obj.comp = 'Loose'
+                obj.save()
+            except :
+                continue
+                     
+    return HttpResponse('')
+
+
+
+
+
+
+
+
+
+
+
